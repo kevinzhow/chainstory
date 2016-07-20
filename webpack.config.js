@@ -7,7 +7,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.styl$/, loader: "style!css!stylus" },
+      { test: /\.less$/, loader: "style!css!less" },
       { test: /\.html$/, loader: "html" }
     ]
   }

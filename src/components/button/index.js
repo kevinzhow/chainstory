@@ -2,5 +2,5 @@ require('./style.less')
 
 module.exports = {
   template: require('./template.html'),
-  props: ['msg']
+  props: ['buttonmsg', 'side']
 }
