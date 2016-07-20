@@ -1,0 +1,49 @@
+.bubble {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 3px 3px 7px rgba(118, 118, 118, 0.14);
+  border: 2px solid #FBF9F9;
+  margin: 10px 10px 20px 10px;
+  padding: 15px 15px 15px 15px;
+
+  .bubble-header {
+    display: flex;
+    .bubble-user-avatar {
+      width: 42px;
+      height: 42px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 42px;
+      }
+    }
+
+    .bubble-user-info {
+      margin-left: 10px;
+      .username {
+        color: #484F57;
+        font-size: 15px;
+      }
+
+      .created-at {
+        color: #828D9A;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .bubble-body {
+    color: #484F57;
+    margin-top: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .bubble-footer {
+    .bubble-footer-info {
+      font-size: 12px;
+      color: #9CAAB9;
+    }
+  }
+}

@@ -1,3 +1,7 @@
-<div class="view" v-transition>
-  <app-compose-button side="center" buttonmsg="{{buttonMsg}}"></app-compose-button>
+<div class="view">
+  <li v-for="bubble in bubbles">
+    <app-bubble :bubble.once="bubble"></app-bubble>
+  </li>
+
+  <app-compose-button side="center" v-bind:buttonmsg="buttonMsg"></app-compose-button>
 </div>

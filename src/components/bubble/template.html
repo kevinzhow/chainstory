@@ -1,3 +1,26 @@
-<div class="">
+<div class="bubble">
+  <div class="bubble-header">
+    <div class="bubble-user-avatar">
+      <img :src="bubble.user.avatar" alt="" />
+    </div>
+    <div class="bubble-user-info">
+      <div class="username">
+        {{ bubble.user.username }}
+      </div>
+      <div class="created-at">
+        {{ bubble.created_at }}
+      </div>
+    </div>
+  </div>
+  <div class="bubble-body">
+    {{ bubble.content }}
+  </div>
+  <div class="bubble-footer">
+    <div class="bubble-footer-info">
+      {{ bubble.likes }} 人喜欢
+    </div>
+    <div class="bubble-footer-like">
 
+    </div>
+  </div>
 </div>

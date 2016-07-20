@@ -1,6 +1,9 @@
 require('./style.less')
+var Vue = require('vue')
 
-module.exports = {
+let component = Vue.extend({
   template: require('./template.html'),
   props: ['buttonmsg', 'side']
-}
+})
+
+module.exports = component

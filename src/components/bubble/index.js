@@ -1,6 +1,9 @@
 require('./style.less')
+var Vue = require('vue')
 
-module.exports = {
-  template: require('./template.html'),
-  props: ['msg']
-}
+let component = Vue.extend({
+    template: require('./template.html'),
+    props: ['bubble']
+})
+
+module.exports = component

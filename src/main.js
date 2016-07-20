@@ -4,10 +4,12 @@
 require('./main.less')
 
 var Vue = require('vue')
+Vue.config.debug = true
+
 var app = new Vue({
   el: '#app',
   data: {
-    view: 'story-timeline'
+    current_route: 'story-timeline'
   },
   components: {
     // define the main pages as async components.
@@ -29,7 +31,7 @@ var app = new Vue({
  */
 
 function route () {
-  app.view = window.location.hash.slice(1) || 'story-timeline'
+  app.current_route = window.location.hash.slice(1) || 'story-timeline'
 }
 
 window.addEventListener('hashchange', route)
