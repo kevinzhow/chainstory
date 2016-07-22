@@ -1,0 +1,23 @@
+<div class="bubble tips">
+  <div class="bubble-header">
+    <div class="bubble-user-avatar">
+      <img :src="bubble.user.avatar" alt="" />
+    </div>
+    <div class="bubble-user-info">
+      <div class="username">
+        {{ bubble.user.username }}
+      </div>
+    </div>
+    <div class="bubble-symbol">
+      <div class="symbol-container">
+        ?
+      </div>
+    </div>
+  </div>
+  <div class="bubble-body">
+    {{ bubble.content }} <br>
+    <p>
+      如果你希望获得写作的帮助，请点击右边的问号
+    </p>
+  </div>
+</div>

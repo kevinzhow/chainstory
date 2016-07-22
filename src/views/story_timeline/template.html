@@ -2,6 +2,6 @@
   <li v-for="bubble in bubbles">
     <app-bubble :bubble.once="bubble"></app-bubble>
   </li>
-
-  <app-compose-button side="center" v-bind:buttonmsg="buttonMsg"></app-compose-button>
+  <app-tips-bubble :bubble.once="tipsBubble"></app-tips-bubble>
+  <app-compose-button side="center" :buttonmsg.once="buttonMsg"></app-compose-button>
 </div>
