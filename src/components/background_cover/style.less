@@ -1,0 +1,23 @@
+.mask {
+  position: fixed;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2000;
+  background: transparent;
+  display: block;
+  // visibility: hidden
+
+  .mask-blur {
+    background: hsla(0, 0%, 95%, .70);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    // visibility: hidden;
+    opacity: 1;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px)
+  }
+}
