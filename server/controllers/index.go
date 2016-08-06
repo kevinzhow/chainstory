@@ -22,7 +22,8 @@ func IndexGET(w http.ResponseWriter, r *http.Request) {
   // Locate to the web resouerce folder
   http_root = fmt.Sprintf("%s/../web", http_root)
 
-  fmt.Printf("Fetch: %s %s\n", r.URL.Path)
+  // TODO: Should code a middleware for logging
+  fmt.Printf("Fetch: %s \n", r.URL.Path)
   var filename, fileext string
 
   // Serve index.html for / as default
