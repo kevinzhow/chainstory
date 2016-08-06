@@ -27,7 +27,6 @@ var Component = Vue.extend({
   },
   components: {
     'app-header': require('../../components/header'),
-    'app-pane': require('../../components/pane'),
     'app-compose-button': require('../../components/button'),
     'app-bubble': require('../../components/bubble'),
     'app-tips-bubble': require('../../components/tips_bubble'),
