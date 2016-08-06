@@ -1,8 +1,8 @@
 module.exports = {
   entry: "./src/main.js",
   output: {
-    path: "./build",
-    publicPath: "/build/",
+    path: "./static",
+    publicPath: "/static/",
     filename: "build.js"
   },
   module: {

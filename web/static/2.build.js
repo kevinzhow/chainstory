@@ -1,0 +1,1 @@
+webpackJsonp([2],{10:function(e,i,s){"use strict";e.exports={template:s(25),replace:!0}},25:function(e,i){e.exports="<div class=view v-transition> <h1>This is page B.</h1> <p>I'm... a bit less complicated.</p> </div>"}});

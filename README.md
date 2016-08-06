@@ -24,5 +24,12 @@ npm run dev
 To Start the API Server
 
 ```
-go run httpserver.go
+cd server
+go run app.go
+```
+
+If you want to serve the latest web, run this command in `web` folder to compile the latest frontend.
+
+```
+npm run build
 ```
