@@ -221,58 +221,7 @@ Response
 }
 ```
 
-#### Fork Story
 
-This could append a story node to a exisiting story.
-
-```
-Request
-
-POST /stories/:id/nodes/:node_id
-
-{
-  "content": "2017 年，北京政府实行了全面断网的政策，一时间，中国失去了和外界的联系，无数人都在猜测，这是新一代的闭关锁国，还是有所策划的一场大阴谋",
-  "access_token": "andsdnNASDNSanidnassdnasodn_asbasd222"
-}
-
-```
-
-| Parameters  | Type  | Comment |
-|---|---|----|------|----------|
-| id  |  uuid  | story ID |
-| node_id  |  uuid  | story node ID which present where to fork |
-| content  |  string  | a story node content |
-| access_token  |  string  | which you can verify the user identity |
-
-```
-Response
-
-{
-  "story" : {
-    "id": "uuid",
-    "author" : {
-      "nickname": "周楷雯 Kevin"，
-      "avatar": "http://tva3.sinaimg.cn/crop.27.27.337.337.180/538efefbgw1eg77da7jggj20aw0aw743.jpg"
-    },
-    "created_at": "635353533"
-    "space": 6,
-    "title": "北京奇侠传",
-    "nodes": [
-    {
-      "id": "uuid",
-      "likes": 6,
-      "author": {
-        "nickname": "周楷雯 Kevin"，
-        "avatar": "http://tva3.sinaimg.cn/crop.27.27.337.337.180/538efefbgw1eg77da7jggj20aw0aw743.jpg"
-      },
-      "content": "小方这年刚刚考上北邮，正准备投身到祖国四化的伟大事业中，没想到一个人的发是无法预料的，要看历史的进程，小方的爸爸给小方取了个伟大的名字——滨兴，寓意着万邦来朝，祖国可以兴盛伟大。",
-      "like_status": true,
-      "created_at": "635353533"
-    }
-    ]
-  }
-}
-```
 
 ## Like
 
@@ -283,7 +232,7 @@ This could append a story node to a exisiting story.
 ```
 Request
 
-POST /stories/:id/nodes/:node_id/likes
+POST /stories/:id/likes
 
 {
   "access_token": "andsdnNASDNSanidnassdnasodn_asbasd222"
@@ -308,7 +257,7 @@ Response
 ```
 Request
 
-DELETE /stories/:id/nodes/:node_id/likes
+DELETE /stories/:id/likes
 
 {
   "access_token": "andsdnNASDNSanidnassdnasodn_asbasd222"
@@ -318,8 +267,7 @@ DELETE /stories/:id/nodes/:node_id/likes
 
 | Parameters  | Type  | Comment |
 |---|---|----|------|----------|
-| id  |  uuid  | story ID |
-| node_id  |  uuid  | story node ID which user do unlike action |
+| id  |  uuid  | story node ID |
 | access_token  |  string  | which you can verify the user identity |
 
 ```
@@ -344,18 +292,6 @@ Basic all models
 | avatar  | string  | user avatar url from OAuth |
 | created_at  | unixtime  | when did this user join |
 
-
-### Story Node
-
-| Attribute  | Type  | Comment |
-|---|---|----|------|----------|
-| id  |  uuid  | Story Node ID |
-| author  |  User  | Who write this node |
-| content  |  string | Story paragraph node content |
-| likes  |  int | Story likes count |
-| like_status  |  bool | Reader liked this node or not |
-| created_at  | unixtime  | when did this story created |
-
 ### Like
 
 | Attribute  | Type  | Comment |
@@ -363,7 +299,7 @@ Basic all models
 | user  |  User  | who made this like |
 | node  |  Story Node  | to which story node |
 
-### Story
+### Story Node
 
 | Attribute  | Type  | Comment |
 |---|---|----|------|----------|
@@ -372,4 +308,8 @@ Basic all models
 | title  |  string | Story Title |
 | space  |  int | How many paragraph(Story Node) could this story includes |
 | created_at  | unixtime  | when did this story created |
-| nodes  | [Story Node]  | nodes that complete this story |
+| content  |  string | Story paragraph node content |
+| likes  |  int | Story likes count |
+| like_status  |  bool | Reader liked this node or not |
+| parent_node_ids  | [Story Node]  | parent nodes that complete this story |
+| child_node_ids  | [Story Node]  | child nodes that complete this story |
