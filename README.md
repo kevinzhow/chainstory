@@ -46,10 +46,8 @@ cd server
 make
 ```
 
-Everything will be put into the `build` directory
+If you want to serve the latest web, run this command in `web` folder to compile the latest frontend.Everything will be put into the `build` directory.
 
-
-If you want to serve the latest web, run this command in `web` folder to compile the latest frontend.
 
 ```
 npm run build
@@ -311,5 +309,5 @@ Basic all models
 | content  |  string | Story paragraph node content |
 | likes  |  int | Story likes count |
 | like_status  |  bool | Reader liked this node or not |
-| parent_node_ids  | [Story Node]  | parent nodes that complete this story |
-| child_node_ids  | [Story Node]  | child nodes that complete this story |
+| parent_node_ids  | [Story Node ID]  | parent nodes that complete this story |
+| child_node_ids  | [Story Node ID]  | child nodes that complete this story |
