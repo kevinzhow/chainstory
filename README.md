@@ -283,7 +283,7 @@ This could append a story node to a exisiting story.
 ```
 Request
 
-POST /stories/:id/likes
+POST /stories/:id/nodes/:node_id/likes
 
 {
   "access_token": "andsdnNASDNSanidnassdnasodn_asbasd222"
@@ -294,6 +294,7 @@ POST /stories/:id/likes
 | Parameters  | Type  | Comment |
 |---|---|----|------|----------|
 | id  |  uuid  | story ID |
+| node_id  |  uuid  | story node ID which user liked |
 | access_token  |  string  | which you can verify the user identity |
 
 ```
@@ -307,7 +308,7 @@ Response
 ```
 Request
 
-DELETE /stories/:id/likes
+DELETE /stories/:id/nodes/:node_id/likes
 
 {
   "access_token": "andsdnNASDNSanidnassdnasodn_asbasd222"
@@ -318,6 +319,7 @@ DELETE /stories/:id/likes
 | Parameters  | Type  | Comment |
 |---|---|----|------|----------|
 | id  |  uuid  | story ID |
+| node_id  |  uuid  | story node ID which user do unlike action |
 | access_token  |  string  | which you can verify the user identity |
 
 ```
