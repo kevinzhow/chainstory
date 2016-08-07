@@ -13,7 +13,12 @@ BIN_TARGET=${MKFILE_DIR}build/bin/chainstory
 SRC_FILES=${MKFILE_DIR}main/main.go \
 		  ${MKFILE_DIR}routes/route.go \
 		  ${MKFILE_DIR}controllers/hello.go \
-		  ${MKFILE_DIR}controllers/index.go
+		  ${MKFILE_DIR}controllers/index.go \
+		  ${MKFILE_DIR}utils/cipher.go \
+		  ${MKFILE_DIR}utils/date.go \
+		  ${MKFILE_DIR}utils/random.go \
+		  ${MKFILE_DIR}utils/string.go \
+		  ${MKFILE_DIR}utils/utils.go
 
 CONF_TARGET=${MKFILE_DIR}build/conf/chainstory 
 CONF_FILES=conf/chainstory.conf
@@ -34,6 +39,21 @@ ${BIN_TARGET} : ${SRC_FILES}
 ${CONF_TARGET} : ${CONF_FILES}
 	@echo "$(OK_COLOR)==> build from $(ERROR_COLOR)${MKFILE_DIR}$(OK_COLOR) into $(ERROR_COLOR)${CONF_TARGET}$(NO_COLOR)"
 	cp -r ${MKFILE_DIR}conf/* ${MKFILE_DIR}build/conf
+
+
+vendor: vendor_get
+	cd ${MKFILE_DIR} \
+    && rm -rf `find ./_vendor/src -type d -name .git` \
+	&& rm -rf `find ./_vendor/src -type d -name .hg` \
+	&& rm -rf `find ./_vendor/src -type d -name .bzr` \
+	&& rm -rf `find ./_vendor/src -type d -name .svn`
+
+vendor_get: vendor_clean
+	GOPATH=${MKFILE_DIR}_vendor go get -d -u -v \
+	github.com/ant0ine/go-json-rest/rest \
+
+vendor_clean:
+	rm -dRf ${MKFILE_DIR}_vendor/src
 
 .PHONY : clean
 
