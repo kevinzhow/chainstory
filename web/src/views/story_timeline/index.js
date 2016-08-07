@@ -22,14 +22,14 @@ var Component = Vue.extend({
     }
   },
   methods: {
-    toggleTips: function (event) {
+    toggleTips: (event) => {
       this.tipsDialogState = !this.tipsDialogState
     },
-    toggleCompose: function (event) {
+    toggleCompose: (event) => {
       this.composeDialogState = !this.composeDialogState
     }
   },
-  data: function () {
+  data: () => {
     return {
       buttonMsg: '我要续写',
       tipsDialogState: false,
