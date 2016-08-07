@@ -14,7 +14,8 @@ Please review the [PRD](https://docs.google.com/document/d/16fkjJkY-aUkDOxmOzfRG
 | web/components  | frontend vue components, includes component **html** and **js** also **less** |
 | web/views  | frontend vue views files |
 | web/main.js  | frontend vue entry, where the frontend begins |
-| server/app.go  | where server begins |
+| server/main  | where server begins |
+| server/conf  | the server configureation |
 | server/controllers  | just controllers |
 | server/models  | just models |
 | server/routes  | just routes |
@@ -39,12 +40,15 @@ npm run dev
 
 ## Backend
 
-To Start the API Server
+To build the API Server
 
 ```
 cd server
-go run app.go
+make
 ```
+
+Everything will be put into the `build` directory
+
 
 If you want to serve the latest web, run this command in `web` folder to compile the latest frontend.
 

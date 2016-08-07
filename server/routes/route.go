@@ -1,11 +1,11 @@
 package routes
 
 import (
-  "net/http"
-  "../controllers"
+	"controllers"
+	"net/http"
 )
 
-func init()  {
-  http.HandleFunc("/", controllers.IndexGET)
-  http.HandleFunc("/hello", controllers.HelloGET)
+func init() {
+	http.HandleFunc("/", controllers.IndexGET)
+	http.HandleFunc("/hello", controllers.HelloGET)
 }
