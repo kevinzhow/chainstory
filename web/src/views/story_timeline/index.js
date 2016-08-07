@@ -1,8 +1,14 @@
 var Vue = require('vue')
+import store from "../../store"
 
 var Component = Vue.extend({
   template: require('./template.html'),
   replace: true,
+  created () {
+    store.fetchStory("story_id").then(function(json) {
+      console.log('parsed story json', json)
+    })
+  },
   events: {
     'timeline-toggleTips': function () {
       this.toggleTips()
@@ -36,7 +42,6 @@ var Component = Vue.extend({
     }
   },
   components: {
-    'app-header': require('../../components/header'),
     'app-compose-button': require('../../components/button'),
     'app-bubble': require('../../components/bubble'),
     'app-tips-bubble': require('../../components/tips_bubble'),
