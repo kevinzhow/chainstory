@@ -1,6 +1,13 @@
-<div class="dialog-container">
-  <div class="dialog">
-
+<div class="dialog-container" v-on:click="toggleTips">
+  <div class="bubble dialog">
+    <div class="bubble-header">
+      <div class="bubble-title">
+        {{ dialog.title }}
+      </div>
+    </div>
+    <div class="bubble-body">
+      {{ dialog.content }}
+    </div>
   </div>
   <app-background-cover></app-background-cover>
 </div>

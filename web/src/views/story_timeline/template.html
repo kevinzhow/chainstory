@@ -3,6 +3,6 @@
     <app-bubble :bubble.once="bubble"></app-bubble>
   </li>
   <app-tips-bubble :bubble.once="tipsBubble"></app-tips-bubble>
-  <app-dialog v-show="dialogState" :dialog:once="tipsBubble"></app-dialog>
-  <app-compose-button side="center" :buttonmsg.once="buttonMsg" v-on:click="greet"></app-compose-button>
+  <app-tips-dialog v-show="tipsDialogState" :dialog="dialogContent"></app-tips-dialog>
+  <app-compose-button side="center" :buttonmsg.once="buttonMsg"></app-compose-button>
 </div>
