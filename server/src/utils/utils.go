@@ -73,7 +73,7 @@ func GetAppConfDir() string {
 
 // Get the conf file full path with specified filename
 func GetConfFile(filename string) string {
-	confFile := fmt.Sprintf("%s/%s/%s", GetAppConfDir(), GetEaseMonStage(), filename)
+	confFile := fmt.Sprintf("%s/%s", GetAppConfDir(), filename)
 	return confFile
 }
 
