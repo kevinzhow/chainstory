@@ -187,7 +187,7 @@ POST /stories/:id/
 
 | Parameters  | Type  | Comment |
 |---|---|----|------|----------|
-| id  |  string  | story ID |
+| id  |  uuid  | story ID |
 | content  |  string  | a story node content |
 | access_token  |  string  | which you can verify the user identity |
 
@@ -293,7 +293,7 @@ POST /stories/:id/likes
 
 | Parameters  | Type  | Comment |
 |---|---|----|------|----------|
-| id  |  string  | story ID |
+| id  |  uuid  | story ID |
 | access_token  |  string  | which you can verify the user identity |
 
 ```
@@ -317,7 +317,7 @@ DELETE /stories/:id/likes
 
 | Parameters  | Type  | Comment |
 |---|---|----|------|----------|
-| id  |  string  | story ID |
+| id  |  uuid  | story ID |
 | access_token  |  string  | which you can verify the user identity |
 
 ```
