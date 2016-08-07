@@ -6,7 +6,8 @@
     width: 110px;
     text-align: center;
     border-radius: 50px;
-    font-weight: lighter;
+    font-weight: bold;
+    position: relative;
 
     &.center {
         margin-left: auto;
@@ -20,5 +21,12 @@
 
     &:hover {
         cursor: pointer;
+    }
+
+    &.bottom {
+        position: fixed;
+        bottom: 50px;
+        left: 0;
+        right: 0;
     }
 }

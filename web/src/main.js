@@ -15,9 +15,6 @@ var app = new Vue({
     // define the main pages as async components.
     'story-timeline': function (resolve) {
       require(['./views/story_timeline'], resolve)
-    },
-    'story-compose': function (resolve) {
-      require(['./views/story_compose'], resolve)
     }
   }
 })

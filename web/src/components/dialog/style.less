@@ -1,17 +1,26 @@
-.dialog {
-  position: absolute;
-  top: 40%;
-  left: 20px;
-  right: 20px;
-  transform: translateY(-50%);
+.dialog-container {
+  position: fixed;
   z-index: 2001;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 
-  .bubble-title {
-    font-weight: bolder;
-  }
+  .dialog {
+    position: absolute;
+    top: 40%;
+    left: 20px;
+    right: 20px;
+    transform: translateY(-40%);
+    z-index: 2001;
 
-  .bubble-body {
-    font-weight: lighter;
-    margin-bottom: 10px;
+    .bubble-title {
+      font-weight: bolder;
+    }
+
+    .bubble-body {
+      font-weight: lighter;
+      margin-bottom: 10px;
+    }
   }
 }

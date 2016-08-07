@@ -5,7 +5,7 @@ let component = Vue.extend({
   template: require('./template.html'),
   props: ['dialog'],
   methods: {
-      toggleTips: function (event) {
+      toggleDialog: function (event) {
           this.$dispatch('timeline-toggleTips', null);
       }
   },

@@ -7,6 +7,8 @@
   <app-tips-bubble :bubble.once="tipsBubble"></app-tips-bubble>
   <!-- when you click the question mark on tips bubble, the dialog will present the tips content -->
   <app-tips-dialog v-show="tipsDialogState" :dialog="dialogContent"></app-tips-dialog>
+  <!-- compose dialog -->
+  <app-compose-dialog v-show="composeDialogState" :content="composeContent"></app-compose-dialog>
   <!-- Click compose button to present compose dialog -->
-  <app-compose-button side="center" :buttonmsg.once="buttonMsg"></app-compose-button>
+  <app-compose-button side="center" :buttonmsg.once="buttonMsg" v-on:click="toggleCompose"></app-compose-button>
 </div>
