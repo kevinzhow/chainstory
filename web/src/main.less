@@ -8,9 +8,23 @@ body {
   .view {
     padding-bottom: 45px;
   }
-  
+
 }
 
 li {
   list-style: none;
+}
+
+/* Fade Animation Final State */
+.fade-transition {
+  transition: all .3s ease;
+  opacity: 1;
+  // transform: scale(1,1);
+}
+
+/* .fade-enter 定义进入的开始状态 */
+/* .fade-leave 定义离开的结束状态 */
+.fade-enter, .fade-leave {
+  opacity: 0;
+  // transform: scale(0,0);
 }
