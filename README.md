@@ -15,9 +15,10 @@ Please review the [PRD](https://docs.google.com/document/d/16fkjJkY-aUkDOxmOzfRG
 | web/views  | frontend vue views files |
 | web/main.js  | frontend vue entry, where the frontend begins |
 | server/main  | where server begins |
-| server/configs  | the server configution |
-| server/controllers  | just controllers |
+| server/conf  | the server configution |
+| server/handler  | just controllers |
 | server/models  | just models |
+| server/daos  | just DAOs |
 | server/routes  | just routes |
 | server/utils  | just utils |
 
@@ -43,6 +44,7 @@ To build the API Server
 
 ```
 cd server
+make verdor # grabbing the 3rd party libs
 make
 ```
 
