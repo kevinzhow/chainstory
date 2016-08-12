@@ -3,12 +3,12 @@ package models
 import "gopkg.in/mgo.v2/bson"
 
 type User struct {
-	Id_      bson.ObjectId `bson:"_id"`
-	Uid      string        `bson:"uid"`
-	NickName string        `bson:"nick_name"`
-	Type     int           `bson:"type"` //0 means WeChat, 1 means Weibo
-	WxOpenId string        `bson:"wx_openid"`
-	WbOpenId string        `bson:"wb_openid"`
-	Avatar   string        `bson:"avatar"`
-	CreateAt int           `bson:"create_at"`
+	Id_      bson.ObjectId `json:"-" bson:"_id"`
+	Uid      string        `json:"uid" bson:"uid"`
+	Name     string        `json:"name" bson:"name"`
+	Type     int           `json:"type" bson:"type"` //0 means WeChat, 1 means Weibo
+	WxOpenId string        `json:"wx_openid" bson:"wx_openid"`
+	WbOpenId string        `json:"wb_openid" bson:"wb_openid"`
+	Avatar   string        `json:"avatar" bson:"avatar"`
+	CreateAt int32         `json:"create_at" bson:"create_at"`
 }
