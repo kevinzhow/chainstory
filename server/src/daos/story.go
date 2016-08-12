@@ -5,6 +5,6 @@ type StoryDao struct {
 }
 
 func NewStoryDao(dataSource DataSource) *StoryDao {
-	dao := StoryDao{BaseDao: NewBaseDao(dataSource)}
+	dao := StoryDao{BaseDao: *NewBaseDao(dataSource)}
 	return &dao
 }

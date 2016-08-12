@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"errors"
+	"log"
 	"services"
 )
 
@@ -17,9 +17,10 @@ func NewSessionHandler() *SessionHandler {
 }
 
 // Authenticate an user by `username` and `password`
-func (handler *SessionHandler) Authenticate(username string, password string) (bool, error) {
+func (handler *SessionHandler) Authenticate(username string, password string) bool {
 	if username == "" || password == "" {
-		return false, errors.New("Username and Password MUST be provided for authentication")
+		log.Println("Username and Password MUST be provided for authentication")
+		return false
 	}
 	return handler.userService.AuthUser(username, password)
 }

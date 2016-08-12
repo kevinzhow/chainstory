@@ -15,14 +15,18 @@ func NewUserService() *UserService {
 	return service
 }
 
-func (service *UserService) RegisterUser(user models.User) (string, error) {
+func (service *UserService) RegisterUser(user models.User) bool {
 	return service.userDao.CreateUser(user)
 }
 
-func (service *UserService) AuthUser(username string, password string) (bool, error) {
-	users, err := service.userDao.FindUserByName(username)
-	if users == nil || err != nil {
-		return false, err
-	}
-	return true, nil
+func (service *UserService) FindUserById(id string) *models.User {
+	return service.userDao.FindUserById(id)
+}
+func (service *UserService) FindUserByName(id string) *models.User {
+	return service.userDao.FindUserByName(id)
+}
+
+func (service *UserService) AuthUser(username string, password string) bool {
+	users := service.userDao.FindUserByName(username)
+	return !(users == nil)
 }

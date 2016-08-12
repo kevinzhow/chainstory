@@ -70,7 +70,8 @@ vendor: vendor_get
 vendor_get: vendor_clean
 	GOPATH=${MKFILE_DIR}_vendor go get -d -u -v \
 	github.com/ant0ine/go-json-rest/rest \
-	github.com/StephanDollberg/go-json-rest-middleware-jwt
+	github.com/StephanDollberg/go-json-rest-middleware-jwt \
+	gopkg.in/mgo.v2
 
 vendor_clean:
 	rm -dRf ${MKFILE_DIR}_vendor/src

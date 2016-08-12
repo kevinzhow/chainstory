@@ -51,19 +51,13 @@ func BootServer(host string, port string) error {
 		Timeout:    time.Hour,
 		MaxRefresh: time.Hour * 24,
 		Authenticator: func(username string, password string) bool {
-			res, err := sessionHandler.Authenticate(username, password)
-			return err == nil && res
+			return sessionHandler.Authenticate(username, password)
 		}}
 
 	api := rest.NewApi()
 	api.Use(rest.DefaultDevStack...)
 	api.Use(&rest.IfMiddleware{
 		Condition: func(request *rest.Request) bool {
-			/*
-				return request.URL.Path != "/login" &&
-					request.URL.Path != "/logon" &&
-					request.URL.Path != "/dashboard/systems"
-			*/
 			return false
 		},
 		IfTrue: jwt_middleware,
