@@ -55,4 +55,24 @@ var Routers = []RouteMap{
 			},
 		},
 	},
+
+	{
+		Path: "/user/id/:uid",
+		Handlers: []RestHandler{
+			{
+				Method:      "DELETE",
+				HandlerFunc: userHandler.DeleteUser,
+			},
+		},
+	},
+
+	{
+		Path: "/user/name/:name",
+		Handlers: []RestHandler{
+			{
+				Method:      "DELETE",
+				HandlerFunc: userHandler.DeleteUser,
+			},
+		},
+	},
 }

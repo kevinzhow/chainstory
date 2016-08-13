@@ -17,7 +17,7 @@ func NewUserService() *UserService {
 	return service
 }
 
-func (service *UserService) CreateUser(user models.User) error {
+func (service *UserService) CreateUser(user *models.User) error {
 	u, err := service.FindUserByName(user.Name)
 	if err == nil && u != nil {
 		log.Println("Duplicated Username - [%s]", user.Name)
@@ -29,8 +29,14 @@ func (service *UserService) CreateUser(user models.User) error {
 func (service *UserService) FindUserById(id string) (*models.User, error) {
 	return service.userDao.FindUserById(id)
 }
-func (service *UserService) FindUserByName(id string) (*models.User, error) {
-	return service.userDao.FindUserByName(id)
+func (service *UserService) FindUserByName(name string) (*models.User, error) {
+	return service.userDao.FindUserByName(name)
+}
+func (service *UserService) DeleteUserById(id string) error {
+	return service.userDao.DeleteUserById(id)
+}
+func (service *UserService) DeleteUserByName(name string) error {
+	return service.userDao.DeleteUserByName(name)
 }
 
 func (service *UserService) AuthUser(username string, password string) bool {

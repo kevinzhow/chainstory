@@ -44,9 +44,20 @@ To build the API Server
 
 ```
 cd server
+source ./env.sh
 make verdor # grabbing the 3rd party libs
 make
 ```
+
+Everything will be built into `build` directory.
+
+To run the backend server, the command line as below:
+
+```
+./build/bin/chainstory
+```
+
+The log will be put into `./build/logs/chain_stroy.log`
 
 If you want to serve the latest web, run this command in `web` folder to compile the latest frontend.Everything will be put into the `build` directory.
 

@@ -30,7 +30,7 @@ func (handler *UserHandler) CreateUser(w rest.ResponseWriter, req *rest.Request)
 		rest.Error(w, "Invalid Request!", http.StatusBadRequest)
 		return
 	}
-	err = handler.service.CreateUser(user)
+	err = handler.service.CreateUser(&user)
 	response := MakeResponse()
 	if err != nil {
 		response["status"] = "Error"
@@ -38,6 +38,8 @@ func (handler *UserHandler) CreateUser(w rest.ResponseWriter, req *rest.Request)
 	} else {
 		response["status"] = "OK"
 		response["message"] = "Create User Successfully"
+		response["uid"] = user.Uid
+		response["name"] = user.Name
 
 	}
 	w.WriteJson(response)
@@ -71,6 +73,39 @@ func (handler *UserHandler) FindUser(w rest.ResponseWriter, req *rest.Request) {
 	}
 
 	w.WriteJson(user)
+}
+
+//Delete user
+func (handler *UserHandler) DeleteUser(w rest.ResponseWriter, req *rest.Request) {
+	uid := req.PathParam("uid")
+	name := req.PathParam("name")
+	if uid == "" && name == "" {
+		rest.Error(w, "Invalid Request!", http.StatusBadRequest)
+		return
+	}
+
+	var err error
+
+	if uid != "" {
+		err = handler.service.DeleteUserById(uid)
+	} else {
+		err = handler.service.DeleteUserByName(name)
+	}
+	response := MakeResponse()
+	if err != nil {
+		response["status"] = "Error"
+		response["message"] = err.Error()
+		w.WriteJson(response)
+		return
+	}
+
+	response["status"] = "OK"
+	if uid != "" {
+		response["message"] = "Delete user [uid=" + uid + "] sucessfully!"
+	} else {
+		response["message"] = "Delete user [name=" + name + "]sucessfully!"
+	}
+	w.WriteJson(response)
 }
 
 func (handler *UserHandler) OAuthUser(w rest.ResponseWriter, req *rest.Request) {
