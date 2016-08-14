@@ -80,4 +80,4 @@ vendor_clean:
 
 clean:
 	@echo "clean project ..."
-	@rm -rf ${MKFILE_DIR}
+	@rm -rf ${MKFILE_DIR}/build/*
