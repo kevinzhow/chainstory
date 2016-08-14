@@ -76,7 +76,7 @@ var Routers = []RouteMap{
 	},
 
 	{
-		Path: "/story/id/:sid",
+		Path: "/story/:sid",
 		Handlers: []RestHandler{{
 			Method:      "GET",
 			HandlerFunc: storyHandler.FindStoryById,

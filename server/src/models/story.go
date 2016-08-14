@@ -2,6 +2,13 @@ package models
 
 import "gopkg.in/mgo.v2/bson"
 
+type StoryNode struct {
+	Author  User   `json:"author", bson:"author"`
+	Title   string `json:"title", bson:"title"`
+	Space   int    `json:"space", bson:"space"`
+	Content string `json:"content", bson:"content"`
+}
+
 type Story struct {
 	Id_         bson.ObjectId `json:"-", bson:"_id"`
 	Sid         string        `json:"sid", bson:"sid"`
@@ -10,7 +17,7 @@ type Story struct {
 	Title       string        `json:"title", bson:"title"`
 	Space       int           `json:"space", bson:"space"`
 	Content     string        `json:"content", bson:"content"`
-	Nodes       []*Story      `json:"nodes", bson:"nodes"`
+	Nodes       []*StoryNode  `json:"nodes", bson:"nodes"`
 	Likes       int           `json:"likes", bson:"likes"`
 	LikeStaus   bool          `json:"like_status", bson:"-"`
 	LikeUsers   []string      `json:"-", bson:"like_users"`

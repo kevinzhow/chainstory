@@ -42,7 +42,7 @@ func (dao *UserDao) FindUserById(id string) (*models.User, error) {
 	result := models.User{}
 	err := table.Find(bson.M{"uid": id}).One(&result)
 	if err != nil {
-		log.Println("user [uid=", id, "] not found", err.Error())
+		log.Printf("user [uid=%s] not found! - %s\n", id, err.Error())
 		return nil, errors.New("Cannot found user")
 	}
 	return &result, nil

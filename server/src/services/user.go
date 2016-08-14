@@ -20,7 +20,7 @@ func NewUserService() *UserService {
 func (service *UserService) CreateUser(user *models.User) error {
 	u, err := service.FindUserByName(user.Name)
 	if err == nil && u != nil {
-		log.Println("Duplicated Username - [%s]", user.Name)
+		log.Printf("Duplicated Username - [%s]\n", user.Name)
 		return errors.New("Duplicated Username")
 	}
 	return service.userDao.CreateUser(user)

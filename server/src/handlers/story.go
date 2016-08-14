@@ -72,7 +72,7 @@ func (handler *StoryHandler) FindStoryById(w rest.ResponseWriter, req *rest.Requ
 func (handler *StoryHandler) FindStoriesByUser(w rest.ResponseWriter, req *rest.Request) {
 	uid := req.PathParam("uid")
 	name := req.PathParam("name")
-	if uid == "" || name == "" {
+	if uid == "" && name == "" {
 		rest.Error(w, "Invalid Request!", http.StatusBadRequest)
 		return
 	}

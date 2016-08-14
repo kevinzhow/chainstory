@@ -29,7 +29,12 @@ func (service *StoryService) CreateStory(story *models.Story) error {
 	if story.ParentId != "" {
 		parentStory, err := service.FindStoryById(story.ParentId)
 		if err == nil {
-			story.Nodes = append(parentStory.Nodes, parentStory)
+			parentStoryNode := models.StoryNode{}
+			parentStoryNode.Author = parentStory.Author
+			parentStoryNode.Title = parentStory.Title
+			parentStoryNode.Space = parentStory.Space
+			parentStoryNode.Content = parentStory.Content
+			story.Nodes = append(parentStory.Nodes, &parentStoryNode)
 			story.Space = parentStory.Space + 1
 		}
 	}
@@ -70,17 +75,17 @@ func (service *StoryService) DeleteStoriesById(sid string) error {
 		log.Printf("Cannot find story [sid=%s] - %s\n", sid, err.Error())
 		return err
 	}
-	//leaf node, delete directly
-	if len(story.ChildrenIds) <= 0 {
-		err := service.storyDao.DeleteStoriesById(sid)
-		if err != nil {
-			log.Printf("Delete story [sid=%d] failed! - %s\n", sid, err.Error())
-		} else {
-			log.Printf("Delete story [sid=%d] successfully! - %s\n", sid, err.Error())
-		}
-		return err
+
+	//delete current story
+	err = service.storyDao.DeleteStoriesById(sid)
+	if err != nil {
+		log.Printf("Delete story [sid=%d] failed! - %s\n", sid, err.Error())
+	} else {
+		log.Printf("Delete story [sid=%d] successfully!\n", sid)
 	}
-	//recursively delete story
+	return err
+
+	//recursively delete story's childrens
 	for i := 0; i < len(story.ChildrenIds); i++ {
 		service.DeleteStoriesById(story.ChildrenIds[i])
 	}
@@ -88,7 +93,8 @@ func (service *StoryService) DeleteStoriesById(sid string) error {
 }
 
 func (service *StoryService) DeleteStoriesByUser(uid string, name string) error {
-	log.Printf("Deleting user's story [uid=%s || name =%s]...", uid, name)
+
+	log.Printf("Deleting user's stories [uid=%s || name =%s]...", uid, name)
 
 	stories, err := service.FindStoriesByUser(uid, name)
 	if err != nil {
