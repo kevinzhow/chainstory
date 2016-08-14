@@ -3,15 +3,17 @@ package models
 import "gopkg.in/mgo.v2/bson"
 
 type Story struct {
-	Id_         bson.ObjectId `bson:"_id"`
-	Id          string        `bson:"id"`
-	Author      string        `bson:"author"`
-	Title       string        `bson:"title"`
-	Space       string        `bson:"space"`
-	Content     string        `bson:"content"`
-	Likes       int           `bson:"likes"`
-	LikeUsers   []string      `bson:"like_users"`
-	ParentIds   []string      `bson:"parent_node_ids"`
-	ChildrenIds []string      `bson:"child_node_ids"`
-	CreateAt    int           `bson:"create_at"`
+	Id_         bson.ObjectId `json:"-", bson:"_id"`
+	Sid         string        `json:"sid", bson:"sid"`
+	ParentId    string        `json:"parent_id", bson:"parent_id"`
+	Author      User          `json:"author", bson:"author"`
+	Title       string        `json:"title", bson:"title"`
+	Space       int           `json:"space", bson:"space"`
+	Content     string        `json:"content", bson:"content"`
+	Nodes       []*Story      `json:"nodes", bson:"nodes"`
+	Likes       int           `json:"likes", bson:"likes"`
+	LikeStaus   bool          `json:"like_status", bson:"-"`
+	LikeUsers   []string      `json:"-", bson:"like_users"`
+	ChildrenIds []string      `json:"child_node_ids", bson:"child_node_ids"`
+	CreateAt    int32         `json:"create_at", bson:"create_at"`
 }

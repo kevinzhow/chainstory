@@ -24,7 +24,7 @@ func NewUserHandler() *UserHandler {
 func (handler *UserHandler) CreateUser(w rest.ResponseWriter, req *rest.Request) {
 	var user = models.User{}
 	err := req.DecodeJsonPayload(&user)
-	log.Println(user)
+	log.Print("Recieved data from client [%+v]\n", user)
 	if err != nil || user.Name == "" {
 		log.Println(err)
 		rest.Error(w, "Invalid Request!", http.StatusBadRequest)

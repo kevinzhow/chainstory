@@ -67,11 +67,11 @@ func (dao *UserDao) DeleteUserByName(name string) error {
 	table := dao.GetTable("users")
 	err = table.Remove(bson.M{"name": name})
 	if err != nil {
-		log.Println("delete user [name=", name, "] failed!", err.Error())
+		log.Printf("delete user [name=%s] failed! - %s\n", name, err.Error())
 		return err
 	}
 
-	log.Println("delete user [name=", name, "] successfully!")
+	log.Printf("delete user [name=%s] successfully!\n", name)
 	return nil
 }
 
