@@ -22,7 +22,7 @@ func initLogger() {
 	}
 	log.Printf("Log file - [%s]", logfile)
 	log.SetOutput(f)
-	log.SetFlags(log.LstdFlags | log.Lshortfile)
+	log.SetFlags(log.LstdFlags | log.Llongfile)
 }
 
 func main() {
