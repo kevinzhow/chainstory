@@ -37,7 +37,8 @@ SRC_FILES=${MKFILE_DIR}src/main/main.go \
 		  ${MKFILE_DIR}src/utils/date.go \
 		  ${MKFILE_DIR}src/utils/random.go \
 		  ${MKFILE_DIR}src/utils/string.go \
-		  ${MKFILE_DIR}src/utils/utils.go
+		  ${MKFILE_DIR}src/utils/utils.go \
+		  ${MKFILE_DIR}src/utils/uuid.go \
 
 CONF_TARGET=${MKFILE_DIR}build/conf/chainstory.conf 
 CONF_FILES=conf/chainstory.conf
