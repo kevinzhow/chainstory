@@ -116,7 +116,7 @@ var Routers = []RouteMap{
 	},
 
 	{
-		Path: "/story/user/id/:id",
+		Path: "/story/user/id/:uid",
 		Handlers: []RestHandler{{
 			Method:      "DELETE",
 			HandlerFunc: storyHandler.DeleteStoriesByUser,
