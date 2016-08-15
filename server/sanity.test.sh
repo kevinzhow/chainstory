@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-RESTSERVER=http://localhost:9527
+RESTSERVER=http://localhost:8000
 USERNAME="test_user"
 HR=`printf '=%.0s' {1..80}`
 

@@ -31,7 +31,7 @@ func main() {
 	confDirPtr := flag.String("conf", "", "log file directory")
 	//stagePtr := flag.String("env", "prod", "Application Running mode [test|prod]")
 	hostPtr := flag.String("host", "0.0.0.0", "host name or ip address")
-	portPtr := flag.Int("port", 9527, "port name")
+	portPtr := flag.Int("port", 8000, "port name")
 	flag.Parse()
 
 	utils.SetAppRoot(*rootPtr)
