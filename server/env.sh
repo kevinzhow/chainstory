@@ -19,4 +19,3 @@ popd > /dev/null
 SCRIPTFILE=`basename $FILE`
 
 export GOPATH="${SCRIPTPATH}/_vendor:${SCRIPTPATH}"
-export PATH="$PATH:${SCRIPTPATH}/_vendor/bin"
