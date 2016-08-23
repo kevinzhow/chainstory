@@ -53,7 +53,7 @@ default: ${TARGET}
 ${BIN_TARGET} : ${SRC_FILES} 
 	@echo "$(OK_COLOR)==> build Binary File from $(ERROR_COLOR)${MKFILE_DIR}$(OK_COLOR) into $(ERROR_COLOR)${BIN_TARGET}$(NO_COLOR)"
 	mkdir -p ${MKFILE_DIR}build/bin && mkdir -p ${MKFILE_DIR}build/conf && mkdir -p ${MKFILE_DIR}build/logs
-	cd ${MKFILE_DIR} && source env.sh && go build  -gcflags "-N -l"  -v -o ${BIN_TARGET} ./src/main
+	cd ${MKFILE_DIR} && source ${MKFILE_DIR}/env.sh && go build  -gcflags "-N -l"  -v -o ${BIN_TARGET} ./src/main
 
 
 ${CONF_TARGET} : ${CONF_FILES}
