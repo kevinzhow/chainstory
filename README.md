@@ -40,32 +40,12 @@ npm run dev
 
 ## Backend
 
-Install Package Manager [Glide](https://github.com/Masterminds/glide)
-
-```
-curl https://glide.sh/get | sh
-```
-
-If you are using Homebrew
-
-```
-brew install glide
-```
-
-Install Realize for hot reload
-
-Move to project root
-
-```
-go get github.com/tockins/realize
-```
-
 To build the API Server
 
 ```
 cd server
 source ./env.sh
-make vendor # grabbing the 3rd party libs
+make verdor # grabbing the 3rd party libs
 make
 ```
 
