@@ -11,34 +11,7 @@ export GOPATH
 
 BIN_TARGET=${MKFILE_DIR}build/bin/chainstory 
 
-SRC_FILES=${MKFILE_DIR}src/main/main.go \
-		  ${MKFILE_DIR}src/main/boot.go \
-		  								\
-		  ${MKFILE_DIR}src/routes/route.go \
-		  ${MKFILE_DIR}src/routes/route_struct.go \
-		  									\
-		  ${MKFILE_DIR}src/handlers/hello.go \
-		  ${MKFILE_DIR}src/handlers/index.go \
-		  ${MKFILE_DIR}src/handlers/base.go \
-		  ${MKFILE_DIR}src/handlers/user.go \
-		  ${MKFILE_DIR}src/handlers/story.go \
-		  									\
-		  ${MKFILE_DIR}src/services/user.go \
-		  ${MKFILE_DIR}src/services/story.go \
-											\
-		  ${MKFILE_DIR}src/models/user.go \
-		  ${MKFILE_DIR}src/models/story.go \
-		  								\
-		  ${MKFILE_DIR}src/daos/base.go \
-		  ${MKFILE_DIR}src/daos/user.go \
-		  ${MKFILE_DIR}src/daos/story.go \
-		  								\
-		  ${MKFILE_DIR}src/utils/cipher.go \
-		  ${MKFILE_DIR}src/utils/date.go \
-		  ${MKFILE_DIR}src/utils/random.go \
-		  ${MKFILE_DIR}src/utils/string.go \
-		  ${MKFILE_DIR}src/utils/utils.go \
-		  ${MKFILE_DIR}src/utils/uuid.go \
+SRC_FILES=$(wildcard $(MKFILE_DIR)/*.go)
 
 CONF_TARGET=${MKFILE_DIR}build/conf/chainstory.conf 
 CONF_FILES=conf/chainstory.conf
