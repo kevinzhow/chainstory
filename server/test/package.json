@@ -1,0 +1,22 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "test chainstory api",
+  "main": "index.js",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "mocha": "^3.0.2",
+    "mongoose": "^4.5.10",
+    "should": "^11.1.0",
+    "supertest": "^2.0.0",
+    "winston": "^2.2.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.0.2"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC"
+}
