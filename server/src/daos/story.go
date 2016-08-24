@@ -135,10 +135,10 @@ func (dao *StoryDao) DeleteStoriesById(sid string) error {
 
 	err = table.Remove(bson.M{"sid": sid})
 	if err != nil {
-		log.Printf("delete user [sid=%s] failed! - %s\n", sid, err.Error())
+		log.Printf("delete story [sid=%s] failed! - %s\n", sid, err.Error())
 		return err
 	}
 
-	log.Printf("delete user [sid=%s] successfully!\n", sid)
+	log.Printf("delete story [sid=%s] successfully!\n", sid)
 	return nil
 }
