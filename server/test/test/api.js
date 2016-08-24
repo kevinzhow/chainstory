@@ -1,7 +1,6 @@
 var should = require('should'); 
 var assert = require('assert');
 var request = require('supertest');  
-var winston = require('winston');
 var mongoose = require("mongoose");
 
 const url = 'http://localhost:9527';
@@ -103,10 +102,6 @@ describe('Test Story Chain', function() {
         title: "Test Story Title",
         content: "story content no less than 20 chars..."
       };
-    // once we have specified the info we want to send to the server via POST verb,
-    // we need to actually perform the action on the resource, in this case we want to 
-    // POST on /api/profiles and we want to send some info
-    // We do this using the request object, requiring supertest!
       request(url)
       .post('/story')
       .send(story)
@@ -131,10 +126,6 @@ describe('Test Story Chain', function() {
         parent_id: sid,
         content: "story content no less than 20 chars..."
       };
-    // once we have specified the info we want to send to the server via POST verb,
-    // we need to actually perform the action on the resource, in this case we want to 
-    // POST on /api/profiles and we want to send some info
-    // We do this using the request object, requiring supertest!
       request(url)
       .post('/story')
       .send(story)
@@ -152,10 +143,6 @@ describe('Test Story Chain', function() {
     });
 
     it('should be able to query story by sid', function(done) {
-    // once we have specified the info we want to send to the server via POST verb,
-    // we need to actually perform the action on the resource, in this case we want to 
-    // POST on /api/profiles and we want to send some info
-    // We do this using the request object, requiring supertest!
       request(url)
       .get('/story/'+sid)
       .expect('Content-Type', /json/)
@@ -173,10 +160,6 @@ describe('Test Story Chain', function() {
 
 
     it('should be able to delete story by sid', function(done) {
-    // once we have specified the info we want to send to the server via POST verb,
-    // we need to actually perform the action on the resource, in this case we want to 
-    // POST on /api/profiles and we want to send some info
-    // We do this using the request object, requiring supertest!
       request(url)
       .delete('/story/id/'+sid)
       .expect('Content-Type', /json/)
