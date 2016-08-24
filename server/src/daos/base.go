@@ -12,7 +12,7 @@ const (
 	MongoDB DataSource = iota
 )
 
-type BaseDao struct {
+type BaseDao struct { 
 	client *mgo.Session
 	db     *mgo.Database
 }

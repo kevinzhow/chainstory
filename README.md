@@ -40,7 +40,7 @@ npm run dev
 
 ## Backend
 
-To build the API Server
+### To build the API Server
 
 ```
 cd server
@@ -50,6 +50,30 @@ make
 ```
 
 Everything will be built into `build` directory.
+
+### Get watch tool [fswatch](https://github.com/codeskyblue/fswatch)
+
+```
+go get -u -v github.com/codeskyblue/fswatch
+```
+
+Now you can watch the filechanges, run the command at server folder
+
+```
+fswatch
+```
+
+`too many open files`
+
+For mac, run the following command
+
+```
+sysctl -w kern.maxfiles=20480
+sysctl -w kern.maxfilesperproc=18000
+ulimit -S -n 2048
+```
+
+### Run the Server
 
 To run the backend server, the command line as below:
 
