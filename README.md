@@ -90,6 +90,13 @@ If you want to serve the latest web, run this command in `web` folder to compile
 npm run build
 ```
 
+### Run test
+
+```
+cd test
+npm test
+```
+
 ## API
 
 API that frontend needs
