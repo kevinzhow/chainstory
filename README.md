@@ -57,7 +57,7 @@ Everything will be built into `build` directory.
 go get -u -v github.com/codeskyblue/fswatch
 ```
 
-Now you can watch the filechanges, run the command at server folder
+Now you can watch the filechanges, run the command at server folder, this will start the server automatically.
 
 ```
 fswatch
