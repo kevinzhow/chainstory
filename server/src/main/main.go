@@ -4,6 +4,7 @@ import (
 	"flag"
 	"log"
 	"os"
+	// "fmt"
 	"strconv"
 	"utils"
 )
@@ -25,8 +26,31 @@ func initLogger() {
 	log.SetFlags(log.LstdFlags | log.Llongfile)
 }
 
+func initPID() {
+	// Log process pid
+
+	const file string = "chain_story.pid"
+	const flag = os.O_RDWR | os.O_CREATE
+	const mask = 0666
+
+	logfile := utils.GetLogFile(file)
+
+	f, err := os.OpenFile(logfile, flag, mask)
+	if err != nil {
+		log.Fatalf("error opening pid log file: %v", err)
+	}
+
+	pid := strconv.Itoa(os.Getpid())
+	_ , _ = f.WriteString(pid)
+	f.Sync()
+	log.Printf("Application PID - [%s]", pid)
+	log.Printf("Log pid file - [%s]", logfile)
+}
+
 func main() {
-	pid := fmt.Printf("%d", os.Getpid())
+
+	initPID()
+
 	rootPtr := flag.String("root", "", "application directory")
 	logDirPtr := flag.String("log", "", "log file directory")
 	confDirPtr := flag.String("conf", "", "log file directory")

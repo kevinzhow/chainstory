@@ -52,4 +52,5 @@ vendor_clean:
 
 clean:
 	@echo "clean project ..."
-	@rm -rf ${MKFILE_DIR}/build/*
+	@rm -rf ${MKFILE_DIR}/build/bin
+	@rm -rf ${MKFILE_DIR}/build/conf

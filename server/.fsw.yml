@@ -5,7 +5,7 @@ triggers:
   - '**/*.go'
   env:
     DEBUG: "1"
-  cmd: make clean && make
+  cmd: kill $(cat ./build/logs/chain_story.pid) & make clean && make  && ./build/bin/chainstory
   shell: true
   delay: 100ms
   stop_timeout: 500ms
