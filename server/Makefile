@@ -19,9 +19,7 @@ CONF_FILES=conf/chainstory.conf
 TARGET=${BIN_TARGET} ${CONF_TARGET}
 
 
-
-default: ${TARGET}  
-
+default: ${TARGET}
 
 ${BIN_TARGET} : ${SRC_FILES} 
 	@echo "$(OK_COLOR)==> build Binary File from $(ERROR_COLOR)${MKFILE_DIR}$(OK_COLOR) into $(ERROR_COLOR)${BIN_TARGET}$(NO_COLOR)"

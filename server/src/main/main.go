@@ -26,6 +26,7 @@ func initLogger() {
 }
 
 func main() {
+	pid := fmt.Printf("%d", os.Getpid())
 	rootPtr := flag.String("root", "", "application directory")
 	logDirPtr := flag.String("log", "", "log file directory")
 	confDirPtr := flag.String("conf", "", "log file directory")
