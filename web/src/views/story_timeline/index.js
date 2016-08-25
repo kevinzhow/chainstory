@@ -14,20 +14,20 @@ var Component = Vue.extend({
     })
   },
   events: {
-    'timeline-toggleTips': () => {
+    'timeline-toggleTips': function () {
       // Toggle the writting tips dialog display state
       this.toggleTips()
     },
-    'timeline-toggleComposeDialog': () => {
+    'timeline-toggleComposeDialog': function () {
       // Toggle the compose dialog display state
       this.toggleCompose()
     }
   },
   methods: {
-    toggleTips: (event) => {
+    toggleTips: function (event) {
       this.tipsDialogState = !this.tipsDialogState
     },
-    toggleCompose: (event) => {
+    toggleCompose: function (event) {
       this.composeDialogState = !this.composeDialogState
     }
   },
