@@ -4,21 +4,27 @@
 require('./main.less')
 
 var Vue = require('vue')
-Vue.config.debug = true
+var VueRouter = require('vue-router')
+Vue.use(VueRouter)
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    current_route: 'story-timeline'
-  },
-  components: {
-    // define the main pages as async components.
-    'story-timeline': function (resolve) {
-      require(['./views/story_timeline'], resolve)
+var router = new VueRouter()
+
+router.map({
+    '/': {
+      component: function (resolve) {
+        require(['./views/story_creation'], resolve)
+      }
+    },
+    '/timeline': {
+      component: function (resolve) {
+        require(['./views/story_timeline'], resolve)
+      }
     }
-  }
 })
 
+Vue.config.debug = true
+
+var App = Vue.extend({})
 /**
  * Some really crude routing logic here, just for
  * demonstration purposes. The key thing to note here is
@@ -27,9 +33,4 @@ var app = new Vue({
  * automatically handle all the lazy loading for us.
  */
 
-function route () {
-  app.current_route = window.location.hash.slice(1) || 'story-timeline'
-}
-
-window.addEventListener('hashchange', route)
-window.addEventListener('load', route)
+router.start(App, '#app')
