@@ -25,7 +25,7 @@ var Component = Vue.extend({
     }
   },
   components: {
-    'app-compose-button': require('../../components/button')
+    'creation': require('../../components/creation')
   }
 })
 
