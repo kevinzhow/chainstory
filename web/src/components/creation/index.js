@@ -7,6 +7,9 @@ let component = Vue.extend({
   methods: {
       toggleCompose: function (event) {
           // this.$dispatch('timeline-toggleTips', null);
+      },
+      toggleTips: function (event) {
+        
       }
   },
   data: () => {
@@ -16,7 +19,8 @@ let component = Vue.extend({
   },
   components: {
     'button': require('../button'),
-    'bubble': require('../bubble')
+    'bubble': require('../bubble'),
+    'tips-bubble': require('../tips_bubble')
   }
 })
 

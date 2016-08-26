@@ -1,12 +1,17 @@
-<div class="landing bubble">
+<div class="landing bubble tips">
+    <div class="bubble-symbol" v-on:click="toggleTips">
+      <div class="symbol-container">
+        ?
+      </div>
+    </div>
 	<div class="logo">
 		故事
 	</div>
 	<div class="slogan">
-		用坑让友情更光辉
+		“ 互坑，是一种基友之间的传统美德 ”
 	</div>
 	<button side="center" :buttonmsg.once="buttonMsg" v-on:click="toggleCompose"></button>
 </div>
 <div class="brand">
-	由 字里行间 强力驱动
+	由 <b>字里行间</b> 强力驱动
 </div>

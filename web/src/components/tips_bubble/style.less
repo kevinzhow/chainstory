@@ -4,44 +4,45 @@
  &.tips  {
    margin-bottom: 40px;
    .bubble-header {
-      .bubble-user-avatar {
-         height: 30px;
-         width: 30px;
-         flex: none;
+
+   }
+   .bubble-user-avatar {
+      height: 30px;
+      width: 30px;
+      flex: none;
+   }
+
+   .bubble-user-info {
+      flex: 1;
+      .username {
+        line-height: 30px;
+      }
+   }
+
+   .bubble-symbol {
+      width: 22px;
+      height: 22px;
+      border-radius: 22px;
+      /* Oval 9: */
+      background: #F3F3F3;
+      border: 1px solid #E0E0E0;
+      line-height: 22px;
+      flex: none;
+      text-align: center;
+
+      /* ？: */
+      font-size: 14px;
+      color: #BEBEBE;
+      letter-spacing: 0px;
+      font-weight: lighter;
+
+      &:hover {
+         cursor: pointer;
+         background: #FBFBFB;
       }
 
-      .bubble-user-info {
-         flex: 1;
-         .username {
-           line-height: 30px;
-         }
-      }
-
-      .bubble-symbol {
-         width: 22px;
-         height: 22px;
-         border-radius: 22px;
-         /* Oval 9: */
-         background: #F3F3F3;
-         border: 1px solid #E0E0E0;
-         line-height: 22px;
-         flex: none;
-         text-align: center;
-
-         /* ？: */
-         font-size: 14px;
-         color: #BEBEBE;
-         letter-spacing: 0px;
-         font-weight: lighter;
-
-         &:hover {
-            cursor: pointer;
-            background: #FBFBFB;
-         }
-
-         &:active {
-            background: #E0E0E0;
-         }
+      &:active {
+         background: #E0E0E0;
       }
    }
 
