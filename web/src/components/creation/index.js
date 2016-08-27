@@ -1,5 +1,6 @@
 require('./style.less')
 var Vue = require('vue')
+import config from "../../config"
 
 let component = Vue.extend({
   template: require('./template.html'),
@@ -7,6 +8,7 @@ let component = Vue.extend({
   methods: {
       toggleCompose: function (event) {
           // this.$dispatch('timeline-toggleTips', null);
+          console.log(config.WECHAT_URL)
       },
       toggleTips: function (event) {
         

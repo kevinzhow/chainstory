@@ -12,7 +12,7 @@ var Component = Vue.extend({
   template: require('./template.html'),
   replace: true,
   created () {
-    console.log(config.WECHAT.APPID)
+
   },
   events: {
 
