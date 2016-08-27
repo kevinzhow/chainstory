@@ -2,12 +2,6 @@ var Vue = require('vue')
 import store from "../../store"
 import config from "../../config"
 
-const currentUser = {
-  username: "左耳朵耗子",
-  uid: "",
-  avatar: "http://tva3.sinaimg.cn/crop.27.27.337.337.180/538efefbgw1eg77da7jggj20aw0aw743.jpg"
-}
-
 var Component = Vue.extend({
   template: require('./template.html'),
   replace: true,
@@ -22,7 +16,7 @@ var Component = Vue.extend({
   },
   data: () => {
     return {
-     
+      currentUser: store.currentUser
     }
   },
   components: {

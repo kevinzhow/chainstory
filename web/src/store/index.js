@@ -4,6 +4,12 @@ import { Promise } from 'es6-promise'
 const store = new EventEmitter()
 export default store
 
+
+store.currentUser = {
+  username: "左耳朵耗子",
+  uid: "",
+  avatar: "http://tva3.sinaimg.cn/crop.27.27.337.337.180/538efefbgw1eg77da7jggj20aw0aw743.jpg"
+}
 /**
  * Fetch an story data with given id.
  */
