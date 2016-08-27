@@ -6,7 +6,7 @@ let component = Vue.extend({
   props: ['content'],
   methods: {
     toggleComposeDialog: function (event) {
-        this.$dispatch('timeline-toggleComposeDialog', null);
+        this.$dispatch('toggleComposeDialog', null);
     }
   },
   components: {

@@ -18,7 +18,7 @@ var Component = Vue.extend({
       // Toggle the writting tips dialog display state
       this.toggleTips()
     },
-    'timeline-toggleComposeDialog': function () {
+    'toggleComposeDialog': function () {
       // Toggle the compose dialog display state
       this.toggleCompose()
     }
@@ -48,8 +48,6 @@ var Component = Vue.extend({
     'app-compose-button': require('../../components/button'),
     'app-bubble': require('../../components/bubble'),
     'app-tips-bubble': require('../../components/tips_bubble'),
-    // For blur bg
-    'app-background-cover': require('../../components/background_cover'),
     'app-tips-dialog': require('../../components/dialog'),
     'app-compose-dialog': require('../../components/compose_dialog')
   }

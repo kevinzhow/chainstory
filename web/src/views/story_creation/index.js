@@ -9,18 +9,27 @@ var Component = Vue.extend({
 
   },
   events: {
-
+    'toggleComposeDialog': function () {
+      // Toggle the compose dialog display state
+      this.toggleCompose()
+    }
   },
   methods: {
-
+    toggleCompose: function (event) {
+      this.composeDialogState = !this.composeDialogState
+    }
   },
   data: () => {
     return {
-      currentUser: store.currentUser
+      currentUser: store.currentUser,
+      composeDialogState: false,
+      composeContent: ""
     }
   },
   components: {
-    'creation': require('../../components/creation')
+    'creation': require('../../components/creation'),
+    'app-compose-dialog': require('../../components/compose_dialog'),
+    'app-dialog': require('../../components/dialog'),
   }
 })
 

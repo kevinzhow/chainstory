@@ -15,7 +15,7 @@ let component = Vue.extend({
           console.log(config.WECHAT_URL)
           if(store.currentUser.username != '' ) {
             console.log("Login Success")
-            router.go("/timeline")
+            this.$dispatch('toggleComposeDialog', null);
           }
       },
       toggleTips: function (event) {
