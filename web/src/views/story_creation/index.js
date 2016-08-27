@@ -1,5 +1,6 @@
 var Vue = require('vue')
 import store from "../../store"
+import config from "../../config"
 
 const currentUser = {
   username: "左耳朵耗子",
@@ -11,7 +12,7 @@ var Component = Vue.extend({
   template: require('./template.html'),
   replace: true,
   created () {
-
+    console.log(config.WECHAT.APPID)
   },
   events: {
 
