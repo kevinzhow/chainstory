@@ -15,11 +15,14 @@ router.map({
         require(['./views/story_creation'], resolve)
       }
     },
-    '/timeline': {
+    '/story/:sid': {
       component: function (resolve) {
         require(['./views/story_timeline'], resolve)
       }
-    }
+    },
+    '*': {
+      component: require('./views/not_found')
+    },
 })
 
 Vue.config.debug = true
