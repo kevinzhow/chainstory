@@ -1,8 +1,8 @@
 const WECHAT_CONFIG = {
-	APPID: "wxb",
-	REDIRECT_URL: "",
-	SCOPE: "",
-	STATE: ""
+	APPID: "wx65c09df2657f16f7",
+	REDIRECT_URL: "https://zi.com/chainstory",
+	SCOPE: "snsapi_login",
+	STATE: "3d6be0a4035d839573b0481615e"
 }
 
 function GEN_WECHAT_URL() {
