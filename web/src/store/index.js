@@ -4,7 +4,6 @@ import { Promise } from 'es6-promise'
 const store = new EventEmitter()
 export default store
 
-
 store.currentUser = {
   username: "左耳朵耗子",
   uid: "",
