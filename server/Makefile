@@ -9,11 +9,11 @@ MKFILE_DIR := $(dir $(MKFILE_PATH))
 GOPATH := ${MKFILE_DIR}_vendor:${MKFILE_DIR}
 export GOPATH
 
-BIN_TARGET=${MKFILE_DIR}build/bin/chainstory 
+BIN_TARGET=${MKFILE_DIR}build/bin/chainstory
 
 SRC_FILES=$(wildcard $(MKFILE_DIR)/*.go)
 
-CONF_TARGET=${MKFILE_DIR}build/conf/chainstory.conf 
+CONF_TARGET=${MKFILE_DIR}build/conf/chainstory.conf
 CONF_FILES=conf/chainstory.conf
 
 TARGET=${BIN_TARGET} ${CONF_TARGET}
@@ -21,10 +21,10 @@ TARGET=${BIN_TARGET} ${CONF_TARGET}
 
 default: ${TARGET}
 
-${BIN_TARGET} : ${SRC_FILES} 
+${BIN_TARGET} : ${SRC_FILES}
 	@echo "$(OK_COLOR)==> build Binary File from $(ERROR_COLOR)${MKFILE_DIR}$(OK_COLOR) into $(ERROR_COLOR)${BIN_TARGET}$(NO_COLOR)"
 	mkdir -p ${MKFILE_DIR}build/bin && mkdir -p ${MKFILE_DIR}build/conf && mkdir -p ${MKFILE_DIR}build/logs
-	cd ${MKFILE_DIR} && source env.sh && go build  -gcflags "-N -l"  -v -o ${BIN_TARGET} ./src/main
+	cd ${MKFILE_DIR} && go build  -gcflags "-N -l"  -v -o ${BIN_TARGET} ./src/main
 
 
 ${CONF_TARGET} : ${CONF_FILES}

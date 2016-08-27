@@ -45,7 +45,7 @@ npm run dev
 ```
 cd server
 source ./env.sh
-make verdor # grabbing the 3rd party libs
+make vendor # grabbing the 3rd party libs
 make
 ```
 
