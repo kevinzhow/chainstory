@@ -11,7 +11,8 @@ let component = Vue.extend({
   },
   components: {
     'app-background-cover': require('../background_cover'),
-    'submit-button': require('../button')
+    'submit-button': require('../button'),
+    'app-tips-bubble': require('../tips_bubble'),
   }
 })
 

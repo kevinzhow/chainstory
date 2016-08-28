@@ -1,9 +1,14 @@
 <div class="dialog-container">
   <div class="bubble dialog compose">
     <div class="bubble-header">
-      <div class="bubble-title">
-      起头
-      </div>
+		<div class="bubble-title">
+			起头
+		</div>
+		<div class="bubble-symbol" v-on:click="toggleTips">
+		  <div class="symbol-container">
+		    ?
+		  </div>
+		</div>
     </div>
     <div class="bubble-body">
       <textarea name="story-content" placeholder="请尽情创作吧..."></textarea>
