@@ -6,14 +6,25 @@
   min-height: 200px;
   max-height: 400px;
 
-  .bubble-body {
-    margin: 5px;
+  &.bubble {
+    padding: 0 0 0 0;
+
+    .bubble-header {
+      padding: 12px 15px 12px 15px;
+    }
+
+    .bubble-body {
+      background-color: #F6F6F6;
+      padding: 10px 15px 12px 15px;
+      margin: 0;
+    }
+
   }
 
   textarea {
     width: 100%;
     resize: none;
-    height: 192px;
+    height: 132px;
     border: none;
     margin-top: 0px;
     margin-bottom: 0px;
@@ -21,6 +32,7 @@
     color: @gray-drak;
     padding: 0;
     line-height: 23px;
+    background: transparent;
   }
 
   textarea:focus {
