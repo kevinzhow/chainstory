@@ -7,6 +7,9 @@ let component = Vue.extend({
   methods: {
     toggleComposeDialog: function (event) {
         this.$dispatch('toggleComposeDialog', null);
+    },
+    toggleTips: function (event) {
+        this.$dispatch('toggleTips', null);
     }
   },
   components: {

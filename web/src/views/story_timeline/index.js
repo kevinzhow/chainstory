@@ -14,7 +14,7 @@ var Component = Vue.extend({
     })
   },
   events: {
-    'timeline-toggleTips': function () {
+    'toggleTips': function () {
       // Toggle the writting tips dialog display state
       this.toggleTips()
     },
