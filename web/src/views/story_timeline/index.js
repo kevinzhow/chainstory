@@ -1,6 +1,5 @@
 var Vue = require('vue')
 import store from "../../store"
-import 'whatwg-fetch'
 
 var Component = Vue.extend({
   template: require('./template.html'),
@@ -9,11 +8,23 @@ var Component = Vue.extend({
     this.sid = this.$route.params.sid
     // Fetch story by story id
     store.fetchStory(this.sid).then(json => {
-      console.log(json)
-      if (json.status = "Error") {
+      if (json.status == "Error") {
 
+      } else {
+        this.bubbles = [
+        {
+          author: json.author, content: json.content, 
+          created_at: json.create_at, like_status: json.like_status, likes: json.likes
+        }]
+
+        this.bubbles.concat( json.nodes )
       }
     })
+
+    store.currentUser().then( user => {
+      this.tipsBubble = { user: {username: user.username, avatar: user.avatar}, content: "请点击我要续写抽取情节卡"}
+    })
+
   },
   events: {
     'toggleTips': function () {
@@ -41,9 +52,7 @@ var Component = Vue.extend({
       composeContent: "",
       sid: "",
       bubbles: [],
-      tipsBubble: {
-        user: { username: store.currentUser.username, avatar: store.currentUser.avatar }, content: "请点击我要续写续写本故事的矛盾"
-      },
+      tipsBubble: { user: {username: store.currentUser.username, avatar: store.currentUser.avatar}, content: ""},
       dialogContent: { title: "矛盾", content: "在这一段内容里，我们建议您创作本故事的矛盾。小说故事中的矛盾冲突是形成情节的基础，也是推动情节发展的动力，冲突双方的人物性格，则直接决定了情节进展的趋向。矛盾往往代表了阻挠主角欲望的内容。" }
     }
   },

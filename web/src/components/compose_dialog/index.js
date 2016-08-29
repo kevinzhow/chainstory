@@ -1,6 +1,8 @@
 require('./style.less')
 var Vue = require('vue')
 import store from "../../store"
+var VueRouter = require('vue-router')
+var router = new VueRouter()
 
 let component = Vue.extend({
   template: require('./template.html'),
@@ -16,8 +18,18 @@ let component = Vue.extend({
         this.$dispatch('toggleTips', null);
     },
     submit: function(event) {
-      console.log("Submit Story")
-      store.composeStory({title: story_title, content: story_content}, sid)
+      console.log("Submit Story " + this.sid)
+      if (this.sid != undefined) {
+        this.story_title = "Extends"
+      }
+      store.composeStory({title: this.story_title, content: this.story_content}, this.sid).then(json => {
+        console.log(json)
+        if (json.status == "Error" || json.sid == undefined) {
+
+        } else {
+          router.go("/story/"+json.sid)
+        }
+      })
     }
   },
   data: () => {

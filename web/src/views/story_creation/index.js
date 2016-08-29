@@ -6,15 +6,7 @@ var Component = Vue.extend({
   template: require('./template.html'),
   replace: true,
   created () {
-    store.fetchUserWithWXOpenID("zuoerduo").then(response => {
-      if (response.status == "Error") {
-        store.createUser("zuoerduo").then(response => {
-          store.fullUser(response)
-        })
-      } else {
-        store.fullUser(response)
-      }
-    })
+
   },
   events: {
     'toggleTips': function () {
@@ -36,7 +28,6 @@ var Component = Vue.extend({
   },
   data: () => {
     return {
-      currentUser: store.currentUser,
       composeDialogState: false,
       composeContent: "",
       tipsDialogState: false,

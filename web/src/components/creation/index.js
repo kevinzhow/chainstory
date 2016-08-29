@@ -10,13 +10,16 @@ let component = Vue.extend({
   template: require('./template.html'),
   props: ['dialog'],
   created() {
+    store.currentUser().then( user => {
+      this.currentUser = user
+    })
   },
   methods: {
       toggleCompose: function (event) {
           // this.$dispatch('timeline-toggleTips', null);
           console.log(config.WECHAT_URL)
-          if(store.currentUser.username != '' ) {
-            console.log("Login Success " + store.currentUser.username)
+          if(this.currentUser.username != '' ) {
+            console.log("Login Success " + this.currentUser.username)
             this.$dispatch('toggleComposeDialog', null);
           }
       },
@@ -26,6 +29,7 @@ let component = Vue.extend({
   },
   data: () => {
     return {
+      currentUser: {},
       buttonMsg: '我要起头'
     }
   },

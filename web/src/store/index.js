@@ -6,23 +6,40 @@ const serverURL = "http://0.0.0.0:9527/api"
 const store = new EventEmitter()
 export default store
 
-store.currentUser = {}
+var _currentUser = {}
+
+store.currentUser = ()=> {
+  return new Promise(function (resolve, reject){
+    if (_currentUser.username == undefined) {
+      console.log("Fetch Current User")
+      store.fetchUserWithWXOpenID("zuoerduo").then(response => {
+        if (response.status == "Error") {
+          store.createUser("zuoerduo").then(response => {
+            resolve(store.fullUser(response))
+          })
+        } else {
+          resolve(store.fullUser(response))
+        }
+      })
+    } else {
+      resolve(_currentUser)
+    }
+  })
+}
 
 /**
  * Fill user data
  */
 
 store.fullUser = user => {
-  store.currentUser = {
+  _currentUser = {
     username: user.name,
     avatar: user.avatar,
     uid: user.uid,
     wx_openid: user.wx_openid,
     wb_openid: user.wb_openid
   }
-  console.log(store.currentUser)
-
-  return store.currentUser
+  return _currentUser
 }
 
 /**
@@ -81,18 +98,19 @@ store.fetchStory = id => {
  */
 
 store.composeStory = (story, sid) => {
+  var storyData = {
+      author: { uid: _currentUser.uid },
+      title: story.title,
+      content: story.content,
+      parent_id: sid
+  }
+  console.log(storyData)
   return fetch(serverURL+'/story', {
     method: 'POST',
     headers: {
-      'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      author: { uid: store.currentUser.uid },
-      title: story.title,
-      content: story.content,
-      sid: sid
-    })
+    body: JSON.stringify(storyData)
   }).then(function(response) {
     return response.json()
   }).catch(function(ex) {
