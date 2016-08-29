@@ -33,15 +33,6 @@ var Routers = []RouteMap{
 			HandlerFunc: userHandler.CreateUser,
 		}},
 	},
-
-	{
-		Path: "/user",
-		Handlers: []RestHandler{{
-			Method:      "OPTIONS",
-			HandlerFunc: handlers.HelloGET,
-		}},
-	},
-
 	{
 		Path: "/user/id/:uid",
 		Handlers: []RestHandler{{

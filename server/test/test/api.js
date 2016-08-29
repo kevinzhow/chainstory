@@ -7,16 +7,22 @@ const url = 'http://localhost:9527/api';
 const username = "左耳朵耗子";
 const wx_openid = "zuoerduo";
 var uid;
+var con = mongoose.connect('mongodb://localhost/ChainStory');
 
 describe('Test Story Chain', function() {
 
   before(function(done) {
-    var con = mongoose.connect('mongodb://localhost/ChainStory');
     mongoose.connection.on('open', function(){
         con.connection.db.dropDatabase(function(err, result){
             done();
         });
     });
+  });
+
+  after(function(done) {
+    con.connection.db.dropDatabase(function(err, result){
+            done();
+        });
   });
   // within before() you can run all the operations that are needed to setup your tests. In this case
   // I want to create a connection with the database, and when I'm done, I call done().
@@ -35,7 +41,7 @@ describe('Test Story Chain', function() {
         type: 0,
         wx_openid: wx_openid,
         wb_openid: 'Gheri',
-        avator: "http://tva3.sinaimg.cn/crop.27.27.337.337.180/538efefbgw1eg77da7jggj20aw0aw743.jpg",
+        avatar: "http://tva3.sinaimg.cn/crop.27.27.337.337.180/538efefbgw1eg77da7jggj20aw0aw743.jpg",
       };
     // once we have specified the info we want to send to the server via POST verb,
     // we need to actually perform the action on the resource, in this case we want to 

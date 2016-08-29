@@ -26,9 +26,6 @@ func makeRouter() ([]*rest.Route, error) {
 			case "DELETE":
 				appRouters = append(appRouters,
 					rest.Delete(router.Path, handler.HandlerFunc))
-			case "OPTIONS":
-				appRouters = append(appRouters,
-					rest.Delete(router.Path, handler.HandlerFunc))
 			case "PUT":
 				appRouters = append(appRouters,
 					rest.Put(router.Path, handler.HandlerFunc))

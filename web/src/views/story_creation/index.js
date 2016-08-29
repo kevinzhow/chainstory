@@ -7,14 +7,13 @@ var Component = Vue.extend({
   replace: true,
   created () {
     store.fetchUserWithWXOpenID("zuoerduo").then(response => {
-      if (response.status == 404) {
+      if (response.status == "Error") {
         store.createUser("zuoerduo").then(response => {
           console.log(response)
         })
       } else {
-        console.log(response.json())
+        console.log(response)
       }
-
     })
   },
   events: {
