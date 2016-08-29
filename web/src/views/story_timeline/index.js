@@ -5,29 +5,10 @@ var Component = Vue.extend({
   template: require('./template.html'),
   replace: true,
   created () {
-    this.sid = this.$route.params.sid
-    // Fetch story by story id
-    store.fetchStory(this.sid).then(json => {
-      console.log(json)
-      if (json.status == "Error") {
-
-      } else {
-        var initArray = [
-        {
-          author: json.author, content: json.content, 
-          create_at: json.create_at, like_status: json.like_status, likes: json.likes
-        }] 
-
-        this.bubbles = initArray.concat( json.nodes ).reverse()
-
-        console.log(json.nodes)
-      }
-    })
-
+    this.fetchData()
     store.currentUser().then( user => {
       this.tipsBubble = { user: {username: user.username, avatar: user.avatar}, content: "请点击我要续写抽取情节卡"}
     })
-
   },
   events: {
     'toggleTips': function () {
@@ -37,6 +18,10 @@ var Component = Vue.extend({
     'toggleComposeDialog': function () {
       // Toggle the compose dialog display state
       this.toggleCompose()
+    },
+    'refetchData': function (sid) {
+      // Toggle the compose dialog display state
+      this.fetchData(sid)
     }
   },
   methods: {
@@ -45,6 +30,30 @@ var Component = Vue.extend({
     },
     toggleCompose: function (event) {
       this.composeDialogState = !this.composeDialogState
+    },
+    fetchData: function(sid) {
+      if (sid != undefined) {
+        this.sid = sid
+      } else {
+        this.sid = this.$route.params.sid
+      }
+      // Fetch story by story id
+      store.fetchStory(this.sid).then(json => {
+        console.log(json)
+        if (json.status == "Error") {
+
+        } else {
+          var initArray = [
+          {
+            sid:json.sid, author: json.author, content: json.content, 
+            create_at: json.create_at, like_status: json.like_status, likes: json.likes
+          }] 
+
+          console.log("Reload bubbles for "+ this.sid)
+          console.log(json.nodes.length)
+          this.bubbles = initArray.concat( json.nodes ).reverse()
+        }
+      })
     }
   },
   data: () => {

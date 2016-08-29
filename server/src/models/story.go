@@ -4,6 +4,7 @@ import "gopkg.in/mgo.v2/bson"
 
 type StoryNode struct {
 	Author  User   `json:"author", bson:"author"`
+	Sid         string        `json:"sid", bson:"sid"`
 	Title   string `json:"title", bson:"title"`
 	Space   int    `json:"space", bson:"space"`
 	CreateAt    int32         `json:"create_at", bson:"create_at"`

@@ -1,7 +1,7 @@
 <div class="view">
   <!-- List the chainstory -->
   <li v-for="bubble in bubbles">
-    <app-bubble :bubble.once="bubble"></app-bubble>
+    <app-bubble :bubble="bubble"></app-bubble>
   </li>
   <!-- tips bubble shows the compose tip at the bottom -->
   <app-tips-bubble :bubble="tipsBubble"></app-tips-bubble>

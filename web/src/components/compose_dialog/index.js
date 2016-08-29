@@ -27,7 +27,9 @@ let component = Vue.extend({
         if (json.status == "Error" || json.sid == undefined) {
 
         } else {
-          router.go("/story/"+json.sid)
+          router.go({path:"/story/"+json.sid})
+          this.$dispatch('refetchData', json.sid);
+          this.$dispatch('toggleComposeDialog', null);
         }
       })
     }
