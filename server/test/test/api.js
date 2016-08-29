@@ -3,9 +3,15 @@ var assert = require('assert');
 var request = require('supertest');  
 var mongoose = require("mongoose");
 
+const DemoUser = {
+  username: "周楷雯Kevin",
+  type: 0,
+  wx_openid: 'kevinzhow',
+  wb_openid: 'kevinzhow',
+  avatar: "http://tva2.sinaimg.cn/crop.0.0.1242.1242.180/68c9c44djw8f0y66adyekj20yi0yigmt.jpg"
+}
+
 const url = 'http://localhost:9527/api';
-const username = "左耳朵耗子";
-const wx_openid = "zuoerduo";
 var uid;
 var con = mongoose.connect('mongodb://localhost/ChainStory');
 
@@ -37,11 +43,11 @@ describe('Test Story Chain', function() {
   describe('User', function() {
     it('should be able to create user', function(done) {
       var profile = {
-        name: username,
+        name: DemoUser.username,
         type: 0,
-        wx_openid: wx_openid,
-        wb_openid: 'Gheri',
-        avatar: "http://tva3.sinaimg.cn/crop.27.27.337.337.180/538efefbgw1eg77da7jggj20aw0aw743.jpg",
+        wx_openid: DemoUser.wx_openid,
+        wb_openid: DemoUser.wb_openid,
+        avatar: DemoUser.avatar,
       };
     // once we have specified the info we want to send to the server via POST verb,
     // we need to actually perform the action on the resource, in this case we want to 
@@ -84,7 +90,7 @@ describe('Test Story Chain', function() {
 
     it('should able to query user by wx_openid', function(done){
       request(url)
-        .get('/user/wx_openid/'+wx_openid)
+        .get('/user/wx_openid/'+DemoUser.wx_openid)
         .expect('Content-Type', /json/)
         .expect(200) //Status code
         .end(function(err,res) {
@@ -94,7 +100,7 @@ describe('Test Story Chain', function() {
           // Should.js fluent syntax applied
           res.body.should.have.property('wx_openid');
           uid = res.body.uid;
-          res.body.name.should.equal(username);
+          res.body.name.should.equal(DemoUser.username);
           res.body.type.should.equal(0);                    
           res.body.create_at.should.not.equal(null);
           done();
@@ -112,7 +118,7 @@ describe('Test Story Chain', function() {
           }
           // Should.js fluent syntax applied
           res.body.should.have.property('uid');
-          res.body.name.should.equal(username);
+          res.body.name.should.equal(DemoUser.username);
           res.body.type.should.equal(0);                    
           res.body.create_at.should.not.equal(null);
           done();

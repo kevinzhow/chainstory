@@ -2,7 +2,6 @@ import { EventEmitter } from 'events'
 import { Promise } from 'es6-promise'
 
 const serverURL = "http://0.0.0.0:9527/api"
-
 const store = new EventEmitter()
 export default store
 
@@ -12,9 +11,9 @@ store.currentUser = ()=> {
   return new Promise(function (resolve, reject){
     if (_currentUser.username == undefined) {
       console.log("Fetch Current User")
-      store.fetchUserWithWXOpenID("zuoerduo").then(response => {
+      store.fetchUserWithWXOpenID("zuoerduo2").then(response => {
         if (response.status == "Error") {
-          store.createUser("zuoerduo").then(response => {
+          store.createUser("zuoerduo2").then(response => {
             resolve(store.fullUser(response))
           })
         } else {
@@ -53,10 +52,10 @@ store.createUser = wechat_id => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      name: "左耳朵耗子2",
+      name: "周楷雯Kevin",
       type: 0,
       wx_openid: wechat_id,
-      wb_openid: 'Gheri',
+      wb_openid: 'Gheri2',
       avatar: 'http://tva3.sinaimg.cn/crop.27.27.337.337.180/538efefbgw1eg77da7jggj20aw0aw743.jpg'
     })
   }).then(function(response) {
