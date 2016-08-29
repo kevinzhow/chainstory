@@ -8,16 +8,19 @@ var Component = Vue.extend({
     this.sid = this.$route.params.sid
     // Fetch story by story id
     store.fetchStory(this.sid).then(json => {
+      console.log(json)
       if (json.status == "Error") {
 
       } else {
-        this.bubbles = [
+        var initArray = [
         {
           author: json.author, content: json.content, 
-          created_at: json.create_at, like_status: json.like_status, likes: json.likes
-        }]
+          create_at: json.create_at, like_status: json.like_status, likes: json.likes
+        }] 
 
-        this.bubbles.concat( json.nodes )
+        this.bubbles = initArray.concat( json.nodes ).reverse()
+
+        console.log(json.nodes)
       }
     })
 

@@ -6,7 +6,10 @@ type StoryNode struct {
 	Author  User   `json:"author", bson:"author"`
 	Title   string `json:"title", bson:"title"`
 	Space   int    `json:"space", bson:"space"`
+	CreateAt    int32         `json:"create_at", bson:"create_at"`
 	Content string `json:"content", bson:"content"`
+	Likes       int           `json:"likes", bson:"likes"`
+	LikeStaus   bool          `json:"like_status", bson:"-"`
 }
 
 type Story struct {
