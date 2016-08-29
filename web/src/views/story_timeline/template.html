@@ -1,6 +1,7 @@
 <div class="view">
   <!-- List the chainstory -->
   <li v-for="bubble in bubbles">
+    <card-section :author="bubble.author"></card-section>
     <app-bubble :bubble="bubble"></app-bubble>
   </li>
   <!-- tips bubble shows the compose tip at the bottom -->

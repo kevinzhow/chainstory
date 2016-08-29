@@ -50,7 +50,7 @@ var Component = Vue.extend({
           }] 
 
           console.log("Reload bubbles for "+ this.sid)
-          console.log(json.nodes.length)
+          console.log(json.nodes)
           this.bubbles = initArray.concat( json.nodes ).reverse()
         }
       })
@@ -73,7 +73,8 @@ var Component = Vue.extend({
     'app-bubble': require('../../components/bubble'),
     'app-tips-bubble': require('../../components/tips_bubble'),
     'app-tips-dialog': require('../../components/dialog'),
-    'app-compose-dialog': require('../../components/compose_dialog')
+    'app-compose-dialog': require('../../components/compose_dialog'),
+    'card-section': require('../../components/card_section')
   }
 })
 
