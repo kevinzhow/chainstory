@@ -1,5 +1,7 @@
 var Vue = require('vue')
 import store from "../../store"
+var moment = require('moment')
+moment.locale('zh-cn');
 
 var Component = Vue.extend({
   template: require('./template.html'),
@@ -46,12 +48,17 @@ var Component = Vue.extend({
           var initArray = [
           {
             sid:json.sid, author: json.author, content: json.content, 
-            create_at: json.create_at, like_status: json.like_status, likes: json.likes
+            create_at: moment(json.create_at).calendar(), like_status: json.like_status, likes: json.likes
           }] 
 
           console.log("Reload bubbles for "+ this.sid)
           console.log(json.nodes)
-          this.bubbles = initArray.concat( json.nodes ).reverse()
+          var processArray = []
+          for (var story of json.nodes) {
+            story.create_at = moment(story.create_at).calendar()
+            processArray.push(story)
+          }
+          this.bubbles = initArray.concat( processArray ).reverse()
         }
       })
     }
