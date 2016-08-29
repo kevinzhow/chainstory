@@ -7,7 +7,8 @@ let component = Vue.extend({
   created () {
   },
   methods: {
-
+	  touchHandler: function (event) {
+	  }
   },
 })
 

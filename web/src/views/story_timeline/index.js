@@ -1,5 +1,6 @@
 var Vue = require('vue')
 import store from "../../store"
+import 'whatwg-fetch'
 
 var Component = Vue.extend({
   template: require('./template.html'),
