@@ -5,6 +5,7 @@ var mongoose = require("mongoose");
 
 const url = 'http://localhost:9527';
 const username = "左耳朵耗子";
+const wx_openid = "zuoerduo";
 var uid;
 
 describe('Test Story Chain', function() {
@@ -32,7 +33,7 @@ describe('Test Story Chain', function() {
       var profile = {
         name: username,
         type: 0,
-        wx_openid: 'Valerio',
+        wx_openid: wx_openid,
         wb_openid: 'Gheri',
         avator: "http://tva3.sinaimg.cn/crop.27.27.337.337.180/538efefbgw1eg77da7jggj20aw0aw743.jpg",
       };
@@ -56,24 +57,43 @@ describe('Test Story Chain', function() {
       });
     });
 
-    it('should able to query user by username', function(done){
-    	request(url)
-    		.get('/user/name/'+username)
-    		.expect('Content-Type', /json/)
-    		.expect(200) //Status code
-    		.end(function(err,res) {
-    			if (err) {
-    				throw err;
-    			}
-    			// Should.js fluent syntax applied
-    			res.body.should.have.property('uid');
+   //  it('should able to query user by username', function(done){
+   //  	request(url)
+   //  		.get('/user/name/'+username)
+   //  		.expect('Content-Type', /json/)
+   //  		.expect(200) //Status code
+   //  		.end(function(err,res) {
+   //  			if (err) {
+   //  				throw err;
+   //  			}
+   //  			// Should.js fluent syntax applied
+   //  			res.body.should.have.property('uid');
+   //        uid = res.body.uid;
+   //        res.body.name.should.equal(username);
+   //        res.body.type.should.equal(0);                    
+   //        res.body.create_at.should.not.equal(null);
+   //  			done();
+   //  		});
+  	// });
+
+    it('should able to query user by wx_openid', function(done){
+      request(url)
+        .get('/user/wx_openid/'+wx_openid)
+        .expect('Content-Type', /json/)
+        .expect(200) //Status code
+        .end(function(err,res) {
+          if (err) {
+            throw err;
+          }
+          // Should.js fluent syntax applied
+          res.body.should.have.property('wx_openid');
           uid = res.body.uid;
           res.body.name.should.equal(username);
           res.body.type.should.equal(0);                    
           res.body.create_at.should.not.equal(null);
-    			done();
-    		});
-  	});
+          done();
+        });
+    });
 
     it('should able to query user by id', function(done){
       request(url)

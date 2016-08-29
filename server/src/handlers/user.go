@@ -49,9 +49,10 @@ func (handler *UserHandler) CreateUser(w rest.ResponseWriter, req *rest.Request)
 func (handler *UserHandler) FindUser(w rest.ResponseWriter, req *rest.Request) {
 	uid := req.PathParam("uid")
 	name := req.PathParam("name")
+	wx_openid := req.PathParam("wx_openid")
 	//log.Println("uid -", uid, "name -", name)
 
-	if uid == "" && name == "" {
+	if uid == "" && name == "" && wx_openid == ""{
 		rest.Error(w, "Invalid Request!", http.StatusBadRequest)
 		return
 	}
@@ -60,8 +61,10 @@ func (handler *UserHandler) FindUser(w rest.ResponseWriter, req *rest.Request) {
 
 	if uid != "" {
 		user, err = handler.service.FindUserById(uid)
-	} else {
+	} else if name != "" {
 		user, err = handler.service.FindUserByName(name)
+	} else {
+		user, err = handler.service.FindUserByWXOpenID(wx_openid)
 	}
 
 	if user == nil && err != nil {

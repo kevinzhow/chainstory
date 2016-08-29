@@ -32,6 +32,9 @@ func (service *UserService) FindUserById(id string) (*models.User, error) {
 func (service *UserService) FindUserByName(name string) (*models.User, error) {
 	return service.userDao.FindUserByName(name)
 }
+func (service *UserService) FindUserByWXOpenID(wx_openID string) (*models.User, error) {
+	return service.userDao.FindUserByWXOpenID(wx_openID)
+}
 func (service *UserService) DeleteUserById(id string) error {
 	return service.userDao.DeleteUserById(id)
 }

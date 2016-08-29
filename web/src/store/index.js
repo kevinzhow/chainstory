@@ -9,6 +9,20 @@ store.currentUser = {
   uid: "",
   avatar: "http://tva3.sinaimg.cn/crop.27.27.337.337.180/538efefbgw1eg77da7jggj20aw0aw743.jpg"
 }
+
+/**
+ * Fetch user by wechat ID.
+ */
+
+ store.fetchStory = wechat_id => {
+  return fetch('/users/'+id)
+  .then(function(response) {
+    return response.json()
+  }).catch(function(ex) {
+    console.log('parsing story failed', ex)
+  })
+}
+
 /**
  * Fetch an story data with given id.
  */

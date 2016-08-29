@@ -37,6 +37,9 @@ func (dao *UserDao) CreateUser(user *models.User) error {
 	return nil
 }
 
+
+// Find user by ID
+
 func (dao *UserDao) FindUserById(id string) (*models.User, error) {
 	table := dao.GetTable("users")
 	result := models.User{}
@@ -48,12 +51,40 @@ func (dao *UserDao) FindUserById(id string) (*models.User, error) {
 	return &result, nil
 }
 
+// Find user by name
+
 func (dao *UserDao) FindUserByName(name string) (*models.User, error) {
 	table := dao.GetTable("users")
 	result := models.User{}
 	err := table.Find(bson.M{"name": name}).One(&result)
 	if err != nil {
 		log.Println("user [name=", name, "] not found!", err.Error())
+		return nil, errors.New("Cannot found user")
+	}
+	return &result, nil
+}
+
+// Find user by wx open ID
+
+func (dao *UserDao) FindUserByWXOpenID(wx_openID string) (*models.User, error) {
+	table := dao.GetTable("users")
+	result := models.User{}
+	err := table.Find(bson.M{"wx_openid": wx_openID}).One(&result)
+	if err != nil {
+		log.Println("user [wx_openid=", wx_openID, "] not found!", err.Error())
+		return nil, errors.New("Cannot found user")
+	}
+	return &result, nil
+}
+
+// Find user by wb open ID
+
+func (dao *UserDao) FindUserByWBOpenID(wb_openID string) (*models.User, error) {
+	table := dao.GetTable("users")
+	result := models.User{}
+	err := table.Find(bson.M{"wb_openid": wb_openID}).One(&result)
+	if err != nil {
+		log.Println("user [wb_openid=", wb_openID, "] not found!", err.Error())
 		return nil, errors.New("Cannot found user")
 	}
 	return &result, nil

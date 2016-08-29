@@ -49,6 +49,13 @@ var Routers = []RouteMap{
 			HandlerFunc: userHandler.FindUser,
 		}},
 	},
+	{
+		Path: "/user/wx_openid/:wx_openid",
+		Handlers: []RestHandler{{
+			Method:      "GET",
+			HandlerFunc: userHandler.FindUser,
+		}},
+	},
 
 	{
 		Path: "/user/id/:uid",
