@@ -34,6 +34,7 @@ func (service *StoryService) CreateStory(story *models.Story) error {
 			parentStoryNode.Title = parentStory.Title
 			parentStoryNode.Space = parentStory.Space
 			parentStoryNode.Content = parentStory.Content
+			parentStoryNode.CreateAt = parentStory.CreateAt
 			story.Nodes = append(parentStory.Nodes, &parentStoryNode)
 			story.Space = parentStory.Space + 1
 		}

@@ -7,6 +7,7 @@ type StoryNode struct {
 	Title   string `json:"title", bson:"title"`
 	Space   int    `json:"space", bson:"space"`
 	Content string `json:"content", bson:"content"`
+	CreateAt    int32         `json:"create_at", bson:"create_at"`
 }
 
 type Story struct {

@@ -48,14 +48,14 @@ var Component = Vue.extend({
           var initArray = [
           {
             sid:json.sid, author: json.author, content: json.content, 
-            create_at: moment(json.create_at).calendar(), like_status: json.like_status, likes: json.likes
+            create_at: moment.unix(json.create_at).calendar(), like_status: json.like_status, likes: json.likes
           }] 
 
           console.log("Reload bubbles for "+ this.sid)
           console.log(json.nodes)
           var processArray = []
           for (var story of json.nodes) {
-            story.create_at = moment(story.create_at).calendar()
+            story.create_at = moment.unix(story.create_at).calendar()
             processArray.push(story)
           }
           this.bubbles = initArray.concat( processArray ).reverse()
