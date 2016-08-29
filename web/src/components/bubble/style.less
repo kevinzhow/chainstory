@@ -1,11 +1,31 @@
 @import "../../variables";
 
+li {
+  &:first-child {
+    .bubble {
+      border-radius: 8px 8px 0 0;
+    }
+  }
+
+  &:last-of-type {
+    .bubble {
+      border-radius: 0 0 8px 8px;
+    }
+  }
+
+  &:not(:first-child):not(:last-of-type) {
+    .bubble {
+      border-radius: 0;
+    }
+  }
+}
+
 .bubble {
   background-color: white;
   border-radius: 8px;
   box-shadow: 3px 3px 7px rgba(118, 118, 118, 0.14);
   border: 2px solid @white-dark;
-  margin: 10px 10px 20px 10px;
+  margin: 0px 10px 0px 10px;
   padding: 15px 15px 15px 15px;
   max-width: 500px;
 
