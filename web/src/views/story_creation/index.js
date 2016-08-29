@@ -9,10 +9,10 @@ var Component = Vue.extend({
     store.fetchUserWithWXOpenID("zuoerduo").then(response => {
       if (response.status == "Error") {
         store.createUser("zuoerduo").then(response => {
-          console.log(response)
+          store.fullUser(response)
         })
       } else {
-        console.log(response)
+        store.fullUser(response)
       }
     })
   },

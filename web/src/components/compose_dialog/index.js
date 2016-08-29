@@ -1,9 +1,10 @@
 require('./style.less')
 var Vue = require('vue')
+import store from "../../store"
 
 let component = Vue.extend({
   template: require('./template.html'),
-  props: ['content', 'creation'],
+  props: ['content', 'creation', 'sid'],
   methods: {
     toggleComposeDialog: function (event) {
       if (this.story_title.length < 1 && this.story_content < 1) {
@@ -15,7 +16,8 @@ let component = Vue.extend({
         this.$dispatch('toggleTips', null);
     },
     submit: function(event) {
-        this.$dispatch('toggleComposeDialog', null);
+      console.log("Submit Story")
+      store.composeStory({title: story_title, content: story_content}, sid)
     }
   },
   data: () => {

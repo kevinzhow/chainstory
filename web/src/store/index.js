@@ -6,7 +6,23 @@ const serverURL = "http://0.0.0.0:9527/api"
 const store = new EventEmitter()
 export default store
 
-store.currentUser = {
+store.currentUser = {}
+
+/**
+ * Fill user data
+ */
+
+store.fullUser = user => {
+  store.currentUser = {
+    username: user.name,
+    avatar: user.avatar,
+    uid: user.uid,
+    wx_openid: user.wx_openid,
+    wb_openid: user.wb_openid
+  }
+  console.log(store.currentUser)
+
+  return store.currentUser
 }
 
 /**
@@ -52,7 +68,7 @@ store.fetchUserWithWXOpenID = wechat_id => {
  */
 
 store.fetchStory = id => {
-  return fetch(serverURL+'/stories/'+id)
+  return fetch(serverURL+'/story/'+id)
   .then(function(response) {
     return response.json()
   }).catch(function(ex) {
@@ -64,16 +80,18 @@ store.fetchStory = id => {
  * Create an story.
  */
 
-store.composeStory = () => {
-  return fetch(serverURL+'/stories', {
+store.composeStory = (story, sid) => {
+  return fetch(serverURL+'/story', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      name: 'Hubot',
-      login: 'hubot',
+      author: { uid: store.currentUser.uid },
+      title: story.title,
+      content: story.content,
+      sid: sid
     })
   }).then(function(response) {
     return response.json()
