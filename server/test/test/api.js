@@ -3,7 +3,7 @@ var assert = require('assert');
 var request = require('supertest');  
 var mongoose = require("mongoose");
 
-const url = 'http://localhost:9527';
+const url = 'http://localhost:9527/api';
 const username = "左耳朵耗子";
 const wx_openid = "zuoerduo";
 var uid;

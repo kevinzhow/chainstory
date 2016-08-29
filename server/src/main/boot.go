@@ -81,7 +81,12 @@ func BootServer(host string, port string) error {
 
 	log.Printf("ChainStory API Server is listening on [%s:%s]...", host, port)
 	fmt.Printf("ChainStory API Server is listening on [%s:%s]...\n", host, port)
-	err = http.ListenAndServe(host+":"+port, api.MakeHandler())
+
+	http.Handle("/api/", http.StripPrefix("/api", api.MakeHandler()))
+
+    // http.Handle("/static/", http.StripPrefix("/static", http.FileServer(http.Dir("."))))
+
+	err = http.ListenAndServe(host+":"+port, nil)
 	if err != nil {
 		fmt.Printf("Listen on [%s:%s] error [%s]\n", host, port, err)
 		log.Fatalf("Listen on [%s:%s] error [%s]", host, port, err)
