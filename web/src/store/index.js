@@ -17,15 +17,14 @@ store.createUser = wechat_id => {
   return fetch(serverURL+'/user', {
     method: 'POST',
     headers: {
-      'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      name: store.currentUser.username,
+      name: "左耳朵耗子",
       type: 0,
-      wx_openid: store.currentUser.wx_openid,
+      wx_openid: wechat_id,
       wb_openid: 'Gheri',
-      avator: store.currentUser.avatar
+      avator: 'http://tva3.sinaimg.cn/crop.27.27.337.337.180/538efefbgw1eg77da7jggj20aw0aw743.jpg'
     })
   }).then(function(response) {
     return response.json()
@@ -40,9 +39,9 @@ store.createUser = wechat_id => {
  */
 
 store.fetchUserWithWXOpenID = wechat_id => {
-  return fetch(serverURL+'/users/wx_openid/'+id)
+  return fetch(serverURL+'/users/wx_openid/'+wechat_id)
   .then(function(response) {
-    return response.json()
+    return response
   }).catch(function(ex) {
     console.log('parsing story failed', ex)
   })

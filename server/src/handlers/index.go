@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	// "log"
 	"path/filepath"
 )
 
@@ -23,17 +24,19 @@ func IndexGET(w http.ResponseWriter, r *http.Request) {
 	http_root = fmt.Sprintf("%s/../web", http_root)
 
 	// TODO: Should code a middleware for logging
-	fmt.Printf("Fetch: %s \n", r.URL.Path)
+	fmt.Printf("Fetch: %s \n", http_root)
 	var filename, fileext string
 
 	// Serve index.html for / as default
 	if r.URL.Path == "/" {
-		filename = "index"
-		fileext = "html"
+		filename = http_root + "/index.html"
+		fileext = ".html"
 	} else {
 		filename = http_root + r.URL.Path
 		fileext = filepath.Ext(filename)
 	}
+
+	fmt.Printf("Look for file %s \n", filename)
 
 	content, err := ioutil.ReadFile(filename)
 	if err != nil {

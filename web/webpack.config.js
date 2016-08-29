@@ -1,7 +1,7 @@
 module.exports = {
   entry: ['whatwg-fetch', "./src/main.js"],
   output: {
-    path: "./static",
+    path: "./public/static",
     publicPath: "/public/static/",
     filename: "build.js"
   },

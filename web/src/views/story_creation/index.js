@@ -6,7 +6,16 @@ var Component = Vue.extend({
   template: require('./template.html'),
   replace: true,
   created () {
+    store.fetchUserWithWXOpenID("zuoerduo").then(response => {
+      if (response.status == 404) {
+        store.createUser("zuoerduo").then(response => {
+          console.log(response)
+        })
+      } else {
+        console.log(response.json())
+      }
 
+    })
   },
   events: {
     'toggleTips': function () {
