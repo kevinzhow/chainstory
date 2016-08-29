@@ -5,7 +5,9 @@ require('./main.less')
 
 var Vue = require('vue')
 var VueRouter = require('vue-router')
+var VueTouch = require('vue-touch')
 Vue.use(VueRouter)
+Vue.use(VueTouch)
 
 var router = new VueRouter()
 

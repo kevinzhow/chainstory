@@ -1,6 +1,8 @@
 @import "../../variables";
 
 .button {
+    transition: transform .1s ease-in-out;
+
     background-color: @blue;
     box-shadow: 2px 2px 20px @blue-trans;
     color: white;
@@ -19,6 +21,7 @@
     &:active {
         background-color: @blue;
         box-shadow: 2px 2px 10px @blue-trans;
+        transform: scale(.95);
     }
 
     &:hover {

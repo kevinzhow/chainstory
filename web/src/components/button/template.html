@@ -1,1 +1,1 @@
-<div class="button {{side}}">{{ buttonmsg }}</div>
+<div class="button {{side}}" v-touch:press="touchHandler" v-touch:pressup="touchEndHandler">{{ buttonmsg }}</div>

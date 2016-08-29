@@ -1,6 +1,6 @@
 <div class="view">
- <app-compose-dialog v-show="composeDialogState" :content="composeContent" transition="fade"></app-compose-dialog>
+ <app-compose-dialog v-show="composeDialogState" :content="composeContent" transition="fade" creation="true"></app-compose-dialog>
  <creation></creation>
   <!-- when you click the question mark on tips bubble, the dialog will present the tips content -->
-  <app-tips-dialog v-show="tipsDialogState" :dialog="dialogContent" transition="fade"></app-tips-dialog>
+ <app-tips-dialog v-show="tipsDialogState" :dialog="dialogContent" transition="fade"></app-tips-dialog>
 </div>
