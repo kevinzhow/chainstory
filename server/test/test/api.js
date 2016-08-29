@@ -4,7 +4,7 @@ var request = require('supertest');
 var mongoose = require("mongoose");
 
 const url = 'http://localhost:9527';
-const username = "test_user";
+const username = "左耳朵耗子";
 var uid;
 
 describe('Test Story Chain', function() {
@@ -34,7 +34,7 @@ describe('Test Story Chain', function() {
         type: 0,
         wx_openid: 'Valerio',
         wb_openid: 'Gheri',
-        avator: "avatorurl",
+        avator: "http://tva3.sinaimg.cn/crop.27.27.337.337.180/538efefbgw1eg77da7jggj20aw0aw743.jpg",
       };
     // once we have specified the info we want to send to the server via POST verb,
     // we need to actually perform the action on the resource, in this case we want to 
