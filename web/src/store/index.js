@@ -1,7 +1,9 @@
 import { EventEmitter } from 'events'
 import { Promise } from 'es6-promise'
+import CONFIG from "../config"
 
-const serverURL = "http://0.0.0.0:9527/api"
+const demoUser = CONFIG.DEMOUSER1
+const serverURL = CONFIG.SERVER_URL
 const store = new EventEmitter()
 export default store
 
@@ -11,16 +13,19 @@ store.currentUser = ()=> {
   return new Promise(function (resolve, reject){
     if (_currentUser.username == undefined) {
       console.log("Fetch Current User")
-      store.fetchUserWithWXOpenID("zuoerduo2").then(response => {
+      store.fetchUserWithWXOpenID(demoUser.wx_openid).then(response => {
         if (response.status == "Error") {
-          store.createUser("zuoerduo2").then(response => {
+          console.log("Prepare User Creation")
+          store.createUser(demoUser.wx_openid).then(response => {
             resolve(store.fullUser(response))
           })
         } else {
+          console.log("User Found")
           resolve(store.fullUser(response))
         }
       })
     } else {
+      console.log("User Prepared")
       resolve(_currentUser)
     }
   })
@@ -38,6 +43,7 @@ store.fullUser = user => {
     wx_openid: user.wx_openid,
     wb_openid: user.wb_openid
   }
+  console.log(user)
   return _currentUser
 }
 
@@ -52,13 +58,14 @@ store.createUser = wechat_id => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      name: "周楷雯Kevin",
+      name: demoUser.username,
       type: 0,
       wx_openid: wechat_id,
-      wb_openid: 'Gheri2',
-      avatar: 'http://tva3.sinaimg.cn/crop.27.27.337.337.180/538efefbgw1eg77da7jggj20aw0aw743.jpg'
+      wb_openid: demoUser.wb_openid,
+      avatar: demoUser.avatar
     })
   }).then(function(response) {
+    console.log("User Created")
     return response.json()
   }).catch(function(ex) {
     console.log('parsing story failed', ex)

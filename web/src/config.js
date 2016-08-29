@@ -1,3 +1,5 @@
+const SERVER_URL = "http://0.0.0.0:9527/api"
+
 const WECHAT_CONFIG = {
 	APPID: "wx65c09df2657f16f7",
 	REDIRECT_URL: "https://zi.com/chainstory",
@@ -6,7 +8,7 @@ const WECHAT_CONFIG = {
 }
 
 const DemoUser = {
-	name: "周楷雯Kevin",
+	username: "周楷雯Kevin",
 	type: 0,
 	wx_openid: 'kevinzhow',
 	wb_openid: 'kevinzhow',
@@ -14,7 +16,7 @@ const DemoUser = {
 }
 
 const DemoUser2 = {
-	name: "左耳朵耗子",
+	username: "左耳朵耗子",
 	type: 0,
 	wx_openid: 'zuoerduo',
 	wb_openid: 'zuoerduo',
@@ -31,7 +33,8 @@ const CONFIG = {
 	WECHAT: WECHAT_CONFIG,
 	WECHAT_URL: GEN_WECHAT_URL(),
 	DEMOUSER1: DemoUser,
-	DEMOUSER2: DemoUser2
+	DEMOUSER2: DemoUser2,
+	SERVER_URL: SERVER_URL
 }
 
 module.exports = CONFIG
