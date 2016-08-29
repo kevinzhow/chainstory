@@ -1,21 +1,46 @@
 import { EventEmitter } from 'events'
 import { Promise } from 'es6-promise'
 
+const serverURL = "http://0.0.0.0:9527"
+
 const store = new EventEmitter()
 export default store
 
 store.currentUser = {
-  username: "左耳朵耗子",
-  uid: "",
-  avatar: "http://tva3.sinaimg.cn/crop.27.27.337.337.180/538efefbgw1eg77da7jggj20aw0aw743.jpg"
 }
 
 /**
  * Fetch user by wechat ID.
  */
 
- store.fetchStory = wechat_id => {
-  return fetch('/users/'+id)
+store.createUser = wechat_id => {
+  return fetch(serverURL+'/user', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: store.currentUser.username,
+      type: 0,
+      wx_openid: store.currentUser.wx_openid,
+      wb_openid: 'Gheri',
+      avator: store.currentUser.avatar
+    })
+  }).then(function(response) {
+    return response.json()
+  }).catch(function(ex) {
+    console.log('parsing story failed', ex)
+  })
+}
+
+
+/**
+ * Fetch user by wechat ID.
+ */
+
+store.fetchUserWithWXOpenID = wechat_id => {
+  return fetch(serverURL+'/users/wx_openid/'+id)
   .then(function(response) {
     return response.json()
   }).catch(function(ex) {
@@ -28,7 +53,7 @@ store.currentUser = {
  */
 
 store.fetchStory = id => {
-  return fetch('/stories/'+id)
+  return fetch(serverURL+'/stories/'+id)
   .then(function(response) {
     return response.json()
   }).catch(function(ex) {
@@ -41,7 +66,7 @@ store.fetchStory = id => {
  */
 
 store.composeStory = () => {
-  return fetch('/stories', {
+  return fetch(serverURL+'/stories', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
