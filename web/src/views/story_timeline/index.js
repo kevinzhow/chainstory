@@ -1,6 +1,7 @@
 var Vue = require('vue')
 import store from "../../store"
 import config from "../../config"
+ _ = require('lodash')
 var moment = require('moment')
 moment.locale('zh-cn');
 
@@ -83,16 +84,19 @@ var Component = Vue.extend({
           var initArray = [
           {
             sid:json.sid, author: json.author, content: json.content, title: json.title, card: json.card,
-            create_at: moment.unix(json.create_at).calendar(), like_status: json.like_status, likes: json.likes
+            create_at: json.create_at, like_status: json.like_status, likes: json.likes
           }] 
 
           console.log("Reload bubbles for "+ this.sid)
-          var processArray = []
-          json.nodes.forEach(function (story) {
+          var finalArray = []
+          initArray = initArray.concat( json.nodes )
+          var processArray = _.sortBy(initArray, ['create_at'])
+          processArray.forEach(function (story) {
+            console.log(story.create_at)
             story.create_at = moment.unix(story.create_at).calendar()
-            processArray.push(story)
+            finalArray.push(story)
           });
-          this.bubbles = initArray.concat( processArray ).reverse()
+          this.bubbles = finalArray;
         }
       })
     }
