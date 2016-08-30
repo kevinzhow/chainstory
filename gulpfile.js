@@ -25,7 +25,7 @@ gulp.task('upload_server', ['build_server'], shell.task([
   'scp ./server/build/bin/chainstory   root@123.56.101.63:/var/www/chainstory/server'
 ]))
 
-gulp.task('build_web', ['upload_server'], shell.task([
+gulp.task('build_web', null, shell.task([
   'cd ./web/ && npm run-script build'
 ]))
 

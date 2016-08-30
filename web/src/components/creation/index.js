@@ -10,6 +10,16 @@ let component = Vue.extend({
   template: require('./template.html'),
   props: ['dialog'],
   created() {
+    if (this.$route.query.code != null) {
+      console.log("Has code " + this.$route.query.code)
+      store.fetchWXAccessToken(this.$route.query.code).then(json => {
+        console.log(json)
+        if (json.status == "Error" || json.sid == undefined) {
+
+        } else {
+        }
+      })
+    }
     store.currentUser().then( user => {
       this.currentUser = user
     })
@@ -19,7 +29,7 @@ let component = Vue.extend({
           // this.$dispatch('timeline-toggleTips', null);
           console.log(config.WECHAT_URL)
           if (config.PRODUCTION) {
-            
+            window.location.href = config.WECHAT_URL
           } else {
             if(this.currentUser.username != '' ) {
               console.log("Login Success " + this.currentUser.username)

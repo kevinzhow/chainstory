@@ -4,7 +4,7 @@ const SERVER_URL = PRODUCTION ? "https://zi.com/chainstory/api" : "http://0.0.0.
 
 const WECHAT_CONFIG = {
 	APPID: "wx65c09df2657f16f7",
-	REDIRECT_URL: "https://zi.com/chainstory",
+	REDIRECT_URL: "https://zi.com/chainstory/",
 	SCOPE: "snsapi_login",
 	STATE: "3d6be0a4035d839573b0481615e"
 }

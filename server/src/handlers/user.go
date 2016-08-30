@@ -5,7 +5,8 @@ import (
 	"models"
 	"net/http"
 	"services"
-
+	// "encoding/json"
+	"io/ioutil"
 	"github.com/ant0ine/go-json-rest/rest"
 )
 
@@ -19,7 +20,6 @@ func NewUserHandler() *UserHandler {
 	handler.service = services.NewUserService()
 	return handler
 }
-
 // Create a user
 func (handler *UserHandler) CreateUser(w rest.ResponseWriter, req *rest.Request) {
 	var user = models.User{}
@@ -121,4 +121,28 @@ func (handler *UserHandler) OAuthUser(w rest.ResponseWriter, req *rest.Request) 
 	response := MakeResponse()
 	response["status"] = "OK"
 	w.WriteJson(response)
+}
+
+func (handler *UserHandler) OAuthWXUser(w rest.ResponseWriter, req *rest.Request) {
+	code := req.URL.Query().Get("wx_code")
+	if code == "" {
+		rest.Error(w, "wx_code is required", http.StatusBadRequest)
+		return
+	}
+
+	resp, err := http.Get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx65c09df2657f16f7&secret=fd6114dcb8f4bf9bb7091a8b502d2caf&code="+code+"&grant_type=authorization_code")
+	response := MakeResponse()
+	if err != nil {
+		response["status"] = "Error"
+		w.WriteJson(response)
+	}
+ 
+    defer resp.Body.Close()
+    body, err := ioutil.ReadAll(resp.Body)
+
+    if err != nil {
+		response["status"] = "Error"
+		w.WriteJson(response)
+    }
+	w.WriteJson(string(body))
 }

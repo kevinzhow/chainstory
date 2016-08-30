@@ -9,6 +9,18 @@ export default store
 
 var _currentUser = {}
 
+store.fetchWXAccessToken = wechat_code => {
+  return fetch(serverURL+'/user/wx_oauth?wx_code='+wechat_code, {
+    method: 'GET',
+  }).then(function(response) {
+    console.log("Wexin User Fetched")
+    console.log(response)
+    return response.json()
+  }).catch(function(ex) {
+    console.log('parsing story failed', ex)
+  })
+}
+
 store.currentUser = ()=> {
   return new Promise(function (resolve, reject){
     if (_currentUser.username == undefined) {
