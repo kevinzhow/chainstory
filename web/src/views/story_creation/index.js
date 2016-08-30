@@ -6,7 +6,7 @@ var Component = Vue.extend({
   template: require('./template.html'),
   replace: true,
   created () {
-
+    document.title = "故事接龙 —— 字里行间"
   },
   events: {
     'toggleTips': function () {
