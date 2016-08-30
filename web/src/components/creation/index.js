@@ -31,7 +31,7 @@ let component = Vue.extend({
           if (config.PRODUCTION && this.currentUser.access_token == undefined) {
             window.location.href = config.WECHAT_URL
           } else {
-            if(this.currentUser.username != '' ) {
+            if(this.currentUser.username != '' || this.currentUser.username != undefined) {
               console.log("Login Success " + this.currentUser.username)
               this.$dispatch('toggleComposeDialog', null);
             } 

@@ -1,5 +1,6 @@
 var Vue = require('vue')
 import store from "../../store"
+import config from "../../config"
 var moment = require('moment')
 moment.locale('zh-cn');
 
@@ -7,9 +8,21 @@ var Component = Vue.extend({
   template: require('./template.html'),
   replace: true,
   created () {
-    store.currentUser().then( user => {
-      this.tipsBubble = { user: { username: user.username, avatar: user.avatar }, content: "请点击我要续写抽取情节卡"}
-    })
+    if (this.$route.query.code != null && localStorage.getItem("access_token") == null) {
+      store.fetchWXAccessToken(this.$route.query.code).then(json => {
+        if (json.access_token == undefined) {
+          console.log("Error Detacted")
+        } else {
+          this.currentUser = store.fullUser(json)
+          this.tipsBubble = { user: { username: this.currentUser.username, avatar: this.currentUser.avatar }, content: "请点击我要续写抽取情节卡"}
+        }
+      })
+    } else {
+      store.currentUser().then( user => {
+        this.currentUser = user
+        this.tipsBubble = { user: { username: user.username, avatar: user.avatar }, content: "请点击我要续写抽取情节卡"}
+      })
+    }
     this.fetchData()
   },
   events: {
@@ -31,7 +44,15 @@ var Component = Vue.extend({
       this.tipsDialogState = !this.tipsDialogState
     },
     toggleCompose: function (event) {
-      this.composeDialogState = !this.composeDialogState
+      console.log(config.WECHAT_URL)
+      if (config.PRODUCTION && this.currentUser.access_token == undefined) {
+        window.location.href = config.WECHAT_URL
+      } else {
+        if(this.currentUser.username != '' || this.currentUser.username != undefined) {
+          console.log("Login Success " + this.currentUser.username)
+          this.composeDialogState = !this.composeDialogState
+        } 
+      }
     },
     fetchData: function(sid) {
       if (sid != undefined) {
@@ -74,6 +95,7 @@ var Component = Vue.extend({
       composeContent: "",
       sid: "",
       storytitle: "",
+      currentUser: {},
       bubbles: [],
       tipsBubble: { user: {username: store.currentUser.username, avatar: store.currentUser.avatar}, content: ""},
       dialogContent: { title: "矛盾", content: "在这一段内容里，我们建议您创作本故事的矛盾。小说故事中的矛盾冲突是形成情节的基础，也是推动情节发展的动力，冲突双方的人物性格，则直接决定了情节进展的趋向。矛盾往往代表了阻挠主角欲望的内容。" }
