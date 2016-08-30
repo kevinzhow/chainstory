@@ -5,7 +5,7 @@ const SERVER_URL = PRODUCTION ? "https://zi.com/chainstory/api" : "http://0.0.0.
 const WECHAT_CONFIG = {
 	APPID: "wx65c09df2657f16f7",
 	REDIRECT_URL: "https://zi.com/chainstory/",
-	SCOPE: "snsapi_login",
+	SCOPE: "snsapi_login,snsapi_userinfo",
 	STATE: "3d6be0a4035d839573b0481615e"
 }
 
@@ -25,11 +25,21 @@ const DemoUser2 = {
 	avatar: "http://tva3.sinaimg.cn/crop.27.27.337.337.180/538efefbgw1eg77da7jggj20aw0aw743.jpg"
 }
 
-function GEN_WECHAT_URL() {
-	var url = `https://open.weixin.qq.com/connect/qrconnect?appid=${WECHAT_CONFIG.APPID}&redirect_uri=${WECHAT_CONFIG.REDIRECT_URL}&response_type=code&scope=${WECHAT_CONFIG.SCOPE}&state=${WECHAT_CONFIG.STATE}#wechat_redirect`
-	return encodeURI(url)
+function isWeixinBrowser(){
+  var ua = navigator.userAgent.toLowerCase();
+  return (/micromessenger/.test(ua)) ? true : false ;
 }
 
+function GEN_WECHAT_URL() {
+	if (isWeixinBrowser()) {
+		var url = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${WECHAT_CONFIG.APPID}&redirect_uri=${WECHAT_CONFIG.REDIRECT_URL}&response_type=code&scope=${WECHAT_CONFIG.SCOPE}&state=${WECHAT_CONFIG.STATE}#wechat_redirect`
+		return encodeURI(url)
+	} else {
+		var url = `https://open.weixin.qq.com/connect/qrconnect?appid=${WECHAT_CONFIG.APPID}&redirect_uri=${WECHAT_CONFIG.REDIRECT_URL}&response_type=code&scope=${WECHAT_CONFIG.SCOPE}&state=${WECHAT_CONFIG.STATE}#wechat_redirect`
+		return encodeURI(url)
+	}
+
+}
 
 const CONFIG = {
 	WECHAT: WECHAT_CONFIG,

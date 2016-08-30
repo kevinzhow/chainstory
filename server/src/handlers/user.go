@@ -130,7 +130,7 @@ func (handler *UserHandler) OAuthWXUser(w rest.ResponseWriter, req *rest.Request
 		return
 	}
 
-	resp, err := http.Get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx65c09df2657f16f7&secret=fd6114dcb8f4bf9bb7091a8b502d2caf&code="+code+"&grant_type=authorization_code")
+	resp, err := http.Get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx65c09df2657f16f7&secret=a0a219926e67d1eaa794caaef88b7220&code="+code+"&grant_type=authorization_code")
 	response := MakeResponse()
 	if err != nil {
 		response["status"] = "Error"
