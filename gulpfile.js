@@ -17,7 +17,11 @@ gulp.task('build_server', null, shell.task([
   'cd ./server/ && source env.sh && make'
 ]))
 
-gulp.task('build_web', null, shell.task([
+gulp.task('build_server', null, shell.task([
+  'cd ./server/ && source env.sh && GOOS=linux GOARCH=amd64 CGO_ENABLED=0 make'
+]))
+
+gulp.task('build_web', ['upload_server'], shell.task([
   'cd ./web/ && npm run-script build'
 ]))
 
