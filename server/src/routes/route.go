@@ -25,6 +25,14 @@ var Routers = []RouteMap{
 		}},
 	},
 
+	{
+		Path: "/wechat/signature",
+		Handlers: []RestHandler{{
+			Method:      "GET",
+			HandlerFunc: handlers.WeChatSignGET,
+		}},
+	},
+
 	// ============== User Restful API =============
 	{
 		Path: "/user",

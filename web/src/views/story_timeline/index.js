@@ -4,7 +4,6 @@ import config from "../../config"
  _ = require('lodash')
 var moment = require('moment')
 moment.locale('zh-cn');
-var wx = require('weixin-js-sdk')
 
 var Component = Vue.extend({
   template: require('./template.html'),
@@ -80,7 +79,7 @@ var Component = Vue.extend({
       // Fetch story by story id
       store.fetchStory(this.sid).then(json => {
         this.storytitle = json.title
-        document.title = this.storytitle
+        document.title = "故事接龙: " + this.storytitle  + " " + (json.nodes.length + 1)
 
         if (json.status == "Error") {
           alert("没有找到这个故事!")
@@ -99,18 +98,6 @@ var Component = Vue.extend({
           });
           this.bubbles = finalArray;
         }
-
-        wx.onMenuShareAppMessage({
-            title: this.storytitle + " " + (json.nodes.length + 1), // 分享标题
-            desc: json.content , // 分享描述
-            success: function () { 
-                // 用户确认分享后执行的回调函数
-            },
-            cancel: function () { 
-                // 用户取消分享后执行的回调函数
-            }
-        });
-
       })
     }
   },
