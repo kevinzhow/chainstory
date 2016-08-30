@@ -17,7 +17,7 @@ gulp.task('clean_server', ['shutdown_server'], shell.task([
   'rm -rf ./server/build'
 ]))
 
-gulp.task('clean_web', null, shell.task([
+gulp.task('clean_web', ['restart_server'], shell.task([
   'rm -rf ./web/public/static'
 ]))
 
@@ -26,7 +26,7 @@ gulp.task('shutdown_server', null, shell.task([
 ]))
 
 gulp.task('restart_server', ['upload_server'], shell.task([
-  "ssh root@123.56.101.63 'cd /var/www/chainstory/server/ && nohup ./chainstory  > /dev/null 2>&1 &'"
+  "ssh root@123.56.101.63 'sh server.sh'"
 ]))
 
 gulp.task('build_server', ['clean_server'] , shell.task([
@@ -50,7 +50,7 @@ gulp.task('list-bucket', ()=> {
   })
 })
 
-gulp.task('deploy', [ 'update_assets', 'restart_server' ], shell.task([
+gulp.task('deploy', [ 'update_assets'], shell.task([
   'scp ./web/production/index.html root@123.56.101.63:/var/www/chainstory/web'
 ]))
 
