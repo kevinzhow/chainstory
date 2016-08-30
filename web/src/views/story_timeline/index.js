@@ -62,7 +62,10 @@ var Component = Vue.extend({
       } else {
         if(this.currentUser.username != '' || this.currentUser.username != undefined) {
           console.log("Login Success " + this.currentUser.username)
-          this.card = config.CARDS[Math.floor(Math.random() * config.CARDS.length)]
+          
+          if (this.composeDialogState == false) {
+            this.card = config.CARDS[Math.floor(Math.random() * config.CARDS.length)]
+          }
           this.composeDialogState = !this.composeDialogState
         } 
       }
