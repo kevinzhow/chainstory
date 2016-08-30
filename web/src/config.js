@@ -1,4 +1,6 @@
-const SERVER_URL = process.env.NODE_ENV === 'production' ? "https://zi.com/chainstory/api" : "http://0.0.0.0:9527/api"
+const PRODUCTION = process.env.NODE_ENV === 'production'? true : false
+
+const SERVER_URL = PRODUCTION ? "https://zi.com/chainstory/api" : "http://0.0.0.0:9527/api"
 
 const WECHAT_CONFIG = {
 	APPID: "wx65c09df2657f16f7",
@@ -34,7 +36,8 @@ const CONFIG = {
 	WECHAT_URL: GEN_WECHAT_URL(),
 	DEMOUSER1: DemoUser,
 	DEMOUSER2: DemoUser2,
-	SERVER_URL: SERVER_URL
+	SERVER_URL: SERVER_URL,
+	PRODUCTION: PRODUCTION
 }
 
 module.exports = CONFIG

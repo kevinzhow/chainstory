@@ -18,10 +18,15 @@ let component = Vue.extend({
       toggleCompose: function (event) {
           // this.$dispatch('timeline-toggleTips', null);
           console.log(config.WECHAT_URL)
-          if(this.currentUser.username != '' ) {
-            console.log("Login Success " + this.currentUser.username)
-            this.$dispatch('toggleComposeDialog', null);
+          if (config.PRODUCTION) {
+            
+          } else {
+            if(this.currentUser.username != '' ) {
+              console.log("Login Success " + this.currentUser.username)
+              this.$dispatch('toggleComposeDialog', null);
+            } 
           }
+
       },
       toggleTips: function (event) {
         
