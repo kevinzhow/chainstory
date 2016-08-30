@@ -142,7 +142,8 @@ store.composeStory = (story, sid) => {
       author: { uid: _currentUser.uid },
       title: story.title,
       content: story.content,
-      parent_id: sid
+      parent_id: sid,
+      card: story.card
   }
   console.log(storyData)
   return fetch(serverURL+'/story', {

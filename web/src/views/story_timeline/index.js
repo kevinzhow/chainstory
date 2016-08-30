@@ -74,7 +74,6 @@ var Component = Vue.extend({
       }
       // Fetch story by story id
       store.fetchStory(this.sid).then(json => {
-        console.log(json)
         this.storytitle = json.title
         document.title = this.storytitle
 
@@ -83,12 +82,11 @@ var Component = Vue.extend({
         } else {
           var initArray = [
           {
-            sid:json.sid, author: json.author, content: json.content, title: json.title,
+            sid:json.sid, author: json.author, content: json.content, title: json.title, card: json.card,
             create_at: moment.unix(json.create_at).calendar(), like_status: json.like_status, likes: json.likes
           }] 
 
           console.log("Reload bubbles for "+ this.sid)
-          console.log(json.nodes)
           var processArray = []
           json.nodes.forEach(function (story) {
             story.create_at = moment.unix(story.create_at).calendar()

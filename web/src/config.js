@@ -16,8 +16,9 @@ const TIP = {
 }
 
 const CARDS = [
+	{ name: "屌丝卡", type: 0, title: "屌丝卡", content: "屌丝剧情" },
 	{ name: "狗血卡", type: 1, title: "狗血卡", content: "狗血剧情" },
-	{ name: "逆袭卡", type: 2, title: "狗血卡", content: "逆袭剧情" }
+	{ name: "逆袭卡", type: 2, title: "逆袭卡", content: "逆袭剧情" }
 ]
 
 const DemoUser = {

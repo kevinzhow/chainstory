@@ -30,7 +30,7 @@ let component = Vue.extend({
       if (this.sid != undefined) {
         this.story_title = this.storytitle
       }
-      store.composeStory({title: this.story_title, content: this.story_content}, this.sid).then(json => {
+      store.composeStory({title: this.story_title, content: this.story_content, card:this.card.type}, this.sid).then(json => {
         console.log(json)
         if (json.status == "Error" || json.sid == undefined) {
 
