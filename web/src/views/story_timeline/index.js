@@ -44,7 +44,7 @@ var Component = Vue.extend({
         console.log(json)
         this.storytitle = json.title
         document.title = this.storytitle
-        
+
         if (json.status == "Error") {
           alert("没有找到这个故事!")
         } else {
@@ -57,10 +57,10 @@ var Component = Vue.extend({
           console.log("Reload bubbles for "+ this.sid)
           console.log(json.nodes)
           var processArray = []
-          for (var story of json.nodes) {
+          json.nodes.forEach(function (story) {
             story.create_at = moment.unix(story.create_at).calendar()
             processArray.push(story)
-          }
+          });
           this.bubbles = initArray.concat( processArray ).reverse()
         }
       })

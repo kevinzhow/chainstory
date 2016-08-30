@@ -1,5 +1,4 @@
 import { EventEmitter } from 'events'
-import { Promise } from 'es6-promise'
 import CONFIG from "../config"
 
 const demoUser = CONFIG.DEMOUSER1
