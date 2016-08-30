@@ -13,8 +13,12 @@ const client = new OSS({
   bucket: 'zi-edit'
 })
 
-gulp.task('production', [ 'clean' ], shell.task([
-  './web/npm build'
+gulp.task('build_server', null, shell.task([
+  'cd ./server/ && source env.sh && make'
+]))
+
+gulp.task('build_web', null, shell.task([
+  'cd ./web/ && npm run-script build'
 ]))
 
 gulp.task('list-bucket', ()=> {
@@ -31,7 +35,7 @@ gulp.task('deploy', [ 'update_assets' ], shell.task([
 ]))
 
 // upload file to OSS
-gulp.task('update_assets', [ 'production' ], function () {
+gulp.task('update_assets', [ 'build_web' ], function () {
   // options is optional
   glob('web/public/static/*.*', function (er, files) {
     files.forEach(function (file) {

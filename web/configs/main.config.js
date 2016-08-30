@@ -1,10 +1,15 @@
+const webpack = require('webpack')
+const path = require('path')
+
 module.exports = {
-  entry: ['whatwg-fetch', "./src/main.js"],
+  context: path.join(__dirname),
+  entry: ['whatwg-fetch', "../src/main.js"],
   output: {
-    path: "./public/static",
+    path: "../public/static",
     publicPath: "/public/static/",
     filename: "build.js"
   },
+  plugins: [],
   module: {
     loaders: [
       { test: /\.less$/, loader: "style!css!less" },

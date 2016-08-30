@@ -17,8 +17,8 @@
     "webpack-dev-server": "^1.12.1"
   },
   "scripts": {
-    "dev": "webpack-dev-server --inline --hot --host 0.0.0.0 --port 3001 --progress --colors --history-api-fallback --open",
-    "build": "webpack -p"
+    "dev": "webpack-dev-server --config configs/main.config.js --inline --hot --host 0.0.0.0 --port 3001 --progress --colors --history-api-fallback --open",
+    "build": "webpack -p --config configs/production.config.js"
   },
   "repository": {
     "type": "git",
@@ -38,6 +38,8 @@
     "babel-preset-latest": "^6.14.0",
     "es6-promise": "^3.2.1",
     "fetch": "^1.1.0",
+    "html-webpack-plugin": "^2.22.0",
+    "lodash": "^4.15.0",
     "moment": "^2.14.1",
     "vue": "1.0.26",
     "vue-router": "^0.7.13",
