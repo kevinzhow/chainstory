@@ -13,12 +13,16 @@ const client = new OSS({
   bucket: 'zi-edit'
 })
 
-gulp.task('build_server', null, shell.task([
+gulp.task('clean_server', null, shell.task([
+  'rm -rf ./server/build'
+]))
+
+gulp.task('build_server', ['clean_server'], shell.task([
   'cd ./server/ && source env.sh && GOOS=linux GOARCH=amd64 CGO_ENABLED=0 make'
 ]))
 
 gulp.task('upload_server', ['build_server'], shell.task([
-  'scp ./server/build/bin/chainstory root@123.56.101.63:/var/www/chainstory/server'
+  'scp ./server/build/bin/chainstory   root@123.56.101.63:/var/www/chainstory/server'
 ]))
 
 gulp.task('build_web', ['upload_server'], shell.task([

@@ -16,7 +16,7 @@ config.output = _.merge(config.output, {
 config.plugins = [
   new webpack.optimize.OccurenceOrderPlugin(),
   new HTMLWebpackPlugin({
-    template: './index.ejs',
+    template: '..//index.ejs',
     filename: path.join(__dirname) + '/../production/index.html',
     inject: 'body'
   }),
