@@ -6,7 +6,7 @@ let component = Vue.extend({
     props: ['bubble'],
     methods: {
         toggleTips: function (event) {
-            this.$dispatch('toggleTips', null);
+            this.$dispatch('toggleTips', 'hide');
         }
     }
 })

@@ -39,7 +39,7 @@ let component = Vue.extend({
 
       },
       toggleTips: function (event) {
-        
+        this.$dispatch('toggleTips', "brand");
       }
   },
   data: () => {

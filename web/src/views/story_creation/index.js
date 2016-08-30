@@ -9,9 +9,16 @@ var Component = Vue.extend({
     document.title = "故事接龙 —— 字里行间"
   },
   events: {
-    'toggleTips': function () {
+    'toggleTips': function (tip) {
       // Toggle the writting tips dialog display state
+      console.log(tip)
+      if (tip == "new_story") {
+        this.dialogContent = { title: "起头", content: "在第一段，我们建议设定故事的时间，地点，人物。当起好头，埋好坑之后，分享给你的朋友，他将抽取一张剧情卡来完成续写任务。" }
+      } else if (tip == "brand") {
+        this.dialogContent = { title: "故事接龙", content: "故事接龙是 字里行间(zi.com) 出品的一款 HTML5 文字互动游戏，旨在发现创作的乐趣。" }
+      }
       this.toggleTips()
+      
     },
     'toggleComposeDialog': function () {
       // Toggle the compose dialog display state
@@ -31,7 +38,7 @@ var Component = Vue.extend({
       composeDialogState: false,
       composeContent: "",
       tipsDialogState: false,
-      dialogContent: { title: "矛盾", content: "在这一段内容里，我们建议您创作本故事的矛盾。小说故事中的矛盾冲突是形成情节的基础，也是推动情节发展的动力，冲突双方的人物性格，则直接决定了情节进展的趋向。矛盾往往代表了阻挠主角欲望的内容。" }
+      dialogContent: {},
     }
   },
   components: {

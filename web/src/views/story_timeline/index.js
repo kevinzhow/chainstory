@@ -98,7 +98,7 @@ var Component = Vue.extend({
       currentUser: {},
       bubbles: [],
       tipsBubble: { user: {username: store.currentUser.username, avatar: store.currentUser.avatar}, content: ""},
-      dialogContent: { title: "矛盾", content: "在这一段内容里，我们建议您创作本故事的矛盾。小说故事中的矛盾冲突是形成情节的基础，也是推动情节发展的动力，冲突双方的人物性格，则直接决定了情节进展的趋向。矛盾往往代表了阻挠主角欲望的内容。" }
+      dialogContent: { title: "情节卡", content: "为了推动剧情的发展，每个人在续写故事的时候都会抽取一个情节卡并续写和情节卡一致的内容，例如抽到了 狗血卡 那么无论当前剧情多么很单纯很不做作，都要续写一段狗血的剧情。" }
     }
   },
   components: {
