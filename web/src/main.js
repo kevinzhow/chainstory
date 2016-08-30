@@ -2,10 +2,10 @@
 // pre-process and insert css directly with require().
 // See webpack.config.js for details.
 require('./main.less')
-
 var Vue = require('vue')
 var VueRouter = require('vue-router')
 var VueTouch = require('vue-touch')
+
 Vue.use(VueRouter)
 Vue.use(VueTouch)
 

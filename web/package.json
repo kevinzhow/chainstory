@@ -44,6 +44,7 @@
     "vue": "1.0.26",
     "vue-router": "^0.7.13",
     "vue-touch": "^1.1.0",
+    "weixin-js-sdk": "^1.0.7",
     "whatwg-fetch": "^1.0.0"
   }
 }

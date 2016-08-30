@@ -4,6 +4,7 @@ import config from "../../config"
  _ = require('lodash')
 var moment = require('moment')
 moment.locale('zh-cn');
+var wx = require('weixin-js-sdk')
 
 var Component = Vue.extend({
   template: require('./template.html'),
@@ -89,18 +90,27 @@ var Component = Vue.extend({
             sid:json.sid, author: json.author, content: json.content, title: json.title, card: json.card,
             create_at: json.create_at, like_status: json.like_status, likes: json.likes
           }] 
-
-          console.log("Reload bubbles for "+ this.sid)
           var finalArray = []
           initArray = initArray.concat( json.nodes )
           var processArray = _.sortBy(initArray, ['create_at'])
           processArray.forEach(function (story) {
-            console.log(story.create_at)
             story.create_at = moment.unix(story.create_at).calendar()
             finalArray.push(story)
           });
           this.bubbles = finalArray;
         }
+
+        wx.onMenuShareAppMessage({
+            title: this.storytitle + " " + (json.nodes.length + 1), // 分享标题
+            desc: json.content , // 分享描述
+            success: function () { 
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () { 
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
       })
     }
   },
