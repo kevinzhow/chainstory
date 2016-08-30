@@ -14,11 +14,11 @@ const client = new OSS({
 })
 
 gulp.task('build_server', null, shell.task([
-  'cd ./server/ && source env.sh && make'
+  'cd ./server/ && source env.sh && GOOS=linux GOARCH=amd64 CGO_ENABLED=0 make'
 ]))
 
-gulp.task('build_server', null, shell.task([
-  'cd ./server/ && source env.sh && GOOS=linux GOARCH=amd64 CGO_ENABLED=0 make'
+gulp.task('upload_server', ['build_server'], shell.task([
+  'scp ./server/build/bin root@123.56.101.63:/var/www/chainstory/server'
 ]))
 
 gulp.task('build_web', ['upload_server'], shell.task([
@@ -35,7 +35,7 @@ gulp.task('list-bucket', ()=> {
 })
 
 gulp.task('deploy', [ 'update_assets' ], shell.task([
-  'scp web/index.html root@123.56.101.63:/var/www/chainstory'
+  'scp ./web/production/index.html root@123.56.101.63:/var/www/chainstory/web'
 ]))
 
 // upload file to OSS
@@ -55,19 +55,6 @@ gulp.task('update_assets', [ 'build_web' ], function () {
         console.log(err)
         let result = yield client.put(filename, file)
         console.log(`Retry ${result.name} ${result.res.status}`)
-      })
-    })
-  })
-})
-gulp.task('update_sounds',function () {
-  glob('source/sounds/*.mp3',function (er,files) {
-    files.forEach(function (file) {
-      let filename = file.split('/')[2]
-      co(function* () {
-        let result = yield client.put(filename,file)
-        console.log(result)
-      }).catch(function (err) {
-        console.log(err)
       })
     })
   })
