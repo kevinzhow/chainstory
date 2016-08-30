@@ -14,7 +14,17 @@ store.fetchWXAccessToken = wechat_code => {
     method: 'GET',
   }).then(function(response) {
     console.log("Wexin User Fetched")
-    console.log(response)
+    return response.json()
+  }).catch(function(ex) {
+    console.log('parsing story failed', ex)
+  })
+}
+
+store.fetchWXUserInfo = (access_token, open_id) => {
+  return fetch(CONFIG.WECHAT_USERINFO_URL(access_token, open_id), {
+    method: 'GET',
+  }).then(function(response) {
+    console.log("Wexin User Info Fetched")
     return response.json()
   }).catch(function(ex) {
     console.log('parsing story failed', ex)
@@ -55,7 +65,6 @@ store.fullUser = user => {
     wx_openid: user.wx_openid,
     wb_openid: user.wb_openid
   }
-  console.log(user)
   return _currentUser
 }
 

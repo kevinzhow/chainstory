@@ -11,12 +11,19 @@ let component = Vue.extend({
   props: ['dialog'],
   created() {
     if (this.$route.query.code != null) {
-      console.log("Has code " + this.$route.query.code)
       store.fetchWXAccessToken(this.$route.query.code).then(json => {
         console.log(json)
-        if (json.status == "Error" || json.sid == undefined) {
-
+        if (json.access_token == undefined) {
+          console.log("Error Detacted")
         } else {
+          store.fetchWXUserInfo(json.access_token, json.openid).then(json => {
+            console.log(json)
+            if (json.errmsg != "") {
+              console.log("Fetch User Info Error Detacted")
+            } else {
+              
+            }
+          })
         }
       })
     }

@@ -5,7 +5,8 @@ import (
 	"models"
 	"net/http"
 	"services"
-	// "encoding/json"
+	"encoding/json"
+  	"errors"
 	"io/ioutil"
 	"github.com/ant0ine/go-json-rest/rest"
 )
@@ -14,6 +15,21 @@ type UserHandler struct {
 	service *services.UserService
 }
 
+type AccessInfo struct {
+    access_token string
+    openid   string
+}
+
+type UserInfo struct {
+    openid string
+    nickname   string
+    sex   string
+    province string
+    city string
+    country string
+    headimgurl string
+    unionid string
+}
 // Constructor
 func NewUserHandler() *UserHandler {
 	handler := new(UserHandler)
@@ -123,6 +139,63 @@ func (handler *UserHandler) OAuthUser(w rest.ResponseWriter, req *rest.Request) 
 	w.WriteJson(response)
 }
 
+func fetchOAuthWXUserInfo(access_token string, openid string) (userinfo UserInfo, fetchError error){
+
+	resp, err := http.Get("https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid+"&lang=zh_CN")
+	if err != nil {
+    	fetchError = errors.New("Parse Error")
+	}
+ 
+    defer resp.Body.Close()
+
+    body, err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+    	fetchError = errors.New("Parse Error")
+    	return
+    } 
+
+    userinfoStr := string(body)
+
+    err = json.Unmarshal([]byte(userinfoStr), &userinfo)
+
+    if err != nil {
+    	fetchError = errors.New("Parse Error")
+    	return
+    } 
+
+    return
+
+}
+
+func fetchOAuthWXUser(code string) (accessInfo AccessInfo, fetchError error){
+
+	resp, err := http.Get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx65c09df2657f16f7&secret=a0a219926e67d1eaa794caaef88b7220&code="+code+"&grant_type=authorization_code")
+	if err != nil {
+    	fetchError = errors.New("Parse Error")
+	}
+ 
+    defer resp.Body.Close()
+
+    body, err := ioutil.ReadAll(resp.Body)
+
+    if err != nil {
+    	fetchError = errors.New("Parse Error")
+    	return
+    } 
+
+    accessInfoStr := string(body)
+    log.Print(accessInfoStr)
+    err = json.Unmarshal([]byte(accessInfoStr), &accessInfo)
+
+    if err != nil {
+    	fetchError = errors.New("Parse Error")
+    	return
+    } 
+
+    return
+
+}
+
 func (handler *UserHandler) OAuthWXUser(w rest.ResponseWriter, req *rest.Request) {
 	code := req.URL.Query().Get("wx_code")
 	if code == "" {
@@ -130,19 +203,24 @@ func (handler *UserHandler) OAuthWXUser(w rest.ResponseWriter, req *rest.Request
 		return
 	}
 
-	resp, err := http.Get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx65c09df2657f16f7&secret=a0a219926e67d1eaa794caaef88b7220&code="+code+"&grant_type=authorization_code")
-	response := MakeResponse()
-	if err != nil {
-		response["status"] = "Error"
-		w.WriteJson(response)
-	}
- 
-    defer resp.Body.Close()
-    body, err := ioutil.ReadAll(resp.Body)
+	accessInfo, fetchError := fetchOAuthWXUser(code)
 
-    if err != nil {
+	response := MakeResponse()
+
+	if fetchError != nil || (AccessInfo{}) == accessInfo{
+		log.Print(fetchError)
 		response["status"] = "Error"
 		w.WriteJson(response)
-    }
-	w.WriteJson(string(body))
+		return
+	}
+
+	userinfo, fetchError := fetchOAuthWXUserInfo(accessInfo.access_token, accessInfo.openid)
+
+	if fetchError != nil || (UserInfo{}) == userinfo{
+		response["status"] = "Error"
+		w.WriteJson(response)
+		return
+	}
+
+	w.WriteJson(userinfo)
 }
