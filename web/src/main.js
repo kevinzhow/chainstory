@@ -22,7 +22,7 @@ router.map({
       }
     },
     '*': {
-      component: require('./views/not_found')
+      component: require('./views/story_creation')
     },
 })
 

@@ -1,9 +1,13 @@
-var Vue = require('vue')
+var Vue = require('vue'),
+    VueRouter = require('vue-router'),
+    router = new VueRouter()
+
 import store from "../../store"
 import config from "../../config"
  _ = require('lodash')
 var moment = require('moment')
 moment.locale('zh-cn');
+
 
 var Component = Vue.extend({
   template: require('./template.html'),
@@ -27,6 +31,10 @@ var Component = Vue.extend({
     this.fetchData()
   },
   events: {
+    'storyCreated': function () {
+      // Toggle the writting tips dialog display state
+      this.storyCreated = true
+    },
     'toggleTips': function (tip) {
       // Toggle the writting tips dialog display state
       console.log(tip)
@@ -52,6 +60,9 @@ var Component = Vue.extend({
     }
   },
   methods: {
+    newStoryCompose: function() {
+      router.go("/")
+    },
     toggleTips: function (event) {
       this.tipsDialogState = !this.tipsDialogState
     },
@@ -104,7 +115,9 @@ var Component = Vue.extend({
   data: () => {
     return {
       buttonMsg: '我要续写',
+      newButtonMsg: '新故事',
       tipsDialogState: false,
+      storyCreated: false,
       composeDialogState: false,
       sid: "",
       storytitle: "",

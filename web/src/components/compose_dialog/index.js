@@ -38,6 +38,7 @@ let component = Vue.extend({
           router.go({path:"/story/"+json.sid})
           this.$dispatch('refetchData', json.sid);
           this.$dispatch('toggleComposeDialog', null);
+          this.$dispatch('storyCreated', null);
         }
       })
     }
