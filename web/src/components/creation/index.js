@@ -12,11 +12,10 @@ let component = Vue.extend({
   created() {
     if (this.$route.query.code != null && localStorage.getItem("access_token") == null) {
       store.fetchWXAccessToken(this.$route.query.code).then(json => {
-        console.log(json)
         if (json.access_token == undefined) {
           console.log("Error Detacted")
         } else {
-          store.fullUser(json)
+          this.currentUser = store.fullUser(json)
         }
       })
     } else {

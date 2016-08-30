@@ -33,7 +33,7 @@ store.fetchWXUserInfo = (access_token, open_id) => {
 
 store.currentUser = ()=> {
   return new Promise(function (resolve, reject){
-    if (_currentUser.username == undefined && localStorage.getItem("nickname") == null) {
+    if (_currentUser.username == undefined && !CONFIG.PRODUCTION) {
       console.log("Fetch Current User")
       store.fetchUserWithWXOpenID(demoUser.wx_openid).then(response => {
         if (response.status == "Error") {
@@ -66,11 +66,11 @@ store.currentUser = ()=> {
  */
 
 store.fullUser = user => {
-  localStorage.setItem("access_token", json.access_token)
-  localStorage.setItem("nickname", json.name)
-  localStorage.setItem("avatar", json.avatar)
-  localStorage.setItem("uid", json.uid)
-  localStorage.setItem("wx_openid", json.wx_openid)
+  localStorage.setItem("access_token", user.access_token)
+  localStorage.setItem("nickname", user.name)
+  localStorage.setItem("avatar", user.avatar)
+  localStorage.setItem("uid", user.uid)
+  localStorage.setItem("wx_openid", user.wx_openid)
   _currentUser = {
     username: user.name,
     avatar: user.avatar,
