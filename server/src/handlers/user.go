@@ -16,19 +16,19 @@ type UserHandler struct {
 }
 
 type AccessInfo struct {
-    access_token string
-    openid   string
+    AccessToken string `json:"access_token"`
+    Openid   string `json:"openid"`
 }
 
 type UserInfo struct {
-    openid string
-    nickname   string
-    sex   string
-    province string
-    city string
-    country string
-    headimgurl string
-    unionid string
+    Openid string `json:"openid"`
+    Nickname   string `json:"nickname"`
+    Sex   int `json:"sex"`
+    Province string `json:"province"`
+    City string `json:"city"`
+    Country string `json:"country"`
+    Headimgurl string `json:"headimgurl"`
+    Unionid string `json:"unionid"`
 }
 // Constructor
 func NewUserHandler() *UserHandler {
@@ -155,8 +155,8 @@ func fetchOAuthWXUserInfo(access_token string, openid string) (userinfo UserInfo
     } 
 
     userinfoStr := string(body)
-
     err = json.Unmarshal([]byte(userinfoStr), &userinfo)
+    log.Print(userinfoStr)
 
     if err != nil {
     	fetchError = errors.New("Parse Error")
@@ -186,6 +186,7 @@ func fetchOAuthWXUser(code string) (accessInfo AccessInfo, fetchError error){
     accessInfoStr := string(body)
     log.Print(accessInfoStr)
     err = json.Unmarshal([]byte(accessInfoStr), &accessInfo)
+	log.Print("We have access token "+ accessInfo.AccessToken)
 
     if err != nil {
     	fetchError = errors.New("Parse Error")
@@ -207,17 +208,16 @@ func (handler *UserHandler) OAuthWXUser(w rest.ResponseWriter, req *rest.Request
 
 	response := MakeResponse()
 
-	if fetchError != nil || (AccessInfo{}) == accessInfo{
-		log.Print(fetchError)
-		response["status"] = "Error"
+	if fetchError != nil || accessInfo.AccessToken == ""{
+		response["status"] = "Error on accessInfo"
 		w.WriteJson(response)
 		return
 	}
 
-	userinfo, fetchError := fetchOAuthWXUserInfo(accessInfo.access_token, accessInfo.openid)
+	userinfo, fetchError := fetchOAuthWXUserInfo(accessInfo.AccessToken, accessInfo.Openid)
 
-	if fetchError != nil || (UserInfo{}) == userinfo{
-		response["status"] = "Error"
+	if fetchError != nil || userinfo.Openid == "" {
+		response["status"] = "Error on userInfo"
 		w.WriteJson(response)
 		return
 	}
