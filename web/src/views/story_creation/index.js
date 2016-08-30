@@ -41,9 +41,9 @@ var Component = Vue.extend({
   data: () => {
     return {
       composeDialogState: false,
-      composeContent: "",
       tipsDialogState: false,
       dialogContent: {},
+      card: { name: "起头", type: 0 }
     }
   },
   components: {

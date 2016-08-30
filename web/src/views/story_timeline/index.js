@@ -26,8 +26,19 @@ var Component = Vue.extend({
     this.fetchData()
   },
   events: {
-    'toggleTips': function () {
+    'toggleTips': function (tip) {
       // Toggle the writting tips dialog display state
+      console.log(tip)
+      switch (tip) {
+        case config.TIP.storyLine.name:
+          this.dialogContent = config.TIP.storyLine
+          break
+      }
+      this.toggleTips()
+    },
+    'toggleCard': function (card) {
+      // Toggle the writting tips dialog display state
+      this.dialogContent = card
       this.toggleTips()
     },
     'toggleComposeDialog': function () {
@@ -50,6 +61,7 @@ var Component = Vue.extend({
       } else {
         if(this.currentUser.username != '' || this.currentUser.username != undefined) {
           console.log("Login Success " + this.currentUser.username)
+          this.card = config.CARDS[Math.floor(Math.random() * config.CARDS.length)]
           this.composeDialogState = !this.composeDialogState
         } 
       }
@@ -92,13 +104,13 @@ var Component = Vue.extend({
       buttonMsg: '我要续写',
       tipsDialogState: false,
       composeDialogState: false,
-      composeContent: "",
       sid: "",
       storytitle: "",
       currentUser: {},
       bubbles: [],
-      tipsBubble: { user: {username: store.currentUser.username, avatar: store.currentUser.avatar}, content: ""},
-      dialogContent: { title: "情节卡", content: "为了推动剧情的发展，每个人在续写故事的时候都会抽取一个情节卡并续写和情节卡一致的内容，例如抽到了 狗血卡 那么无论当前剧情多么很单纯很不做作，都要续写一段狗血的剧情。" }
+      card: {},
+      tipsBubble: { user: {username: store.currentUser.username, avatar: store.currentUser.avatar}},
+      dialogContent: {}
     }
   },
   components: {

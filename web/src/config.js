@@ -11,8 +11,14 @@ const WECHAT_CONFIG = {
 
 const TIP = {
 	brand: { name: "brand",  title: "故事接龙", content: "故事接龙是 字里行间(zi.com) 出品的一款 HTML5 文字互动游戏，旨在发现创作的乐趣。" },
-	newStory: { name: "newStory", title: "起头", content: "在第一段，我们建议设定故事的时间，地点，人物。当起好头，埋好坑之后，分享给你的朋友，他将抽取一张剧情卡来完成续写任务。" }
+	newStory: { name: "newStory", title: "起头", content: "在第一段，我们建议设定故事的时间，地点，人物。当起好头，埋好坑之后，分享给你的朋友，他将抽取一张剧情卡来完成续写任务。" },
+	storyLine: { name: "storyLine", title: "情节卡", content: "为了推送情节的发展，在续写之时都需要抽取一张情节卡，并续写卡片相关的内容。例如抽到了 狗血 卡，那么无论情节此时如何很单纯很不做作，都需要以狗血为基调编写剧情。" }
 }
+
+const CARDS = [
+	{ name: "狗血卡", type: 1, title: "狗血卡", content: "狗血剧情" },
+	{ name: "逆袭卡", type: 2, title: "狗血卡", content: "逆袭剧情" }
+]
 
 const DemoUser = {
 	username: "周楷雯Kevin",
@@ -58,7 +64,8 @@ const CONFIG = {
 	DEMOUSER2: DemoUser2,
 	SERVER_URL: SERVER_URL,
 	PRODUCTION: PRODUCTION,
-	TIP: TIP
+	TIP: TIP,
+	CARDS: CARDS
 }
 
 module.exports = CONFIG

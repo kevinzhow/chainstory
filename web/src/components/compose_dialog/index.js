@@ -6,7 +6,7 @@ var router = new VueRouter()
 
 let component = Vue.extend({
   template: require('./template.html'),
-  props: ['content', 'creation', 'sid', 'storytitle', 'tip'],
+  props: ['content', 'creation', 'sid', 'storytitle', 'tip', 'card'],
   created() {
 
   },
@@ -18,7 +18,12 @@ let component = Vue.extend({
 
     },
     toggleTips: function (event) {
-      this.$dispatch('toggleTips', this.tip);
+      if (this.tip == null) {
+        this.$dispatch('toggleCard', this.card);
+      } else {
+        this.$dispatch('toggleTips', this.tip);
+      }
+
     },
     submit: function(event) {
       console.log("Submit Story " + this.sid)
