@@ -80,6 +80,7 @@ func BootServer(host string, port string) error {
 	fmt.Printf("ChainStory API Server is listening on [%s:%s]...\n", host, port)
 
 	http.Handle("/api/", http.StripPrefix("/api", api.MakeHandler()))
+	http.Handle("/chainstory/api/", http.StripPrefix("/chainstory/api", api.MakeHandler()))
 
     // http.Handle("/static/", http.StripPrefix("/static", http.FileServer(http.Dir("."))))
 
