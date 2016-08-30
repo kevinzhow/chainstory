@@ -16,14 +16,7 @@ let component = Vue.extend({
         if (json.access_token == undefined) {
           console.log("Error Detacted")
         } else {
-          store.fetchWXUserInfo(json.access_token, json.openid).then(json => {
-            console.log(json)
-            if (json.headimgurl == undefined) {
-              console.log("Fetch User Info Error Detacted")
-            } else {
-              
-            }
-          })
+          
         }
       })
     }
