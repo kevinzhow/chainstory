@@ -7,10 +7,10 @@ var Component = Vue.extend({
   template: require('./template.html'),
   replace: true,
   created () {
-    this.fetchData()
     store.currentUser().then( user => {
-      this.tipsBubble = { user: {username: user.username, avatar: user.avatar}, content: "请点击我要续写抽取情节卡"}
+      this.tipsBubble = { user: { username: user.username, avatar: user.avatar }, content: "请点击我要续写抽取情节卡"}
     })
+    this.fetchData()
   },
   events: {
     'toggleTips': function () {
@@ -42,12 +42,15 @@ var Component = Vue.extend({
       // Fetch story by story id
       store.fetchStory(this.sid).then(json => {
         console.log(json)
+        this.storytitle = json.title
+        document.title = this.storytitle
+        
         if (json.status == "Error") {
-
+          alert("没有找到这个故事!")
         } else {
           var initArray = [
           {
-            sid:json.sid, author: json.author, content: json.content, 
+            sid:json.sid, author: json.author, content: json.content, title: json.title,
             create_at: moment.unix(json.create_at).calendar(), like_status: json.like_status, likes: json.likes
           }] 
 
@@ -70,6 +73,7 @@ var Component = Vue.extend({
       composeDialogState: false,
       composeContent: "",
       sid: "",
+      storytitle: "",
       bubbles: [],
       tipsBubble: { user: {username: store.currentUser.username, avatar: store.currentUser.avatar}, content: ""},
       dialogContent: { title: "矛盾", content: "在这一段内容里，我们建议您创作本故事的矛盾。小说故事中的矛盾冲突是形成情节的基础，也是推动情节发展的动力，冲突双方的人物性格，则直接决定了情节进展的趋向。矛盾往往代表了阻挠主角欲望的内容。" }

@@ -6,7 +6,10 @@ var router = new VueRouter()
 
 let component = Vue.extend({
   template: require('./template.html'),
-  props: ['content', 'creation', 'sid'],
+  props: ['content', 'creation', 'sid', 'storytitle'],
+  created() {
+
+  },
   methods: {
     toggleComposeDialog: function (event) {
       if (this.story_title.length < 1 && this.story_content < 1) {
@@ -20,7 +23,7 @@ let component = Vue.extend({
     submit: function(event) {
       console.log("Submit Story " + this.sid)
       if (this.sid != undefined) {
-        this.story_title = "Extends"
+        this.story_title = this.storytitle
       }
       store.composeStory({title: this.story_title, content: this.story_content}, this.sid).then(json => {
         console.log(json)
