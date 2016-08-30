@@ -13,19 +13,31 @@ const client = new OSS({
   bucket: 'zi-edit'
 })
 
-gulp.task('clean_server', null, shell.task([
-  'rm -rf ./server/build && rm -rf ./web/public/static'
+gulp.task('clean_server', ['shutdown_server'], shell.task([
+  'rm -rf ./server/build'
 ]))
 
-gulp.task('build_server', ['clean_server'], shell.task([
+gulp.task('clean_web', null, shell.task([
+  'rm -rf ./web/public/static'
+]))
+
+gulp.task('shutdown_server', null, shell.task([
+  "ssh root@123.56.101.63 'pkill chainstory > /dev/null 2>&1 &'"
+]))
+
+gulp.task('restart_server', ['upload_server'], shell.task([
+  "ssh root@123.56.101.63 'cd /var/www/chainstory/server/ && nohup ./chainstory  > /dev/null 2>&1 &'"
+]))
+
+gulp.task('build_server', ['clean_server'] , shell.task([
   'cd ./server/ && source env.sh && GOOS=linux GOARCH=amd64 CGO_ENABLED=0 make'
 ]))
 
-gulp.task('upload_server', ['build_server'], shell.task([
+gulp.task('upload_server', ['build_server'] , shell.task([
   'scp ./server/build/bin/chainstory   root@123.56.101.63:/var/www/chainstory/server'
 ]))
 
-gulp.task('build_web', ['upload_server'], shell.task([
+gulp.task('build_web', ['clean_web'] , shell.task([
   'cd ./web/ && npm run-script build'
 ]))
 
@@ -38,7 +50,7 @@ gulp.task('list-bucket', ()=> {
   })
 })
 
-gulp.task('deploy', [ 'update_assets' ], shell.task([
+gulp.task('deploy', [ 'update_assets', 'restart_server' ], shell.task([
   'scp ./web/production/index.html root@123.56.101.63:/var/www/chainstory/web'
 ]))
 
