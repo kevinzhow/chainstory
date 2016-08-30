@@ -1,4 +1,4 @@
-const SERVER_URL = "http://0.0.0.0:9527/api"
+const SERVER_URL = process.env.NODE_ENV === 'production' ? "https://zi.com/chainstory/api" : "http://0.0.0.0:9527/api"
 
 const WECHAT_CONFIG = {
 	APPID: "wx65c09df2657f16f7",

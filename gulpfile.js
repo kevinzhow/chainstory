@@ -47,7 +47,7 @@ gulp.task('update_assets', [ 'build_web' ], function () {
   // options is optional
   glob('web/public/static/*.*', function (er, files) {
     files.forEach(function (file) {
-      let filename = file.split('/')[2]
+      let filename = file.split('/')[3]
       co(function* () {
         // about function* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
 
