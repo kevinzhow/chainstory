@@ -14,7 +14,7 @@ const client = new OSS({
 })
 
 gulp.task('clean_server', null, shell.task([
-  'rm -rf ./server/build'
+  'rm -rf ./server/build && rm -rf ./web/public/static'
 ]))
 
 gulp.task('build_server', ['clean_server'], shell.task([
