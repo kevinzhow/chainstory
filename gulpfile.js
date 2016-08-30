@@ -18,7 +18,7 @@ gulp.task('build_server', null, shell.task([
 ]))
 
 gulp.task('upload_server', ['build_server'], shell.task([
-  'scp ./server/build/bin root@123.56.101.63:/var/www/chainstory/server'
+  'scp ./server/build/bin/chainstory root@123.56.101.63:/var/www/chainstory/server'
 ]))
 
 gulp.task('build_web', ['upload_server'], shell.task([
