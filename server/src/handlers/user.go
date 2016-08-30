@@ -8,6 +8,7 @@ import (
 	"encoding/json"
   	"errors"
 	"io/ioutil"
+	"utils"
 	"github.com/ant0ine/go-json-rest/rest"
 )
 
@@ -222,5 +223,31 @@ func (handler *UserHandler) OAuthWXUser(w rest.ResponseWriter, req *rest.Request
 		return
 	}
 
-	w.WriteJson(userinfo)
+	var user *models.User
+
+	user, _ = handler.service.FindUserByWXOpenID(userinfo.Openid)
+
+	if user == nil {
+		log.Print("Read to create user for " + userinfo.Nickname)
+		userNew := models.User{}
+		userNew.Name = userinfo.Nickname
+		userNew.Type = 0
+		userNew.WxOpenId = userinfo.Openid
+		userNew.Avatar = userinfo.Headimgurl
+		uuid, _ := utils.NewUUIDV4()
+		userNew.AccessToken =  uuid.String()
+		err := handler.service.CreateUser(&userNew)
+		
+		log.Print("New user created " + userNew.Name)
+
+		if err != nil {
+			response["status"] = "Error"
+			response["message"] = err.Error()
+			w.WriteJson(response)
+		} else {
+			w.WriteJson(userNew)
+		}
+	}
+
+	w.WriteJson(user)
 }

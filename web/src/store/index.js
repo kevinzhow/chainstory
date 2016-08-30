@@ -33,7 +33,7 @@ store.fetchWXUserInfo = (access_token, open_id) => {
 
 store.currentUser = ()=> {
   return new Promise(function (resolve, reject){
-    if (_currentUser.username == undefined) {
+    if (_currentUser.username == undefined && localStorage.getItem("nickname") == null) {
       console.log("Fetch Current User")
       store.fetchUserWithWXOpenID(demoUser.wx_openid).then(response => {
         if (response.status == "Error") {
@@ -48,6 +48,14 @@ store.currentUser = ()=> {
       })
     } else {
       console.log("User Prepared")
+      _currentUser = {
+        username: localStorage.getItem("nickname"),
+        avatar: localStorage.getItem("avatar"),
+        uid: localStorage.getItem("uid"),
+        wx_openid: localStorage.getItem("wx_openid"),
+        wb_openid: localStorage.getItem("wb_openid"),
+        access_token: localStorage.getItem("access_token")
+      }
       resolve(_currentUser)
     }
   })
@@ -58,12 +66,18 @@ store.currentUser = ()=> {
  */
 
 store.fullUser = user => {
+  localStorage.setItem("access_token", json.access_token)
+  localStorage.setItem("nickname", json.name)
+  localStorage.setItem("avatar", json.avatar)
+  localStorage.setItem("uid", json.uid)
+  localStorage.setItem("wx_openid", json.wx_openid)
   _currentUser = {
     username: user.name,
     avatar: user.avatar,
     uid: user.uid,
     wx_openid: user.wx_openid,
-    wb_openid: user.wb_openid
+    wb_openid: user.wb_openid,
+    access_token: user.access_token
   }
   return _currentUser
 }
