@@ -12,11 +12,16 @@ var Component = Vue.extend({
     'toggleTips': function (tip) {
       // Toggle the writting tips dialog display state
       console.log(tip)
-      if (tip == "new_story") {
-        this.dialogContent = { title: "起头", content: "在第一段，我们建议设定故事的时间，地点，人物。当起好头，埋好坑之后，分享给你的朋友，他将抽取一张剧情卡来完成续写任务。" }
-      } else if (tip == "brand") {
-        this.dialogContent = { title: "故事接龙", content: "故事接龙是 字里行间(zi.com) 出品的一款 HTML5 文字互动游戏，旨在发现创作的乐趣。" }
+
+      switch (tip) {
+        case config.TIP.newStory.name:
+          this.dialogContent = config.TIP.newStory
+          break
+        case config.TIP.brand.name:
+          this.dialogContent = config.TIP.brand
+          break
       }
+      
       this.toggleTips()
       
     },

@@ -9,6 +9,11 @@ const WECHAT_CONFIG = {
 	STATE: "3d6be0a4035d839573b0481615e"
 }
 
+const TIP = {
+	brand: { name: "brand",  title: "故事接龙", content: "故事接龙是 字里行间(zi.com) 出品的一款 HTML5 文字互动游戏，旨在发现创作的乐趣。" },
+	newStory: { name: "newStory", title: "起头", content: "在第一段，我们建议设定故事的时间，地点，人物。当起好头，埋好坑之后，分享给你的朋友，他将抽取一张剧情卡来完成续写任务。" }
+}
+
 const DemoUser = {
 	username: "周楷雯Kevin",
 	type: 0,
@@ -52,7 +57,8 @@ const CONFIG = {
 	DEMOUSER1: DemoUser,
 	DEMOUSER2: DemoUser2,
 	SERVER_URL: SERVER_URL,
-	PRODUCTION: PRODUCTION
+	PRODUCTION: PRODUCTION,
+	TIP: TIP
 }
 
 module.exports = CONFIG
