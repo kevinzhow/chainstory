@@ -37,6 +37,7 @@ var Component = Vue.extend({
     'storyCreated': function () {
       // Toggle the writting tips dialog display state
       this.storyCreated = true
+      this.$dispatch('toggleTips', config.TIP.shareStory.name);
     },
     'toggleTips': function (tip) {
       // Toggle the writting tips dialog display state
@@ -44,6 +45,9 @@ var Component = Vue.extend({
       switch (tip) {
         case config.TIP.storyLine.name:
           this.dialogContent = config.TIP.storyLine
+          break
+        case config.TIP.shareStory.name:
+          this.dialogContent = config.TIP.shareStory
           break
       }
       this.toggleTips()
