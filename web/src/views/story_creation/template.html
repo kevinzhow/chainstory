@@ -6,11 +6,13 @@
  <app-tips-dialog v-show="tipsDialogState" :dialog="dialogContent" transition="fade"></app-tips-dialog>
 </div>
 
-
-<div class="recent-stories">
-<li v-for="story in recent_stories">
-
-<story-card :story="story"></story-card>
-</li>
+<div class="stories-title">
+	最近更新
 </div>
+<div class="recent-stories">
+	<li v-for="story in recent_stories">
+		<story-card :story="story"></story-card>
+	</li>
+</div>
+
 </div>

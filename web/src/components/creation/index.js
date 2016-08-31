@@ -2,9 +2,7 @@ require('./style.less')
 import config from "../../config"
 import store from "../../store"
 
-var Vue = require('vue'),
-    VueRouter = require('vue-router'),
-    router = new VueRouter()
+var Vue = require('vue')
 
 let component = Vue.extend({
   template: require('./template.html'),
