@@ -1,4 +1,5 @@
-var Vue = require('vue')
+var Vue = require('vue'),
+     wx = require('weixin-js-sdk')
 import store from "../../store"
 import config from "../../config"
 
@@ -9,6 +10,9 @@ var Component = Vue.extend({
     document.title = "故事接龙 —— 字里行间"
     store.fetchStories().then(stories => {
       this.recent_stories = stories
+    });
+    wx.ready(function(){
+      store.prepareWeChatShare({author:{avatar: "https://img.zi.com/images/logo.jpg/s120"}, content: "故事接龙，发现创作的乐趣"})
     });
   },
   events: {
