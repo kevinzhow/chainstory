@@ -2,3 +2,4 @@ node_modules
 npm-debug.log
 .DS_Store
 /web/public/static/
+/web/production/index.html
