@@ -1,7 +1,6 @@
 <div class="bubble tips">
   <div class="bubble-header">
-    <div class="bubble-user-avatar">
-      <img :src="bubble.user.avatar" alt="" />
+    <div class="bubble-user-avatar" v-bind:style="{background: 'url('+bubble.user.avatar+')'}">
     </div>
     <div class="bubble-user-info">
       <div class="username">
