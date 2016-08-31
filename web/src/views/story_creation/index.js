@@ -12,7 +12,7 @@ var Component = Vue.extend({
       this.recent_stories = stories
     });
     wx.ready(function(){
-      store.prepareWeChatShare({author:{avatar: "https://img.zi.com/images/logo.jpg/s120"}, content: "故事接龙，发现创作的乐趣"})
+      store.prepareWeChatHomePageShare({author:{avatar: "https://img.zi.com/images/logo.jpg/s120"}, content: "故事接龙，发现创作的乐趣"})
     });
   },
   events: {
