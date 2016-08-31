@@ -69,6 +69,21 @@ func (handler *StoryHandler) FindStoryById(w rest.ResponseWriter, req *rest.Requ
 	w.WriteJson(story)
 }
 
+func (handler *StoryHandler) FindRecentStories(w rest.ResponseWriter, req *rest.Request) {
+
+	stories, err := handler.storyService.FindRecentStories()
+	if stories == nil && err != nil {
+		response := MakeResponse()
+		response["status"] = "Error"
+		response["message"] = err.Error()
+		w.WriteJson(response)
+		return
+	}
+
+	w.WriteJson(stories)
+}
+
+
 func (handler *StoryHandler) FindStoriesByUser(w rest.ResponseWriter, req *rest.Request) {
 	uid := req.PathParam("uid")
 	name := req.PathParam("name")
