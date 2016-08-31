@@ -52,7 +52,7 @@ func (dao *StoryDao) FindStoryById(sid string) (*models.Story, error) {
 func (dao *StoryDao) FindRecentStories() ([]models.Story, error) {
 	table := dao.GetTable("stories")
 	result := []models.Story{}
-	err := table.Find(nil).Sort("create_at").Limit(50).All(&result)
+	err := table.Find(nil).Sort("-$natural").Limit(25).All(&result)
 	if err != nil {
 		log.Printf("Can not found recent stories - %s\n", err.Error())
 		return nil, err

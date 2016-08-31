@@ -96,7 +96,7 @@ var Routers = []RouteMap{
 		}},
 	},
 	{
-		Path: "/story/",
+		Path: "/stories",
 		Handlers: []RestHandler{{
 			Method:      "GET",
 			HandlerFunc: storyHandler.FindRecentStories,

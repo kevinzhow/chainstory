@@ -172,7 +172,7 @@ store.fetchStory = id => {
  */
 
 store.fetchStories = id => {
-  return fetch(serverURL+'/story/')
+  return fetch(serverURL+'/stories')
   .then(function(response) {
     return response.json()
   }).catch(function(ex) {
