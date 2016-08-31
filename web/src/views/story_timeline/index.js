@@ -1,13 +1,13 @@
-var Vue = require('vue'),
-    VueRouter = require('vue-router'),
-    router = new VueRouter()
-
 import store from "../../store"
 import config from "../../config"
- _ = require('lodash')
-var moment = require('moment')
-moment.locale('zh-cn');
 
+var Vue = require('vue'),
+    VueRouter = require('vue-router'),
+    router = new VueRouter(),
+    moment = require('moment'),
+     _ = require('lodash'),
+     wx = require('weixin-js-sdk')
+moment.locale('zh-cn')
 
 var Component = Vue.extend({
   template: require('./template.html'),
@@ -29,6 +29,9 @@ var Component = Vue.extend({
       })
     }
     this.fetchData()
+    wx.ready(function(){
+      store.prepareWeChatShare(window.storyData)
+    });
   },
   events: {
     'storyCreated': function () {
@@ -91,7 +94,8 @@ var Component = Vue.extend({
       store.fetchStory(this.sid).then(json => {
         this.storytitle = json.title
         document.title = "故事接龙: " + this.storytitle  + " " + (json.nodes.length + 1)
-
+        window.storyData = json
+        store.prepareWeChatShare(window.storyData)
         if (json.status == "Error") {
           alert("没有找到这个故事!")
         } else {

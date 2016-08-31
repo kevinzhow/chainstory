@@ -21,6 +21,10 @@ gulp.task('clean_web', ['restart_server'], shell.task([
   'rm -rf ./web/public/static'
 ]))
 
+gulp.task('clean_web_alone', null, shell.task([
+  'rm -rf ./web/public/static'
+]))
+
 gulp.task('shutdown_server', null, shell.task([
   "ssh root@123.56.101.63 'pkill chainstory > /dev/null 2>&1 &'"
 ]))
@@ -37,7 +41,7 @@ gulp.task('upload_server', ['build_server'] , shell.task([
   'scp ./server/build/bin/chainstory   root@123.56.101.63:/var/www/chainstory/server'
 ]))
 
-gulp.task('build_web', ['clean_web'] , shell.task([
+gulp.task('build_web', ['clean_web_alone'] , shell.task([
   'cd ./web/ && npm run-script build'
 ]))
 

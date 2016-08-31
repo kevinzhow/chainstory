@@ -1,5 +1,6 @@
 import { EventEmitter } from 'events'
 import CONFIG from "../config"
+var wx = require('weixin-js-sdk')
 
 const demoUser = CONFIG.DEMOUSER1
 const serverURL = CONFIG.SERVER_URL
@@ -7,6 +8,39 @@ const store = new EventEmitter()
 export default store
 
 var _currentUser = {}
+
+store.prepareWeChatShare = story => {
+  wx.checkJsApi({
+    jsApiList: ["onMenuShareAppMessage","onMenuShareQQ","onMenuShareWeibo","onMenuShareTimeline"], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+    success: function(res) {
+      if (res.checkResult.onMenuShareTimeline) {
+         wx.onMenuShareTimeline({
+          title: document.title + " - " + story.author.name, // 分享标题
+          link: location.href, // 分享链接
+          imgUrl: story.author.avatar, // 分享图标
+          success: function () { 
+          },
+          cancel: function () { 
+          }
+        });
+      }
+
+      if (res.checkResult.onMenuShareAppMessage) {
+        wx.onMenuShareAppMessage({
+            title: document.title + " - " + story.author.name, // 分享标题
+            desc: story.content, // 分享描述
+            link: location.href, // 分享链接
+            imgUrl: story.author.avatar, // 分享图标
+            success: function () { 
+            },
+            cancel: function () { 
+            }
+        });
+      }
+    }
+  });
+
+}
 
 store.fetchWXAccessToken = wechat_code => {
   return fetch(serverURL+'/user/wx_oauth?wx_code='+wechat_code, {
