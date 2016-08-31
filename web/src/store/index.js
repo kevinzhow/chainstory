@@ -168,6 +168,19 @@ store.fetchStory = id => {
 }
 
 /**
+ * Fetch stories data.
+ */
+
+store.fetchStories = id => {
+  return fetch(serverURL+'/story/')
+  .then(function(response) {
+    return response.json()
+  }).catch(function(ex) {
+    console.log('parsing story failed', ex)
+  })
+}
+
+/**
  * Create an story.
  */
 

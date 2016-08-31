@@ -1,6 +1,16 @@
 <div class="view">
+<div class="landing-container">
  <app-compose-dialog v-show="composeDialogState" transition="fade" creation="true" tip="newStory" :card="card"></app-compose-dialog >
  <creation></creation>
   <!-- when you click the question mark on tips bubble, the dialog will present the tips content -->
  <app-tips-dialog v-show="tipsDialogState" :dialog="dialogContent" transition="fade"></app-tips-dialog>
+</div>
+
+
+<div class="recent-stories">
+<li v-for="story in recent_stories">
+
+<story-card :story="story"></story-card>
+</li>
+</div>
 </div>

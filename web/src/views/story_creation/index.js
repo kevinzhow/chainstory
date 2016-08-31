@@ -7,6 +7,9 @@ var Component = Vue.extend({
   replace: true,
   created () {
     document.title = "故事接龙 —— 字里行间"
+    store.fetchStories().then(stories => {
+      this.recent_stories = stories
+    });
   },
   events: {
     'toggleTips': function (tip) {
@@ -43,7 +46,8 @@ var Component = Vue.extend({
       composeDialogState: false,
       tipsDialogState: false,
       dialogContent: {},
-      card: { name: "起头", type: 0 }
+      card: { name: "起头", type: 0 },
+      recent_stories: []
     }
   },
   components: {
@@ -51,6 +55,7 @@ var Component = Vue.extend({
     'app-compose-dialog': require('../../components/compose_dialog'),
     'app-dialog': require('../../components/dialog'),
     'app-tips-dialog': require('../../components/dialog'),
+    'story-card': require('../../components/story_card'),
   }
 })
 
