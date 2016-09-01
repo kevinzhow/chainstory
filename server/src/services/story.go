@@ -65,6 +65,10 @@ func (service *StoryService) FindStoryById(sid string) (*models.Story, error) {
 	return service.storyDao.FindStoryById(sid)
 }
 
+func (service *StoryService) FindRecentStories() ([]models.Story, error) {
+	return service.storyDao.FindRecentStories()
+}
+
 func (service *StoryService) FindStoriesByUser(uid string, name string) ([]models.Story, error) {
 	return service.storyDao.FindStoriesByUser(uid, name)
 }

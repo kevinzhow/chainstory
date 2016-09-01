@@ -95,7 +95,13 @@ var Routers = []RouteMap{
 			HandlerFunc: storyHandler.CreateStory,
 		}},
 	},
-
+	{
+		Path: "/stories",
+		Handlers: []RestHandler{{
+			Method:      "GET",
+			HandlerFunc: storyHandler.FindRecentStories,
+		}},
+	},
 	{
 		Path: "/story/:sid",
 		Handlers: []RestHandler{{

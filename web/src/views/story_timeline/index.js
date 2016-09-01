@@ -4,10 +4,9 @@ import config from "../../config"
 var Vue = require('vue'),
     VueRouter = require('vue-router'),
     router = new VueRouter(),
-    moment = require('moment'),
      _ = require('lodash'),
      wx = require('weixin-js-sdk')
-moment.locale('zh-cn')
+
 
 var Component = Vue.extend({
   template: require('./template.html'),
@@ -108,14 +107,9 @@ var Component = Vue.extend({
             sid:json.sid, author: json.author, content: json.content, title: json.title, card: json.card,
             create_at: json.create_at, like_status: json.like_status, likes: json.likes
           }] 
-          var finalArray = []
           initArray = initArray.concat( json.nodes )
           var processArray = _.sortBy(initArray, ['create_at'])
-          processArray.forEach(function (story) {
-            story.create_at = moment.unix(story.create_at).calendar()
-            finalArray.push(story)
-          });
-          this.bubbles = finalArray;
+          this.bubbles = processArray;
         }
       })
     }

@@ -1,0 +1,20 @@
+<div class="bubble story" v-on:click="moveToStory">
+	<div class="story-header">
+		<div class="story-title">
+			{{ story.title + " " + (story.nodes.length + 1) }}
+		</div>
+		<div class="story-time">
+			{{ moment.unix(story.create_at).fromNow() }}
+		</div>
+	</div>
+	<div class="story-author">
+		<div class="story-author-avatar" v-bind:style="{background: 'url('+story.author.avatar+')'}"></div>
+		<div class="story-author-name">
+			{{ story.author.name }}
+		</div>
+	</div>
+	<div class="story-content">
+		{{ story.content }}
+	</div>
+
+</div>

@@ -1,4 +1,5 @@
-var Vue = require('vue')
+var Vue = require('vue'),
+     wx = require('weixin-js-sdk')
 import store from "../../store"
 import config from "../../config"
 
@@ -7,6 +8,12 @@ var Component = Vue.extend({
   replace: true,
   created () {
     document.title = "故事接龙 —— 字里行间"
+    store.fetchStories().then(stories => {
+      this.recent_stories = stories
+    });
+    wx.ready(function(){
+      store.prepareWeChatHomePageShare({author:{avatar: "https://img.zi.com/images/logo.jpg/s120"}, content: "故事接龙，发现创作的乐趣"})
+    });
   },
   events: {
     'toggleTips': function (tip) {
@@ -43,7 +50,8 @@ var Component = Vue.extend({
       composeDialogState: false,
       tipsDialogState: false,
       dialogContent: {},
-      card: { name: "起头", type: 0 }
+      card: { name: "起头", type: 0 },
+      recent_stories: []
     }
   },
   components: {
@@ -51,6 +59,7 @@ var Component = Vue.extend({
     'app-compose-dialog': require('../../components/compose_dialog'),
     'app-dialog': require('../../components/dialog'),
     'app-tips-dialog': require('../../components/dialog'),
+    'story-card': require('../../components/story_card'),
   }
 })
 

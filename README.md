@@ -34,11 +34,25 @@ npm install
 To start the frontend dev server
 
 ```
-npm run dev
+npm run-script dev
 ```
 
 
 ## Backend
+
+### MongoDB
+
+Before All you need instal mongodb, if you are on mac, you can install it by
+
+```
+brew insall mongodb
+```
+
+and start it
+
+```
+brew service mongodb start
+```
 
 ### To build the API Server
 
@@ -52,6 +66,8 @@ make
 Everything will be built into `build` directory.
 
 ### Get watch tool [fswatch](https://github.com/codeskyblue/fswatch)
+
+To build it automactily
 
 ```
 go get -u -v github.com/codeskyblue/fswatch
@@ -93,7 +109,8 @@ npm run build
 ### Run test
 
 ```
-cd test
+cd server/test
+npm install
 npm test
 ```
 

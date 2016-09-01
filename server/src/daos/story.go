@@ -49,6 +49,17 @@ func (dao *StoryDao) FindStoryById(sid string) (*models.Story, error) {
 	return &result, nil
 }
 
+func (dao *StoryDao) FindRecentStories() ([]models.Story, error) {
+	table := dao.GetTable("stories")
+	result := []models.Story{}
+	err := table.Find(nil).Sort("-$natural").Limit(25).All(&result)
+	if err != nil {
+		log.Printf("Can not found recent stories - %s\n", err.Error())
+		return nil, err
+	}
+	return result, nil
+}
+
 func (dao *StoryDao) FindStoriesByUser(uid string, name string) ([]models.Story, error) {
 	table := dao.GetTable("stories")
 	result := []models.Story{}
