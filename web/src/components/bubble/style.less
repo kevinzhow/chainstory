@@ -1,9 +1,9 @@
 @import "../../variables";
 
 .bubbles{
-  &.timeline {
+  &.bubbles-group {
     li {
-      &:first-child {
+      &:first-of-type {
         .bubble {
           border-radius: 8px 8px 0 0;
         }
@@ -15,7 +15,7 @@
         }
       }
 
-      &:not(:first-child):not(:last-of-type) {
+      &:not(:first-of-type):not(:last-of-type) {
         .bubble {
           border-radius: 0;
         }

@@ -74,6 +74,10 @@ func (service *StoryService) FindStoriesByUser(uid string, name string) ([]model
 	return service.storyDao.FindStoriesByUser(uid, name)
 }
 
+func (service *StoryService) FindStoriesBySid(sid string) ([]models.Story, error) {
+	return service.storyDao.FindStoriesBySid(sid)
+}
+
 func (service *StoryService) DeleteStoriesById(sid string) error {
 	log.Printf("Deleting story [sid=%s]...", sid)
 

@@ -83,7 +83,6 @@ func (handler *StoryHandler) FindRecentStories(w rest.ResponseWriter, req *rest.
 	w.WriteJson(stories)
 }
 
-
 func (handler *StoryHandler) FindStoriesByUser(w rest.ResponseWriter, req *rest.Request) {
 	uid := req.PathParam("uid")
 	name := req.PathParam("name")
@@ -92,6 +91,24 @@ func (handler *StoryHandler) FindStoriesByUser(w rest.ResponseWriter, req *rest.
 		return
 	}
 	stories, err := handler.storyService.FindStoriesByUser(uid, name)
+	if stories == nil && err != nil {
+		response := MakeResponse()
+		response["status"] = "Error"
+		response["message"] = err.Error()
+		w.WriteJson(response)
+		return
+	}
+
+	w.WriteJson(stories)
+}
+
+func (handler *StoryHandler) FindStoriesBySid(w rest.ResponseWriter, req *rest.Request) {
+	sid := req.PathParam("sid")
+	if sid == "" {
+		rest.Error(w, "Invalid Request!", http.StatusBadRequest)
+		return
+	}
+	stories, err := handler.storyService.FindStoriesBySid(sid)
 	if stories == nil && err != nil {
 		response := MakeResponse()
 		response["status"] = "Error"
@@ -138,7 +155,7 @@ func (handler *StoryHandler) DeleteStoriesById(w rest.ResponseWriter, req *rest.
 	}
 
 	err := handler.storyService.DeleteStoriesById(sid)
-	
+
 	response := MakeResponse()
 	if err != nil {
 		response["status"] = "Error"

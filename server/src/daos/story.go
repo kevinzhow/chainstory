@@ -78,6 +78,34 @@ func (dao *StoryDao) FindStoriesByUser(uid string, name string) ([]models.Story,
 	return result, nil
 }
 
+func (dao *StoryDao) FindStoriesBySid(sid string) ([]models.Story, error) {
+	table := dao.GetTable("stories")
+
+	// Find The Story
+
+	result := models.Story{}
+	err := table.Find(bson.M{"sid": sid}).One(&result)
+	if err != nil {
+		log.Printf("story [sid=%s] not found! - %s\n", sid, err.Error())
+		return nil, err
+	}
+
+	oids := make([]string, len(result.ChildrenIds))
+	for i := range result.ChildrenIds {
+		oids[i] = result.ChildrenIds[i]
+	}
+
+	results := []models.Story{}
+	errs := table.Find(bson.M{"sid": bson.M{"$in": oids}}).Select(bson.M{"nodes": 0}).All(&results)
+
+	if errs != nil {
+		log.Printf("Cannot find story's stories [sid=%s] - %s\n", sid, errs.Error())
+		return nil, errs
+	}
+
+	return results, nil
+}
+
 func (dao *StoryDao) UpdateStory(story *models.Story) error {
 	table := dao.GetTable("stories")
 	dbStory, err := dao.FindStoryById(story.Sid)

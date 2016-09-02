@@ -115,6 +115,17 @@ var Component = Vue.extend({
           var processArray = _.sortBy(initArray, ['create_at'])
           this.bubbles = processArray;
         }
+
+        this.hasNewTimeLine = json.child_node_ids.length > 0
+
+        if (this.hasNewTimeLine) {
+          store.fetchStoriesBySid(this.sid).then( stories => {
+            console.log(stories)
+            this.newTimelineBubbles = stories
+          })
+        } else {
+
+        }
       })
     }
   },
@@ -130,6 +141,8 @@ var Component = Vue.extend({
       currentUser: {},
       bubbles: [],
       card: {},
+      hasNewTimeLine: false,
+      newTimelineBubbles: [],
       tipsBubble: { user: {username: store.currentUser.username, avatar: store.currentUser.avatar}},
       dialogContent: {}
     }

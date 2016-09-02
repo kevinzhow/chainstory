@@ -110,6 +110,13 @@ var Routers = []RouteMap{
 		}},
 	},
 	{
+		Path: "/stories/:sid",
+		Handlers: []RestHandler{{
+			Method:      "GET",
+			HandlerFunc: storyHandler.FindStoriesBySid,
+		}},
+	},
+	{
 		Path: "/story/:sid",
 		Handlers: []RestHandler{{
 			Method:      "GET",

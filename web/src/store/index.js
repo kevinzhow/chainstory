@@ -204,8 +204,21 @@ store.fetchStory = id => {
  * Fetch stories data.
  */
 
-store.fetchStories = id => {
+store.fetchStories = () => {
   return fetch(serverURL+'/stories')
+  .then(function(response) {
+    return response.json()
+  }).catch(function(ex) {
+    console.log('parsing story failed', ex)
+  })
+}
+
+/**
+ * Fetch stories data.
+ */
+
+store.fetchStoriesBySid = (sid) => {
+  return fetch(serverURL+'/stories/' + sid)
   .then(function(response) {
     return response.json()
   }).catch(function(ex) {
