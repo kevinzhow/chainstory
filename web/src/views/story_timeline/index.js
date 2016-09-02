@@ -75,7 +75,7 @@ var Component = Vue.extend({
     toggleCompose: function (event) {
       console.log(config.WECHAT_URL)
       if (config.PRODUCTION && this.currentUser.access_token == undefined) {
-        window.location.href = config.WECHAT_URL
+        window.location.href = config.WECHAT_URL(config.WECHAT.REDIRECT_URL + "#!/story/" + this.sid)
       } else {
         if(this.currentUser.username != '' || this.currentUser.username != undefined) {
           console.log("Login Success " + this.currentUser.username)
@@ -95,6 +95,7 @@ var Component = Vue.extend({
       }
       // Fetch story by story id
       store.fetchStory(this.sid).then(json => {
+        console.log(json)
         this.storytitle = json.title
         document.title = "故事接龙: " + this.storytitle  + " " + (json.nodes.length + 1)
         window.storyData = json

@@ -27,7 +27,7 @@ let component = Vue.extend({
           // this.$dispatch('timeline-toggleTips', null);
           console.log(config.WECHAT_URL)
           if (config.PRODUCTION && this.currentUser.access_token == undefined) {
-            window.location.href = config.WECHAT_URL
+            window.location.href = config.WECHAT_URL(config.WECHAT.REDIRECT_URL)
           } else {
             if(this.currentUser.username != '' || this.currentUser.username != undefined) {
               console.log("Login Success " + this.currentUser.username)

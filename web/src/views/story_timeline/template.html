@@ -1,9 +1,12 @@
 <div class="view">
   <!-- List the chainstory -->
-  <li v-for="bubble in bubbles">
-    <card-section :author="bubble.author" :card="bubble.card"></card-section>
-    <app-bubble :bubble="bubble"></app-bubble>
-  </li>
+  <div class="bubbles timeline">
+    <li v-for="bubble in bubbles">
+      <card-section :author="bubble.author" :card="bubble.card"></card-section>
+      <app-bubble :bubble="bubble"></app-bubble>
+    </li>
+  </div>
+
   <!-- tips bubble shows the compose tip at the bottom -->
   <app-tips-bubble :bubble="tipsBubble"></app-tips-bubble>
   <!-- when you click the question mark on tips bubble, the dialog will present the tips content -->
