@@ -28,7 +28,7 @@ func IndexGET(w http.ResponseWriter, r *http.Request) {
 	var filename, fileext string
 
 	// Serve index.html for / as default
-	if r.URL.Path == "/" || r.URL.Path == "/chainstory/"{
+	if r.URL.Path == "/" || r.URL.Path == "/chainstory/" {
 		filename = http_root + "/index.html"
 		fileext = ".html"
 	} else {
@@ -40,9 +40,9 @@ func IndexGET(w http.ResponseWriter, r *http.Request) {
 
 	content, err := ioutil.ReadFile(filename)
 	if err != nil {
-		fmt.Printf("   404 Not Found!\n")
-		w.WriteHeader(http.StatusNotFound)
-		return
+		filename = http_root + "/index.html"
+		fileext = ".html"
+		content, err = ioutil.ReadFile(filename)
 	}
 
 	var contype string

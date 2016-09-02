@@ -1,8 +1,6 @@
 require('./style.less')
 var Vue = require('vue'),
-    moment = require('moment'),
-    VueRouter = require('vue-router'),
-    router = new VueRouter()
+    moment = require('moment')
 
 moment.locale('zh-cn')
 
@@ -11,7 +9,7 @@ let component = Vue.extend({
   props: ['story'],
   methods: {
     moveToStory: function(event) {
-      router.go('/story/'+this.story.sid)
+      this.$router.go('/story/'+this.story.sid)
     }
   },
   components: {

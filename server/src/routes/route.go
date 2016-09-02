@@ -15,6 +15,13 @@ var Routers = []RouteMap{
 			HttpHandlerFunc: handlers.IndexGET,
 		}},
 	},
+	{
+		Path: "/chainstory",
+		Handlers: []RestHandler{{
+			Method:          "HTTP",
+			HttpHandlerFunc: handlers.IndexGET,
+		}},
+	},
 
 	// ============== Dummy Restful API =============
 	{
@@ -56,7 +63,7 @@ var Routers = []RouteMap{
 			HandlerFunc: userHandler.FindUser,
 		}},
 	},
-	
+
 	{
 		Path: "/user/wx_openid/:wx_openid",
 		Handlers: []RestHandler{{

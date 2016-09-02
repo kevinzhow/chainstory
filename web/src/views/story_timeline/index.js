@@ -2,8 +2,6 @@ import store from "../../store"
 import config from "../../config"
 
 var Vue = require('vue'),
-    VueRouter = require('vue-router'),
-    router = new VueRouter(),
      _ = require('lodash'),
      wx = require('weixin-js-sdk')
 
@@ -67,7 +65,7 @@ var Component = Vue.extend({
   },
   methods: {
     newStoryCompose: function() {
-      router.go("/")
+      this.$router.go("/")
     },
     toggleTips: function (event) {
       this.tipsDialogState = !this.tipsDialogState
@@ -75,7 +73,7 @@ var Component = Vue.extend({
     toggleCompose: function (event) {
       console.log(config.WECHAT_URL)
       if (config.PRODUCTION && this.currentUser.access_token == undefined) {
-        window.location.href = config.WECHAT_URL(config.WECHAT.REDIRECT_URL + "#!/story/" + this.sid)
+        window.location.href = config.WECHAT_URL(config.WECHAT.REDIRECT_URL+"story/"+this.sid)
       } else {
         if(this.currentUser.username != '' || this.currentUser.username != undefined) {
           console.log("Login Success " + this.currentUser.username)

@@ -8,6 +8,7 @@ let component = Vue.extend({
   template: require('./template.html'),
   props: ['dialog'],
   created() {
+    console.log(this.$route.query)
     if (this.$route.query.code != null && localStorage.getItem("access_token") == null) {
       store.fetchWXAccessToken(this.$route.query.code).then(json => {
         if (json.access_token == undefined) {
