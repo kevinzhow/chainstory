@@ -73,6 +73,7 @@ func (handler *UserHandler) FindUser(w rest.ResponseWriter, req *rest.Request) {
 		rest.Error(w, "Invalid Request!", http.StatusBadRequest)
 		return
 	}
+
 	var user *models.User
 	var err error
 

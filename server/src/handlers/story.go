@@ -138,7 +138,7 @@ func (handler *StoryHandler) DeleteStoriesById(w rest.ResponseWriter, req *rest.
 	}
 
 	err := handler.storyService.DeleteStoriesById(sid)
-
+	
 	response := MakeResponse()
 	if err != nil {
 		response["status"] = "Error"
