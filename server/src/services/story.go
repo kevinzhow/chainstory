@@ -32,6 +32,7 @@ func (service *StoryService) CreateStory(story *models.Story) error {
 			parentStoryNode := models.StoryNode{}
 			parentStoryNode.Author = parentStory.Author
 			parentStoryNode.Title = parentStory.Title
+			parentStoryNode.Sid = parentStory.Sid
 			parentStoryNode.Space = parentStory.Space
 			parentStoryNode.Content = parentStory.Content
 			parentStoryNode.CreateAt = parentStory.CreateAt

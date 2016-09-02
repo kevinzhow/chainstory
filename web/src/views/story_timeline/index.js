@@ -25,10 +25,15 @@ var Component = Vue.extend({
         this.tipsBubble = { user: { username: user.username, avatar: user.avatar }, content: "请点击我要续写抽取情节卡"}
       })
     }
-    this.fetchData()
-    wx.ready(function(){
-      store.prepareWeChatShare(window.storyData)
-    });
+
+  },
+  route: {
+      data() {
+        this.fetchData()
+        wx.ready(function(){
+          store.prepareWeChatShare(window.storyData)
+        });
+      }
   },
   events: {
     'storyCreated': function () {
