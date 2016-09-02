@@ -12,7 +12,7 @@ const (
 	MongoDB DataSource = iota
 )
 
-type BaseDao struct { 
+type BaseDao struct {
 	client *mgo.Session
 	db     *mgo.Database
 }
@@ -23,6 +23,38 @@ func NewBaseDao(dataSource DataSource) *BaseDao {
 	if dataSource == MongoDB {
 		dao.client = getMongoDBClient()
 		dao.db = dao.client.DB("ChainStory")
+
+		// User Index
+		userIndex := mgo.Index{
+			Key:        []string{"wx_openid", "access_token", "uid"},
+			Unique:     true,
+			DropDups:   true,
+			Background: true,
+			Sparse:     true,
+		}
+
+		// Story Index
+		storyIndex := mgo.Index{
+			Key:        []string{"sid"},
+			Unique:     true,
+			DropDups:   true,
+			Background: true,
+			Sparse:     true,
+		}
+
+		u := dao.db.C("users")
+
+		err := u.EnsureIndex(userIndex)
+		if err != nil {
+			panic(err)
+		}
+
+		s := dao.db.C("stories")
+
+		err = s.EnsureIndex(storyIndex)
+		if err != nil {
+			panic(err)
+		}
 	}
 	return dao
 }
