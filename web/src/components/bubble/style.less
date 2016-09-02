@@ -1,27 +1,37 @@
 @import "../../variables";
 
-li {
-  &:first-child {
-    .bubble {
-      border-radius: 8px 8px 0 0;
+.bubbles{
+  &.timeline {
+    li {
+      &:first-child {
+        .bubble {
+          border-radius: 8px 8px 0 0;
+        }
+      }
+
+      &:last-of-type {
+        .bubble {
+          border-radius: 0 0 8px 8px;
+        }
+      }
+
+      &:not(:first-child):not(:last-of-type) {
+        .bubble {
+          border-radius: 0;
+        }
+      }
+
+      &:only-of-type{
+        .bubble {
+          border-radius: 8px !important;
+        }
+      }
     }
   }
 
-  &:last-of-type {
+  &.creation {
     .bubble {
-      border-radius: 0 0 8px 8px;
-    }
-  }
-
-  &:not(:first-child):not(:last-of-type) {
-    .bubble {
-      border-radius: 0;
-    }
-  }
-
-  &:only-of-type{
-    .bubble {
-      border-radius: 8px !important;
+      margin-bottom: 20px;
     }
   }
 }

@@ -95,6 +95,7 @@ var Component = Vue.extend({
       }
       // Fetch story by story id
       store.fetchStory(this.sid).then(json => {
+        console.log(json)
         this.storytitle = json.title
         document.title = "故事接龙: " + this.storytitle  + " " + (json.nodes.length + 1)
         window.storyData = json
