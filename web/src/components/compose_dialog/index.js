@@ -1,8 +1,6 @@
 require('./style.less')
 var Vue = require('vue')
 import store from "../../store"
-var VueRouter = require('vue-router')
-var router = new VueRouter()
 
 let component = Vue.extend({
   template: require('./template.html'),
@@ -35,7 +33,7 @@ let component = Vue.extend({
         if (json.status == "Error" || json.sid == undefined) {
 
         } else {
-          router.go({path:"/story/"+json.sid})
+          this.$router.go({path:"/story/"+json.sid})
           this.$dispatch('refetchData', json.sid);
           this.$dispatch('toggleComposeDialog', null);
           this.$dispatch('storyCreated', null);
