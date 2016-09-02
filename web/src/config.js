@@ -63,12 +63,12 @@ function isWeixinBrowser(){
   return (/micromessenger/.test(ua)) ? true : false ;
 }
 
-function GEN_WECHAT_URL() {
+function GEN_WECHAT_URL(redirect_uri) {
 	if (isWeixinBrowser()) {
-		var url = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${WECHAT_CONFIG.APPID}&redirect_uri=${WECHAT_CONFIG.REDIRECT_URL}&response_type=code&scope=${WECHAT_CONFIG.SCOPE}&state=${WECHAT_CONFIG.STATE}#wechat_redirect`
+		var url = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${WECHAT_CONFIG.APPID}&redirect_uri=${redirect_uri}&response_type=code&scope=${WECHAT_CONFIG.SCOPE}&state=${WECHAT_CONFIG.STATE}#wechat_redirect`
 		return encodeURI(url)
 	} else {
-		var url = `https://open.weixin.qq.com/connect/qrconnect?appid=${WECHAT_CONFIG.APPID}&redirect_uri=${WECHAT_CONFIG.REDIRECT_URL}&response_type=code&scope=${WECHAT_CONFIG.SCOPE}&state=${WECHAT_CONFIG.STATE}#wechat_redirect`
+		var url = `https://open.weixin.qq.com/connect/qrconnect?appid=${WECHAT_CONFIG.APPID}&redirect_uri=${redirect_uri}&response_type=code&scope=${WECHAT_CONFIG.SCOPE}&state=${WECHAT_CONFIG.STATE}#wechat_redirect`
 		return encodeURI(url)
 	}
 }
@@ -80,7 +80,7 @@ function GEN_WECHAT_USERINFO(access_token, open_id) {
 
 const CONFIG = {
 	WECHAT: WECHAT_CONFIG,
-	WECHAT_URL: GEN_WECHAT_URL(),
+	WECHAT_URL: GEN_WECHAT_URL,
 	WECHAT_USERINFO_URL: GEN_WECHAT_USERINFO,
 	DEMOUSER1: DemoUser,
 	DEMOUSER2: DemoUser2,
