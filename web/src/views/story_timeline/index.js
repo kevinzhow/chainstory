@@ -130,12 +130,12 @@ var Component = Vue.extend({
           this.newTimelineBubbles = []
         }
 
-        setTimeout(function() {
-          // console.log(window.storyData.sid)
-          // console.log(document.getElementById(window.storyData.sid))
-          var scrollNum = document.getElementById(window.storyData.sid).offsetTop
+        Vue.nextTick(function () {
+          let scrollNum = document.getElementById(window.storyData.sid).offsetTop
           window.scrollTo(0,scrollNum) 
-        }, 300);
+        })
+
+
 
       })
     }
