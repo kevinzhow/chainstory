@@ -3,7 +3,8 @@ import config from "../../config"
 
 var Vue = require('vue'),
      _ = require('lodash'),
-     wx = require('weixin-js-sdk')
+     wx = require('weixin-js-sdk'),
+     jquery=require('jquery')
 
 
 var Component = Vue.extend({
@@ -34,6 +35,8 @@ var Component = Vue.extend({
           store.prepareWeChatShare(window.storyData)
         });
       }
+  },
+  ready() {
   },
   events: {
     'storyCreated': function () {
@@ -98,7 +101,7 @@ var Component = Vue.extend({
       }
       // Fetch story by story id
       store.fetchStory(this.sid).then(json => {
-        console.log(json)
+        // console.log(json)
         this.storytitle = json.title
         document.title = "故事接龙: " + this.storytitle  + " " + (json.nodes.length + 1)
         window.storyData = json
@@ -120,12 +123,20 @@ var Component = Vue.extend({
 
         if (this.hasNewTimeLine) {
           store.fetchStoriesBySid(this.sid).then( stories => {
-            console.log(stories)
+            // console.log(stories)
             this.newTimelineBubbles = stories
           })
         } else {
-
+          this.newTimelineBubbles = []
         }
+
+        setTimeout(function() {
+          // console.log(window.storyData.sid)
+          // console.log(document.getElementById(window.storyData.sid))
+          var scrollNum = document.getElementById(window.storyData.sid).offsetTop
+          window.scrollTo(0,scrollNum) 
+        }, 300);
+
       })
     }
   },

@@ -39,6 +39,7 @@
     "es6-promise": "^3.2.1",
     "fetch": "^1.1.0",
     "html-webpack-plugin": "^2.22.0",
+    "jquery": "^3.1.0",
     "lodash": "^4.15.0",
     "moment": "^2.14.1",
     "vue": "1.0.26",

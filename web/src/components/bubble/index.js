@@ -5,6 +5,8 @@ moment.locale('zh-cn')
 let component = Vue.extend({
     template: require('./template.html'),
     props: ['bubble'],
+    created() {
+    },
 	data: () => {
 		return {
 		  moment: moment,

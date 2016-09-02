@@ -9,7 +9,8 @@ module.exports = {
     publicPath: "/public/static/",
     filename: "build.js"
   },
-  plugins: [],
+  plugins: [
+  ],
   module: {
     loaders: [
       { test: /\.less$/, loader: "style!css!less" },

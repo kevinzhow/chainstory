@@ -3,7 +3,7 @@
   <div class="bubbles bubbles-group timeline">
     <li v-for="bubble in bubbles">
       <card-section :author="bubble.author" :card="bubble.card"></card-section>
-      <app-bubble :bubble="bubble"></app-bubble>
+      <app-bubble :bubble="bubble" :id="bubble.sid"></app-bubble>
     </li>
 
   </div>
