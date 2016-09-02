@@ -132,7 +132,7 @@ var Component = Vue.extend({
 
         Vue.nextTick(function () {
           let scrollNum = document.getElementById(window.storyData.sid).offsetTop
-          window.scrollTo(0,scrollNum) 
+          window.scrollTo(0,scrollNum - 69) 
         })
 
 

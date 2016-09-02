@@ -10,7 +10,7 @@ var Vue = require('vue'),
 Vue.use(VueRouter)
 Vue.use(VueTouch)
 
-var router = new VueRouter({history: false, root: '/chainstory'})
+var router = new VueRouter({history: true, root: '/chainstory'})
 var locationUrl = encodeURIComponent(location.href.replace(/\#.*/,''))
 
 fetch("https://zi.com/zi/mp/jsapi?url="+locationUrl, {
